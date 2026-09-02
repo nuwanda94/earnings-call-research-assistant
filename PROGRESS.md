@@ -1,12 +1,12 @@
 # Progress Tracker
 
-Last updated: 2026-09-03 00:00 IST
+Last updated: 2026-09-03 01:02 IST
 
 ## Current Phase
 Phase 3 – Evaluation & Iteration
 
 ## Next Action Item
-Add a qualitative research panel (15–25 grounded financial QA/summarization prompts) plus an eval stub that compares base vs adapter outputs without requiring a long GPU train.
+Add a quantitative metrics stub (token-overlap / citation-hit rates) that scores the research-panel side-by-side JSON for base vs adapter without a long GPU train.
 
 ## Completed Items
 
@@ -26,6 +26,7 @@ Add a qualitative research panel (15–25 grounded financial QA/summarization pr
 - [x] Unsloth QLoRA SFT training script (3B) + externalized config / logging / checkpoints
 - [x] Optional 8B config path (`configs/llama32-8b.yaml` + `--model-name` override)
 - [x] Reproducibility notes (seed 3407, adapter output dirs, Kaggle dry-run vs `--run`)
+- [x] Qualitative research panel (20 grounded prompts) + base vs adapter eval stub
 
 ## Phase 0 Checklist
 
@@ -55,7 +56,7 @@ Add a qualitative research panel (15–25 grounded financial QA/summarization pr
 
 ## Phase 3 Checklist
 
-- [ ] Qualitative research panel (15–25 questions)
+- [x] Qualitative research panel (15–25 questions)
 - [ ] Quantitative metrics stub + side-by-side base vs fine-tuned
 - [ ] Evaluation report + at least one iteration note
 
@@ -71,6 +72,7 @@ On each hourly run:
 
 ## Log
 
+- 2026-09-03 01:02 IST — feat: qualitative research panel (`evals/research_panel.jsonl`, 20 grounded QA/summarization items) plus CPU dry-run eval stub (`eval/panel.py`, `scripts/eval_research_panel.py`); `--run` is Kaggle inference only.
 - 2026-09-03 00:00 IST — docs: QLoRA reproducibility (`docs/REPRODUCIBILITY.md`) — seed `3407`, `outputs/adapters/*`, dry-run vs `--run` Kaggle how-to; Phase 2 complete, advanced to Phase 3.
 - 2026-09-02 23:11 IST — feat: optional 8B QLoRA path (`configs/llama32-8b.yaml` = Llama-3.1-8B-Instruct, batch 1 / accum 8 for T4) plus `--model-name` override on `scripts/train_sft.py`.
 - 2026-09-02 22:23 IST — feat: Unsloth QLoRA SFT (`training/sft.py` + `scripts/train_sft.py`); dry-run default writes `outputs/sft_plan.json`; `--run` is the Kaggle GPU path. Wired `training.dataset_dir` / `adapter_dir` / `save_steps` / `max_steps` in `configs/default.yaml`.
