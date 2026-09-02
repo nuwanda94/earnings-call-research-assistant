@@ -91,3 +91,15 @@ python scripts/train_sft.py --model-name unsloth/Meta-Llama-3.1-8B-Instruct
 Prefer the dedicated YAML for 8B so batch size is 1 and `adapter_dir` is
 `outputs/adapters/llama31-8b-ecra-sft`. Full-epoch knobs live under `training.*`
 (seed `3407`).
+
+## Qualitative research panel (Phase 3)
+
+```bash
+python scripts/eval_research_panel.py
+python scripts/eval_research_panel.py --run --adapter-dir outputs/adapters/llama32-3b-ecra-sft
+```
+
+Dry-run loads [`evals/research_panel.jsonl`](../evals/research_panel.jsonl)
+(20 grounded QA/summarization prompts) and writes placeholder base vs adapter
+rows to `evals/reports/research_panel_comparison.json`. `--run` is the Kaggle
+inference path and does not train.
