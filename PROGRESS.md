@@ -1,12 +1,12 @@
 # Progress Tracker
 
-Last updated: 2026-09-03 01:02 IST
+Last updated: 2026-09-03 02:00 IST
 
 ## Current Phase
 Phase 3 – Evaluation & Iteration
 
 ## Next Action Item
-Add a quantitative metrics stub (token-overlap / citation-hit rates) that scores the research-panel side-by-side JSON for base vs adapter without a long GPU train.
+Write an evaluation report plus one iteration note that interprets dry-run (and optional Kaggle) base-vs-adapter metrics and names a single next training or data change.
 
 ## Completed Items
 
@@ -27,6 +27,7 @@ Add a quantitative metrics stub (token-overlap / citation-hit rates) that scores
 - [x] Optional 8B config path (`configs/llama32-8b.yaml` + `--model-name` override)
 - [x] Reproducibility notes (seed 3407, adapter output dirs, Kaggle dry-run vs `--run`)
 - [x] Qualitative research panel (20 grounded prompts) + base vs adapter eval stub
+- [x] Quantitative metrics stub (token-overlap / citation-hit rates on panel JSON)
 
 ## Phase 0 Checklist
 
@@ -57,7 +58,7 @@ Add a quantitative metrics stub (token-overlap / citation-hit rates) that scores
 ## Phase 3 Checklist
 
 - [x] Qualitative research panel (15–25 questions)
-- [ ] Quantitative metrics stub + side-by-side base vs fine-tuned
+- [x] Quantitative metrics stub + side-by-side base vs fine-tuned
 - [ ] Evaluation report + at least one iteration note
 
 ## Notes for Automation
@@ -72,6 +73,7 @@ On each hourly run:
 
 ## Log
 
+- 2026-09-03 02:00 IST — feat: quantitative metrics stub (`eval/metrics.py`, `scripts/score_research_panel.py`) scoring panel comparison JSON with token-overlap F1/Jaccard vs context, citation-hit rate, and refusal accuracy; CPU-only, no GPU train.
 - 2026-09-03 01:02 IST — feat: qualitative research panel (`evals/research_panel.jsonl`, 20 grounded QA/summarization items) plus CPU dry-run eval stub (`eval/panel.py`, `scripts/eval_research_panel.py`); `--run` is Kaggle inference only.
 - 2026-09-03 00:00 IST — docs: QLoRA reproducibility (`docs/REPRODUCIBILITY.md`) — seed `3407`, `outputs/adapters/*`, dry-run vs `--run` Kaggle how-to; Phase 2 complete, advanced to Phase 3.
 - 2026-09-02 23:11 IST — feat: optional 8B QLoRA path (`configs/llama32-8b.yaml` = Llama-3.1-8B-Instruct, batch 1 / accum 8 for T4) plus `--model-name` override on `scripts/train_sft.py`.
