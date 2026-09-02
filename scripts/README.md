@@ -138,3 +138,32 @@ python scripts/demo_gradio.py --run --adapter-dir outputs/adapters/llama32-3b-ec
 
 `--run` loads `InferenceHarness` from `configs/default.yaml` (or the adapter
 directory). Implementation: `src/earnings_call_research_assistant/demo.py`.
+
+## Hugging Face Hub adapter publish (Phase 4)
+
+```bash
+python scripts/publish_adapter.py
+```
+
+Dry-run by default: checks `outputs/adapters/llama32-3b-ecra-sft`, notes whether
+`HF_TOKEN` / `HUGGING_FACE_HUB_TOKEN` is set (value never printed), and writes
+`outputs/publish_plan.json`. No Hub call, no secrets in the repo.
+
+Login once on the machine that will upload (Kaggle or local):
+
+```bash
+huggingface-cli login
+# or
+export HF_TOKEN=hf_xxx    # write-scoped; do not commit
+```
+
+When the adapter folder exists and you are logged in:
+
+```bash
+python scripts/publish_adapter.py --run
+python scripts/publish_adapter.py --repo-id nuwanda94/llama32-3b-ecra-sft --run
+python scripts/publish_adapter.py --adapter-dir outputs/adapters/llama31-8b-ecra-sft \
+    --repo-id nuwanda94/llama31-8b-ecra-sft --run
+```
+
+Implementation: `src/earnings_call_research_assistant/publish.py`.
