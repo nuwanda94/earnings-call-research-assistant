@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "earnings-call-research-assistant"
+version = "0.1.0"
+description = "Domain-adapted LLM for financial research Q&A and summarization from public earnings call transcripts"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Karan Verma" }]
+keywords = ["llm", "fine-tuning", "finance", "earnings-calls", "qlora", "unsloth"]
+
+dependencies = [
+    "torch>=2.1.0",
+    "transformers>=4.44.0",
+    "datasets>=2.20.0",
+    "accelerate>=0.33.0",
+    "peft>=0.12.0",
+    "trl>=0.9.0",
+    "bitsandbytes>=0.43.0",
+    "unsloth>=2024.8",
+    "pandas>=2.0.0",
+    "numpy>=1.24.0",
+    "pyyaml>=6.0",
+    "tqdm>=4.66.0",
+]
+
+[project.optional-dependencies]
+eval = [
+    "rouge-score>=0.1.2",
+]
+demo = [
+    "gradio>=4.0.0",
+]
+dev = [
+    "pytest>=7.0",
+    "ruff>=0.4.0",
+]
+all = [
+    "earnings-call-research-assistant[eval,demo,dev]",
+]
+
+[project.urls]
+Repository = "https://github.com/nuwanda94/earnings-call-research-assistant"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

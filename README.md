@@ -26,6 +26,23 @@ Progress is tracked in [`PROGRESS.md`](PROGRESS.md). An hourly automation advanc
 - Reproducible on free Kaggle GPUs (T4 / 2×T4)
 - Clear before/after qualitative evidence for interviews
 
+## Setup
+
+Dependencies are defined in [`pyproject.toml`](pyproject.toml) (PEP 621).
+
+```bash
+# Core
+pip install -e .
+
+# With eval + demo extras
+pip install -e ".[eval,demo]"
+
+# Everything
+pip install -e ".[all]"
+```
+
+On Kaggle you can also install from the TOML extras as needed after cloning.
+
 ## Structure
 
 ```
