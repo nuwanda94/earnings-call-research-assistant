@@ -31,3 +31,13 @@ python scripts/generate_grounded_pairs.py --out data/processed/grounded_pairs.js
 Turns chunks + propositions into citation-grounded Q&A and summary instruction
 pairs via offline templates. Optional LLM rewrite is a notebook hook only
 (`generate_pairs(..., llm=..., config=GenerateConfig(use_llm=True))`).
+
+## Multi-stage filtering
+
+```bash
+python scripts/filter_grounded_pairs.py --out data/processed/filtered_pairs.jsonl
+```
+
+Applies heuristic length/citation checks, exact + near-duplicate drop, and an
+optional LLM-as-judge stage. `--use-llm-judge` runs a deterministic proxy so
+automation never bills GPU; pass a real `judge` callable from a Kaggle notebook.

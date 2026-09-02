@@ -9,6 +9,15 @@ from earnings_call_research_assistant.data.chunk import (
     extract_propositions,
     write_chunks_jsonl,
 )
+from earnings_call_research_assistant.data.filter import (
+    FilterConfig,
+    FilterDecision,
+    FilterReport,
+    filter_pairs,
+    heuristic_check,
+    load_pairs_jsonl,
+    write_filter_report,
+)
 from earnings_call_research_assistant.data.generate import (
     GenerateConfig,
     InstructionPair,
@@ -31,6 +40,9 @@ from earnings_call_research_assistant.data.ingest import (
 __all__ = [
     "PUBLIC_SOURCES",
     "ChunkConfig",
+    "FilterConfig",
+    "FilterDecision",
+    "FilterReport",
     "GenerateConfig",
     "IngestRecord",
     "InstructionPair",
@@ -40,14 +52,18 @@ __all__ = [
     "chunk_records",
     "chunk_text",
     "extract_propositions",
+    "filter_pairs",
     "generate_pairs",
     "get_source",
+    "heuristic_check",
     "ingest_catalog",
     "list_sources",
     "load_chunks_jsonl",
+    "load_pairs_jsonl",
     "load_public_source",
     "pairs_from_chunk",
     "write_chunks_jsonl",
+    "write_filter_report",
     "write_jsonl",
     "write_pairs_jsonl",
 ]

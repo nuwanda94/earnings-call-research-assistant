@@ -1,12 +1,12 @@
 # Progress Tracker
 
-Last updated: 2026-09-02 18:07 IST
+Last updated: 2026-09-02 19:25 IST
 
 ## Current Phase
 Phase 1 – Robust Data Foundation
 
 ## Next Action Item
-Add multi-stage filtering: `src/earnings_call_research_assistant/data/filter.py` (heuristic length/citation checks → exact/near-dup drop → optional LLM-as-judge stub for Kaggle).
+Add diversity selection + versioned train/val/test splits + data card (`src/earnings_call_research_assistant/data/select.py`, `docs/DATA_CARD.md`).
 
 ## Completed Items
 
@@ -21,6 +21,7 @@ Add multi-stage filtering: `src/earnings_call_research_assistant/data/filter.py`
 - [x] Public-source ingestion stubs (transcripts, FiQA, Finance-Alpaca)
 - [x] Chunking + proposition extraction
 - [x] Grounded synthetic Q&A / summary generation
+- [x] Multi-stage filtering (heuristic → dedup → LLM-as-judge stub)
 
 ## Phase 0 Checklist
 
@@ -39,7 +40,7 @@ Add multi-stage filtering: `src/earnings_call_research_assistant/data/filter.py`
 - [x] Public-source ingestion stubs (transcripts, FiQA, Finance-Alpaca)
 - [x] Chunking + proposition extraction
 - [x] Grounded synthetic Q&A / summary generation
-- [ ] Multi-stage filtering (heuristic → dedup → LLM-as-judge)
+- [x] Multi-stage filtering (heuristic → dedup → LLM-as-judge)
 - [ ] Diversity selection + versioned splits + data card
 
 ## Notes for Automation
@@ -54,6 +55,7 @@ On each hourly run:
 
 ## Log
 
+- 2026-09-02 19:25 IST — feat: multi-stage filtering (`data/filter.py` + `scripts/filter_grounded_pairs.py`); heuristic length/citation checks, exact/near-dup Jaccard drop, optional LLM-as-judge stub (proxy default, Kaggle hook).
 - 2026-09-02 18:07 IST — feat: grounded synthetic Q&A / summary pairs (`data/generate.py` + `scripts/generate_grounded_pairs.py`); template path cites chunk+proposition; optional LLM rewrite hook for Kaggle.
 - 2026-09-02 17:01 IST — feat: section-aware chunking + heuristic proposition extraction (`data/chunk.py` + `scripts/chunk_propositions.py`); offline-safe windows for grounded generation.
 - 2026-09-02 16:00 IST — feat: public-data ingestion stub (`data/ingest.py` + `scripts/ingest_public_sources.py`); catalog for transcripts / FiQA / Finance-Alpaca with offline fixtures and opt-in HF streaming.
