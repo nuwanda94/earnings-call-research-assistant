@@ -41,3 +41,13 @@ python scripts/filter_grounded_pairs.py --out data/processed/filtered_pairs.json
 Applies heuristic length/citation checks, exact + near-duplicate drop, and an
 optional LLM-as-judge stage. `--use-llm-judge` runs a deterministic proxy so
 automation never bills GPU; pass a real `judge` callable from a Kaggle notebook.
+
+## Diversity selection + versioned splits
+
+```bash
+python scripts/select_dataset.py --out-dir data/processed/ecra-sft-v0.1.0
+```
+
+Applies per-source/task caps and greedy Jaccard diversity, then writes
+hash-stable `train.jsonl` / `val.jsonl` / `test.jsonl` plus `manifest.json`.
+See [`docs/DATA_CARD.md`](../docs/DATA_CARD.md).

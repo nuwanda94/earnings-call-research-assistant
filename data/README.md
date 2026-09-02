@@ -19,6 +19,12 @@ python scripts/ingest_public_sources.py --catalog-only
 2. Chunking & proposition extraction
 3. Grounded synthetic generation  ← `data/generate.py` + `scripts/generate_grounded_pairs.py`
 4. Multi-stage filtering (heuristic → dedup → LLM-as-judge)
-5. Diversity selection → versioned train/val/test + data card
+5. Diversity selection → versioned train/val/test + data card  ← `data/select.py` + `docs/DATA_CARD.md`
+
+Rebuild a versioned snapshot:
+
+```bash
+python scripts/select_dataset.py --out-dir data/processed/ecra-sft-v0.1.0
+```
 
 See `docs/PROJECT_PLAN.md` and root `PROGRESS.md`.

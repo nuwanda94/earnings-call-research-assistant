@@ -1,4 +1,4 @@
-"""Ingestion, chunking, grounded generation, and filtering (Phase 1)."""
+"""Ingestion, chunking, grounded generation, filtering, and selection (Phase 1)."""
 
 from earnings_call_research_assistant.data.chunk import (
     ChunkConfig,
@@ -36,8 +36,18 @@ from earnings_call_research_assistant.data.ingest import (
     load_public_source,
     write_jsonl,
 )
+from earnings_call_research_assistant.data.select import (
+    DATASET_VERSION,
+    SelectConfig,
+    SelectReport,
+    SplitAssignment,
+    assign_split,
+    select_and_split,
+    write_splits,
+)
 
 __all__ = [
+    "DATASET_VERSION",
     "PUBLIC_SOURCES",
     "ChunkConfig",
     "FilterConfig",
@@ -47,8 +57,12 @@ __all__ = [
     "IngestRecord",
     "InstructionPair",
     "Proposition",
+    "SelectConfig",
+    "SelectReport",
     "SourceSpec",
+    "SplitAssignment",
     "TextChunk",
+    "assign_split",
     "chunk_records",
     "chunk_text",
     "extract_propositions",
@@ -62,8 +76,10 @@ __all__ = [
     "load_pairs_jsonl",
     "load_public_source",
     "pairs_from_chunk",
+    "select_and_split",
     "write_chunks_jsonl",
     "write_filter_report",
     "write_jsonl",
     "write_pairs_jsonl",
+    "write_splits",
 ]

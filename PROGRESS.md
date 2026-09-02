@@ -1,12 +1,12 @@
 # Progress Tracker
 
-Last updated: 2026-09-02 19:25 IST
+Last updated: 2026-09-02 20:40 IST
 
 ## Current Phase
-Phase 1 – Robust Data Foundation
+Phase 2 – Training Pipeline
 
 ## Next Action Item
-Add diversity selection + versioned train/val/test splits + data card (`src/earnings_call_research_assistant/data/select.py`, `docs/DATA_CARD.md`).
+Add Unsloth QLoRA SFT training script + config wiring (`src/earnings_call_research_assistant/training/sft.py`, `scripts/train_sft.py`) that reads versioned splits and `configs/default.yaml`. Do not launch a long GPU run in automation — keep it a Kaggle-ready script with a CPU/dry-run path.
 
 ## Completed Items
 
@@ -22,6 +22,7 @@ Add diversity selection + versioned train/val/test splits + data card (`src/earn
 - [x] Chunking + proposition extraction
 - [x] Grounded synthetic Q&A / summary generation
 - [x] Multi-stage filtering (heuristic → dedup → LLM-as-judge stub)
+- [x] Diversity selection + versioned splits + data card
 
 ## Phase 0 Checklist
 
@@ -41,7 +42,13 @@ Add diversity selection + versioned train/val/test splits + data card (`src/earn
 - [x] Chunking + proposition extraction
 - [x] Grounded synthetic Q&A / summary generation
 - [x] Multi-stage filtering (heuristic → dedup → LLM-as-judge)
-- [ ] Diversity selection + versioned splits + data card
+- [x] Diversity selection + versioned splits + data card
+
+## Phase 2 Checklist
+
+- [ ] Unsloth QLoRA SFT training script (3B) + externalized config / logging / checkpoints
+- [ ] Optional 8B config path
+- [ ] Reproducibility notes (seed, adapter output dir, Kaggle how-to)
 
 ## Notes for Automation
 
@@ -55,6 +62,7 @@ On each hourly run:
 
 ## Log
 
+- 2026-09-02 20:40 IST — feat: diversity selection + versioned splits (`data/select.py` + `scripts/select_dataset.py`) and `docs/DATA_CARD.md` for `ecra-sft-v0.1.0`; Phase 1 complete, advanced to Phase 2.
 - 2026-09-02 19:25 IST — feat: multi-stage filtering (`data/filter.py` + `scripts/filter_grounded_pairs.py`); heuristic length/citation checks, exact/near-dup Jaccard drop, optional LLM-as-judge stub (proxy default, Kaggle hook).
 - 2026-09-02 18:07 IST — feat: grounded synthetic Q&A / summary pairs (`data/generate.py` + `scripts/generate_grounded_pairs.py`); template path cites chunk+proposition; optional LLM rewrite hook for Kaggle.
 - 2026-09-02 17:01 IST — feat: section-aware chunking + heuristic proposition extraction (`data/chunk.py` + `scripts/chunk_propositions.py`); offline-safe windows for grounded generation.
