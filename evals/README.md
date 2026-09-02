@@ -24,3 +24,16 @@ python scripts/eval_research_panel.py --run --adapter-dir outputs/adapters/llama
 ```
 
 Library entry point: `earnings_call_research_assistant.eval.run_research_panel`.
+
+## Quantitative metrics stub
+
+Token-overlap (unigram F1 / Jaccard vs context) and citation-hit rate on the
+side-by-side JSON. CPU only; dry-run placeholders score near zero, which is
+expected until `--run` fills real generations.
+
+```bash
+python scripts/score_research_panel.py
+```
+
+Writes [`reports/research_panel_metrics.json`](reports/research_panel_metrics.json).
+Library entry point: `earnings_call_research_assistant.eval.score_research_panel`.

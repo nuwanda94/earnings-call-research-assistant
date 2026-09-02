@@ -103,3 +103,13 @@ Dry-run loads [`evals/research_panel.jsonl`](../evals/research_panel.jsonl)
 (20 grounded QA/summarization prompts) and writes placeholder base vs adapter
 rows to `evals/reports/research_panel_comparison.json`. `--run` is the Kaggle
 inference path and does not train.
+
+## Quantitative metrics stub (Phase 3)
+
+```bash
+python scripts/score_research_panel.py
+```
+
+Reads the side-by-side JSON (writes a dry-run comparison first if missing) and
+prints token-overlap F1/Jaccard vs context plus citation-hit and refusal rates
+for base vs adapter. Output: `evals/reports/research_panel_metrics.json`.
