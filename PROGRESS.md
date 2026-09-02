@@ -1,12 +1,12 @@
 # Progress Tracker
 
-Last updated: 2026-09-02 22:23 IST
+Last updated: 2026-09-02 23:11 IST
 
 ## Current Phase
 Phase 2 – Training Pipeline
 
 ## Next Action Item
-Add optional 8B config path (`configs/llama32-8b.yaml` or a documented `model.name` override) that reuses the same SFT script with smaller batch / higher grad-accum for Kaggle T4 VRAM.
+Add reproducibility notes (seed, adapter output dir, Kaggle how-to) for the Unsloth QLoRA SFT path — document seed `3407`, `outputs/adapters/*`, and the dry-run vs `--run` Kaggle steps without launching a long GPU train.
 
 ## Completed Items
 
@@ -24,6 +24,7 @@ Add optional 8B config path (`configs/llama32-8b.yaml` or a documented `model.na
 - [x] Multi-stage filtering (heuristic → dedup → LLM-as-judge stub)
 - [x] Diversity selection + versioned splits + data card
 - [x] Unsloth QLoRA SFT training script (3B) + externalized config / logging / checkpoints
+- [x] Optional 8B config path (`configs/llama32-8b.yaml` + `--model-name` override)
 
 ## Phase 0 Checklist
 
@@ -48,7 +49,7 @@ Add optional 8B config path (`configs/llama32-8b.yaml` or a documented `model.na
 ## Phase 2 Checklist
 
 - [x] Unsloth QLoRA SFT training script (3B) + externalized config / logging / checkpoints
-- [ ] Optional 8B config path
+- [x] Optional 8B config path
 - [ ] Reproducibility notes (seed, adapter output dir, Kaggle how-to)
 
 ## Notes for Automation
@@ -63,6 +64,7 @@ On each hourly run:
 
 ## Log
 
+- 2026-09-02 23:11 IST — feat: optional 8B QLoRA path (`configs/llama32-8b.yaml` = Llama-3.1-8B-Instruct, batch 1 / accum 8 for T4) plus `--model-name` override on `scripts/train_sft.py`.
 - 2026-09-02 22:23 IST — feat: Unsloth QLoRA SFT (`training/sft.py` + `scripts/train_sft.py`); dry-run default writes `outputs/sft_plan.json`; `--run` is the Kaggle GPU path. Wired `training.dataset_dir` / `adapter_dir` / `save_steps` / `max_steps` in `configs/default.yaml`.
 - 2026-09-02 20:40 IST — feat: diversity selection + versioned splits (`data/select.py` + `scripts/select_dataset.py`) and `docs/DATA_CARD.md` for `ecra-sft-v0.1.0`; Phase 1 complete, advanced to Phase 2.
 - 2026-09-02 19:25 IST — feat: multi-stage filtering (`data/filter.py` + `scripts/filter_grounded_pairs.py`); heuristic length/citation checks, exact/near-dup Jaccard drop, optional LLM-as-judge stub (proxy default, Kaggle hook).
