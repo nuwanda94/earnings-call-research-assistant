@@ -17,7 +17,7 @@ python scripts/ingest_public_sources.py --catalog-only
 ## Pipeline (Phase 1)
 1. Ingestion & normalization  ← stub in place (offline fixtures; optional HF stream)
 2. Chunking & proposition extraction
-3. Grounded synthetic generation
+3. Grounded synthetic generation  ← `data/generate.py` + `scripts/generate_grounded_pairs.py`
 4. Multi-stage filtering (heuristic → dedup → LLM-as-judge)
 5. Diversity selection → versioned train/val/test + data card
 

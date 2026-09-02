@@ -1,12 +1,12 @@
 # Progress Tracker
 
-Last updated: 2026-09-02 17:01 IST
+Last updated: 2026-09-02 18:07 IST
 
 ## Current Phase
 Phase 1 – Robust Data Foundation
 
 ## Next Action Item
-Add grounded synthetic Q&A / summary generation: `src/earnings_call_research_assistant/data/generate.py` that turns chunk + proposition records into citation-grounded instruction pairs (offline templates + optional LLM path for Kaggle).
+Add multi-stage filtering: `src/earnings_call_research_assistant/data/filter.py` (heuristic length/citation checks → exact/near-dup drop → optional LLM-as-judge stub for Kaggle).
 
 ## Completed Items
 
@@ -20,6 +20,7 @@ Add grounded synthetic Q&A / summary generation: `src/earnings_call_research_ass
 - [x] Root README with <30 min clone-and-run baseline (Kaggle + local, config + notebook)
 - [x] Public-source ingestion stubs (transcripts, FiQA, Finance-Alpaca)
 - [x] Chunking + proposition extraction
+- [x] Grounded synthetic Q&A / summary generation
 
 ## Phase 0 Checklist
 
@@ -37,7 +38,7 @@ Add grounded synthetic Q&A / summary generation: `src/earnings_call_research_ass
 
 - [x] Public-source ingestion stubs (transcripts, FiQA, Finance-Alpaca)
 - [x] Chunking + proposition extraction
-- [ ] Grounded synthetic Q&A / summary generation
+- [x] Grounded synthetic Q&A / summary generation
 - [ ] Multi-stage filtering (heuristic → dedup → LLM-as-judge)
 - [ ] Diversity selection + versioned splits + data card
 
@@ -53,6 +54,7 @@ On each hourly run:
 
 ## Log
 
+- 2026-09-02 18:07 IST — feat: grounded synthetic Q&A / summary pairs (`data/generate.py` + `scripts/generate_grounded_pairs.py`); template path cites chunk+proposition; optional LLM rewrite hook for Kaggle.
 - 2026-09-02 17:01 IST — feat: section-aware chunking + heuristic proposition extraction (`data/chunk.py` + `scripts/chunk_propositions.py`); offline-safe windows for grounded generation.
 - 2026-09-02 16:00 IST — feat: public-data ingestion stub (`data/ingest.py` + `scripts/ingest_public_sources.py`); catalog for transcripts / FiQA / Finance-Alpaca with offline fixtures and opt-in HF streaming.
 - 2026-09-02 15:01 IST — docs: polished root README with Kaggle + local <30 min baseline path (`load_config` / `configs/default.yaml` / `notebooks/00_baseline_inference.ipynb`); closed Phase 0 and advanced to Phase 1.

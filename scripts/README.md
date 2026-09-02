@@ -21,3 +21,13 @@ python scripts/chunk_propositions.py --out data/processed/chunks.jsonl
 
 Splits ingested text into section-aware sentence windows and extracts short
 heuristic propositions (numbers, metrics, guidance). No LLM required.
+
+## Grounded synthetic pairs
+
+```bash
+python scripts/generate_grounded_pairs.py --out data/processed/grounded_pairs.jsonl
+```
+
+Turns chunks + propositions into citation-grounded Q&A and summary instruction
+pairs via offline templates. Optional LLM rewrite is a notebook hook only
+(`generate_pairs(..., llm=..., config=GenerateConfig(use_llm=True))`).
