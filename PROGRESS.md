@@ -1,12 +1,12 @@
 # Progress Tracker
 
-Last updated: 2026-09-03 03:00 IST
+Last updated: 2026-09-03 04:00 IST
 
 ## Current Phase
 Phase 4 – Packaging & Portfolio Polish
 
 ## Next Action Item
-Add a CPU-safe Gradio demo stub that loads `InferenceHarness` (base or `--adapter-dir`) for a few research-panel prompts without starting a train.
+Add a Hugging Face Hub adapter publish script (token from env only; no secrets in repo) that dry-runs by default and documents `huggingface-cli login` / `HF_TOKEN`.
 
 ## Completed Items
 
@@ -29,6 +29,7 @@ Add a CPU-safe Gradio demo stub that loads `InferenceHarness` (base or `--adapte
 - [x] Qualitative research panel (20 grounded prompts) + base vs adapter eval stub
 - [x] Quantitative metrics stub (token-overlap / citation-hit rates on panel JSON)
 - [x] Evaluation report + first iteration note (refusal-and-citation data mix)
+- [x] CPU-safe Gradio demo stub (`demo.py` + `scripts/demo_gradio.py`)
 
 ## Phase 0 Checklist
 
@@ -64,7 +65,7 @@ Add a CPU-safe Gradio demo stub that loads `InferenceHarness` (base or `--adapte
 
 ## Phase 4 Checklist
 
-- [ ] Gradio / Streamlit demo stub
+- [x] Gradio / Streamlit demo stub
 - [ ] Hugging Face Hub adapter publish script (no secrets in repo)
 - [ ] Polished README + short walkthrough
 
@@ -80,6 +81,7 @@ On each hourly run:
 
 ## Log
 
+- 2026-09-03 04:00 IST — feat: CPU-safe Gradio demo (`src/earnings_call_research_assistant/demo.py`, `scripts/demo_gradio.py`); dry-run default, `--run` / `--adapter-dir` load `InferenceHarness` only. No train.
 - 2026-09-03 03:00 IST — docs: evaluation report + iteration note v0.1 (`evals/reports/`); dry-run metrics interpreted as harness-only; next change is an insufficient-context SFT slice. Phase 3 complete, advanced to Phase 4.
 - 2026-09-03 02:00 IST — feat: quantitative metrics stub (`eval/metrics.py`, `scripts/score_research_panel.py`) scoring panel comparison JSON with token-overlap F1/Jaccard vs context, citation-hit rate, and refusal accuracy; CPU-only, no GPU train.
 - 2026-09-03 01:02 IST — feat: qualitative research panel (`evals/research_panel.jsonl`, 20 grounded QA/summarization items) plus CPU dry-run eval stub (`eval/panel.py`, `scripts/eval_research_panel.py`); `--run` is Kaggle inference only.

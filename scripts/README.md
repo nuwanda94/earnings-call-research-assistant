@@ -117,3 +117,24 @@ for base vs adapter. Output: `evals/reports/research_panel_metrics.json`.
 Interpretation and the first training/data iteration:
 [`evals/reports/EVALUATION_REPORT.md`](../evals/reports/EVALUATION_REPORT.md),
 [`evals/reports/ITERATION_NOTE_v0.1.md`](../evals/reports/ITERATION_NOTE_v0.1.md).
+
+## Gradio demo stub (Phase 4)
+
+```bash
+pip install -e ".[demo]"
+python scripts/demo_gradio.py
+```
+
+CPU-safe by default: dropdown of four research-panel prompts (guidance, missing
+FCF refusal, margin summary, unanswerable date) plus optional question/context
+overrides. Replies are a dry-run placeholder — no weights, no train.
+
+On a GPU box:
+
+```bash
+python scripts/demo_gradio.py --run
+python scripts/demo_gradio.py --run --adapter-dir outputs/adapters/llama32-3b-ecra-sft
+```
+
+`--run` loads `InferenceHarness` from `configs/default.yaml` (or the adapter
+directory). Implementation: `src/earnings_call_research_assistant/demo.py`.
