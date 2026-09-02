@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Launch Unsloth QLoRA SFT from versioned splits + configs/default.yaml.
+"""Launch Unsloth QLoRA SFT from versioned splits + a YAML AppConfig.
 
 Default is a CPU dry-run: no model download, no trainer.train().
 Pass --run only on a Kaggle T4 (or local CUDA box) after the dataset exists.
@@ -8,6 +8,8 @@ Examples
 --------
     python scripts/train_sft.py
     python scripts/train_sft.py --dataset-dir data/processed/ecra-sft-v0.1.0
+    python scripts/train_sft.py --config configs/llama32-8b.yaml
+    python scripts/train_sft.py --model-name unsloth/Meta-Llama-3.1-8B-Instruct
     python scripts/train_sft.py --run --max-steps 20
 """
 
@@ -36,7 +38,13 @@ def _parse_args() -> argparse.Namespace:
         "--config",
         type=Path,
         default=ROOT / "configs" / "default.yaml",
-        help="YAML/JSON AppConfig path.",
+        help="YAML/JSON AppConfig path (default.yaml or llama32-8b.yaml).",
+    )
+    parser.add_argument(
+        "--model-name",
+        type=str,
+        default=None,
+        help="Override model.name from the YAML (e.g. unsloth/Meta-Llama-3.1-8B-Instruct).",
     )
     parser.add_argument(
         "--dataset-dir",
@@ -82,6 +90,7 @@ def main() -> int:
         max_steps=args.max_steps,
         save_steps=args.save_steps,
         require_train=args.run,
+        model_name=args.model_name,
     )
     print(
         f"dry_run={plan.dry_run} model={plan.model_name} "

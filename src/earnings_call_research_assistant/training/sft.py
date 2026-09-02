@@ -4,6 +4,10 @@ Default path is a CPU-safe dry run: load ``configs/default.yaml``, read the
 versioned JSONL splits, format chat examples, and write a training plan.
 The GPU path (Unsloth + TRL ``SFTTrainer``) is intended for Kaggle T4 and
 is never launched unless ``--run`` is passed.
+
+An optional 8B path lives in ``configs/llama32-8b.yaml`` (Llama-3.1-8B-Instruct
+with batch 1 / grad-accum 8). ``--model-name`` overrides ``model.name`` only;
+use the 8B YAML when you also need the T4-safe batch settings.
 """
 
 from __future__ import annotations
@@ -66,6 +70,7 @@ class SFTRunConfig:
         output_dir: str | Path | None = None,
         max_steps: int | None = None,
         save_steps: int | None = None,
+        model_name: str | None = None,
     ) -> "SFTRunConfig":
         extras = app.extras or {}
         train_extra = extras.get("training") if isinstance(extras.get("training"), dict) else {}
@@ -88,8 +93,9 @@ class SFTRunConfig:
         resolved_output = output_dir or train_dict.get("output_dir") or "outputs"
         raw_max = max_steps if max_steps is not None else train_dict.get("max_steps")
         raw_save = save_steps if save_steps is not None else train_dict.get("save_steps", 50)
+        resolved_model = model_name or app.model.name
         return cls(
-            model_name=app.model.name,
+            model_name=resolved_model,
             max_seq_length=app.model.max_seq_length,
             load_in_4bit=app.model.load_in_4bit,
             lora_r=app.lora.r,
@@ -225,6 +231,7 @@ def build_plan(
         "Public grounded pairs only; do not invent figures at train time.",
         f"Versioned splits expected at {run.dataset_dir}.",
         "Kaggle: enable T4 GPU, pip install unsloth + trl, then pass --run.",
+        "8B path: --config configs/llama32-8b.yaml (batch 1 / accum 8).",
         "Dry-run never loads weights or starts SFTTrainer.",
     ]
     if dry_run:
@@ -270,8 +277,7 @@ def _pairs_to_hf_dataset(pairs: Sequence[InstructionPair], run: SFTRunConfig, to
     texts = [
         format_pair_text(p, system_prompt=run.system_prompt, tokenizer=tokenizer)
         for p in pairs
-    ]
-    return Dataset.from_dict({"text": texts})
+    ]n    return Dataset.from_dict({"text": texts})
 
 
 def _make_trainer(model: Any, tokenizer: Any, run: SFTRunConfig, train_ds: Any, val_ds: Any | None):
@@ -340,6 +346,7 @@ def run_sft(
     max_steps: int | None = None,
     save_steps: int | None = None,
     require_train: bool = True,
+    model_name: str | None = None,
 ) -> SFTPlan:
     """Load config + splits and either write a plan or run QLoRA SFT."""
     app = load_config(config_path)
@@ -350,6 +357,7 @@ def run_sft(
         output_dir=output_dir,
         max_steps=max_steps,
         save_steps=save_steps,
+        model_name=model_name,
     )
     splits = load_sft_splits(run.dataset_dir, require_train=require_train and not dry_run)
     if dry_run:

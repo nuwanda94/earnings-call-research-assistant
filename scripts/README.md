@@ -59,8 +59,9 @@ python scripts/train_sft.py
 python scripts/train_sft.py --dataset-dir data/processed/ecra-sft-v0.1.0
 ```
 
-Dry-run by default: reads `configs/default.yaml`, formats chat examples from
-the versioned splits, and writes `outputs/sft_plan.json`. No weights load.
+Dry-run by default: reads `configs/default.yaml` (Llama-3.2-3B-Instruct),
+formats chat examples from the versioned splits, and writes `outputs/sft_plan.json`.
+No weights load.
 
 On Kaggle T4, after Unsloth is installed:
 
@@ -68,5 +69,22 @@ On Kaggle T4, after Unsloth is installed:
 python scripts/train_sft.py --run --max-steps 20
 ```
 
-Full epoch uses YAML `training.*` (batch, LR, seed `3407`). The LoRA adapter
-lands in `outputs/adapters/llama32-3b-ecra-sft` unless `--adapter-dir` is set.
+### Optional 8B path (same script)
+
+Llama 3.2 has no 8B checkpoint. Use Llama-3.1-8B-Instruct with a smaller
+micro-batch so a single T4 stays in 4-bit VRAM (effective batch still 8):
+
+```bash
+python scripts/train_sft.py --config configs/llama32-8b.yaml
+python scripts/train_sft.py --config configs/llama32-8b.yaml --run --max-steps 20
+```
+
+`--model-name` overrides only `model.name` and keeps the rest of the YAML:
+
+```bash
+python scripts/train_sft.py --model-name unsloth/Meta-Llama-3.1-8B-Instruct
+```
+
+Prefer the dedicated YAML for 8B so batch size is 1 and `adapter_dir` is
+`outputs/adapters/llama31-8b-ecra-sft`. Full-epoch knobs live under `training.*`
+(seed `3407`).
