@@ -12,3 +12,12 @@ python scripts/ingest_public_sources.py --out data/raw/public_sample.jsonl
 
 Default mode uses tiny offline fixtures and does **not** download corpora.
 Pass `--download` only when you explicitly want a streamed Hugging Face sample.
+
+## Chunking + propositions
+
+```bash
+python scripts/chunk_propositions.py --out data/processed/chunks.jsonl
+```
+
+Splits ingested text into section-aware sentence windows and extracts short
+heuristic propositions (numbers, metrics, guidance). No LLM required.

@@ -1,12 +1,12 @@
 # Progress Tracker
 
-Last updated: 2026-09-02 16:00 IST
+Last updated: 2026-09-02 17:01 IST
 
 ## Current Phase
 Phase 1 – Robust Data Foundation
 
 ## Next Action Item
-Add chunking + proposition extraction: `src/earnings_call_research_assistant/data/chunk.py` that splits ingested transcript text into section-aware windows and extracts short factual propositions for grounded generation.
+Add grounded synthetic Q&A / summary generation: `src/earnings_call_research_assistant/data/generate.py` that turns chunk + proposition records into citation-grounded instruction pairs (offline templates + optional LLM path for Kaggle).
 
 ## Completed Items
 
@@ -19,6 +19,7 @@ Add chunking + proposition extraction: `src/earnings_call_research_assistant/dat
 - [x] Typed config loader (`src/earnings_call_research_assistant/config.py`) reading YAML/JSON
 - [x] Root README with <30 min clone-and-run baseline (Kaggle + local, config + notebook)
 - [x] Public-source ingestion stubs (transcripts, FiQA, Finance-Alpaca)
+- [x] Chunking + proposition extraction
 
 ## Phase 0 Checklist
 
@@ -35,7 +36,7 @@ Add chunking + proposition extraction: `src/earnings_call_research_assistant/dat
 ## Phase 1 Checklist
 
 - [x] Public-source ingestion stubs (transcripts, FiQA, Finance-Alpaca)
-- [ ] Chunking + proposition extraction
+- [x] Chunking + proposition extraction
 - [ ] Grounded synthetic Q&A / summary generation
 - [ ] Multi-stage filtering (heuristic → dedup → LLM-as-judge)
 - [ ] Diversity selection + versioned splits + data card
@@ -52,6 +53,7 @@ On each hourly run:
 
 ## Log
 
+- 2026-09-02 17:01 IST — feat: section-aware chunking + heuristic proposition extraction (`data/chunk.py` + `scripts/chunk_propositions.py`); offline-safe windows for grounded generation.
 - 2026-09-02 16:00 IST — feat: public-data ingestion stub (`data/ingest.py` + `scripts/ingest_public_sources.py`); catalog for transcripts / FiQA / Finance-Alpaca with offline fixtures and opt-in HF streaming.
 - 2026-09-02 15:01 IST — docs: polished root README with Kaggle + local <30 min baseline path (`load_config` / `configs/default.yaml` / `notebooks/00_baseline_inference.ipynb`); closed Phase 0 and advanced to Phase 1.
 - 2026-09-02 14:02 IST — feat: added `src/earnings_call_research_assistant/config.py` (`AppConfig` + model/LoRA/training/inference settings) loading `configs/default.yaml` (or JSON); extended default config with an `inference` block.
