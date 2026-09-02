@@ -277,7 +277,8 @@ def _pairs_to_hf_dataset(pairs: Sequence[InstructionPair], run: SFTRunConfig, to
     texts = [
         format_pair_text(p, system_prompt=run.system_prompt, tokenizer=tokenizer)
         for p in pairs
-    ]n    return Dataset.from_dict({"text": texts})
+    ]
+    return Dataset.from_dict({"text": texts})
 
 
 def _make_trainer(model: Any, tokenizer: Any, run: SFTRunConfig, train_ds: Any, val_ds: Any | None):
