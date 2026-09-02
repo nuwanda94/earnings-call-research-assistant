@@ -54,6 +54,9 @@ See [`docs/DATA_CARD.md`](../docs/DATA_CARD.md).
 
 ## QLoRA SFT (Phase 2)
 
+Seed is always `3407`. Adapters land under `outputs/adapters/`.
+Full dry-run vs `--run` Kaggle steps: [`docs/REPRODUCIBILITY.md`](../docs/REPRODUCIBILITY.md).
+
 ```bash
 python scripts/train_sft.py
 python scripts/train_sft.py --dataset-dir data/processed/ecra-sft-v0.1.0
@@ -61,7 +64,7 @@ python scripts/train_sft.py --dataset-dir data/processed/ecra-sft-v0.1.0
 
 Dry-run by default: reads `configs/default.yaml` (Llama-3.2-3B-Instruct),
 formats chat examples from the versioned splits, and writes `outputs/sft_plan.json`.
-No weights load.
+No weights load. Adapter path: `outputs/adapters/llama32-3b-ecra-sft`.
 
 On Kaggle T4, after Unsloth is installed:
 

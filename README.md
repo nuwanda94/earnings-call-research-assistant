@@ -11,10 +11,12 @@ Progress is tracked in [`PROGRESS.md`](PROGRESS.md). An hourly automation advanc
 | Phase | Name | Status |
 |-------|------|--------|
 | 0 | Foundation | Done |
-| 1 | Robust Data Foundation | Next |
-| 2 | Training Pipeline | Pending |
-| 3 | Evaluation & Iteration | Pending |
+| 1 | Robust Data Foundation | Done |
+| 2 | Training Pipeline | Done |
+| 3 | Evaluation & Iteration | Next |
 | 4 | Packaging & Portfolio Polish | Pending |
+
+Training reproducibility (seed `3407`, adapter dirs, Kaggle dry-run vs `--run`) is in [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md).
 
 ## Key Principles
 
@@ -104,16 +106,31 @@ print(harness.generate("What is the difference between prepared remarks and Q&A 
 
 The notebook maps that YAML through `InferenceConfig.from_mapping(...)`. The package-level `load_config()` returns a typed `AppConfig` with the same blocks.
 
+## Train on Kaggle (Phase 2)
+
+Do **not** start a full epoch from CI. Dry-run first, then `--run` on a T4:
+
+```bash
+python scripts/train_sft.py
+python scripts/train_sft.py --run --max-steps 20
+```
+
+- Seed: `3407`
+- 3B adapter: `outputs/adapters/llama32-3b-ecra-sft`
+- 8B adapter: `outputs/adapters/llama31-8b-ecra-sft` (`--config configs/llama32-8b.yaml`)
+
+Details: [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md).
+
 ## Structure
 
 ```
-src/earnings_call_research_assistant/   # config, inference, (later) data/train/eval
+src/earnings_call_research_assistant/   # config, inference, data, train, eval
 notebooks/     # Kaggle notebooks; start with 00_baseline_inference.ipynb
 data/          # raw / processed (gitignored large files)
 configs/       # default.yaml — model, LoRA, training, inference
 evals/         # evaluation scripts & reports
 scripts/       # utilities
-docs/          # plan, data card, design notes
+docs/          # plan, data card, reproducibility, design notes
 ```
 
 See [`docs/PROJECT_PLAN.md`](docs/PROJECT_PLAN.md) for the full plan and acceptance criteria.

@@ -1,12 +1,12 @@
 # Progress Tracker
 
-Last updated: 2026-09-02 23:11 IST
+Last updated: 2026-09-03 00:00 IST
 
 ## Current Phase
-Phase 2 – Training Pipeline
+Phase 3 – Evaluation & Iteration
 
 ## Next Action Item
-Add reproducibility notes (seed, adapter output dir, Kaggle how-to) for the Unsloth QLoRA SFT path — document seed `3407`, `outputs/adapters/*`, and the dry-run vs `--run` Kaggle steps without launching a long GPU train.
+Add a qualitative research panel (15–25 grounded financial QA/summarization prompts) plus an eval stub that compares base vs adapter outputs without requiring a long GPU train.
 
 ## Completed Items
 
@@ -25,6 +25,7 @@ Add reproducibility notes (seed, adapter output dir, Kaggle how-to) for the Unsl
 - [x] Diversity selection + versioned splits + data card
 - [x] Unsloth QLoRA SFT training script (3B) + externalized config / logging / checkpoints
 - [x] Optional 8B config path (`configs/llama32-8b.yaml` + `--model-name` override)
+- [x] Reproducibility notes (seed 3407, adapter output dirs, Kaggle dry-run vs `--run`)
 
 ## Phase 0 Checklist
 
@@ -50,7 +51,13 @@ Add reproducibility notes (seed, adapter output dir, Kaggle how-to) for the Unsl
 
 - [x] Unsloth QLoRA SFT training script (3B) + externalized config / logging / checkpoints
 - [x] Optional 8B config path
-- [ ] Reproducibility notes (seed, adapter output dir, Kaggle how-to)
+- [x] Reproducibility notes (seed, adapter output dir, Kaggle how-to)
+
+## Phase 3 Checklist
+
+- [ ] Qualitative research panel (15–25 questions)
+- [ ] Quantitative metrics stub + side-by-side base vs fine-tuned
+- [ ] Evaluation report + at least one iteration note
 
 ## Notes for Automation
 
@@ -64,6 +71,7 @@ On each hourly run:
 
 ## Log
 
+- 2026-09-03 00:00 IST — docs: QLoRA reproducibility (`docs/REPRODUCIBILITY.md`) — seed `3407`, `outputs/adapters/*`, dry-run vs `--run` Kaggle how-to; Phase 2 complete, advanced to Phase 3.
 - 2026-09-02 23:11 IST — feat: optional 8B QLoRA path (`configs/llama32-8b.yaml` = Llama-3.1-8B-Instruct, batch 1 / accum 8 for T4) plus `--model-name` override on `scripts/train_sft.py`.
 - 2026-09-02 22:23 IST — feat: Unsloth QLoRA SFT (`training/sft.py` + `scripts/train_sft.py`); dry-run default writes `outputs/sft_plan.json`; `--run` is the Kaggle GPU path. Wired `training.dataset_dir` / `adapter_dir` / `save_steps` / `max_steps` in `configs/default.yaml`.
 - 2026-09-02 20:40 IST — feat: diversity selection + versioned splits (`data/select.py` + `scripts/select_dataset.py`) and `docs/DATA_CARD.md` for `ecra-sft-v0.1.0`; Phase 1 complete, advanced to Phase 2.
