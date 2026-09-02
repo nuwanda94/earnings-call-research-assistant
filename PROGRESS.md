@@ -1,12 +1,12 @@
 # Progress Tracker
 
-Last updated: 2026-09-02 14:02 IST
+Last updated: 2026-09-02 15:01 IST
 
 ## Current Phase
-Phase 0 – Foundation
+Phase 1 – Robust Data Foundation
 
 ## Next Action Item
-Polish the root README with a <30 min clone-and-run baseline path (Kaggle + local install, how to load `configs/default.yaml`, and how to run `notebooks/00_baseline_inference.ipynb`).
+Add a public-data ingestion stub: `src/earnings_call_research_assistant/data/ingest.py` plus a short `scripts/ingest_public_sources.py` that documents (and optionally samples) earnings-transcript / FiQA / Finance-Alpaca sources without downloading large corpora by default.
 
 ## Completed Items
 
@@ -17,18 +17,27 @@ Polish the root README with a <30 min clone-and-run baseline path (Kaggle + loca
 - [x] Kaggle notebook template `notebooks/00_baseline_inference.ipynb`
 - [x] Reusable base-model inference harness (`src/earnings_call_research_assistant/inference.py`)
 - [x] Typed config loader (`src/earnings_call_research_assistant/config.py`) reading YAML/JSON
+- [x] Root README with <30 min clone-and-run baseline (Kaggle + local, config + notebook)
 
 ## Phase 0 Checklist
 
 - [x] GitHub repository exists
 - [x] Directory structure: `src/`, `notebooks/`, `data/`, `configs/`, `evals/`, `scripts/`, `docs/`
-- [ ] Root README with overview (done at high level)
+- [x] Root README with overview + clone-and-run baseline
 - [x] `.gitignore` for weights, large data, secrets
 - [x] Project dependencies in `pyproject.toml` (not requirements.txt)
 - [x] Kaggle notebook template
 - [x] Config system (YAML/JSON) for model & training
 - [x] Basic inference harness for base model
-- [ ] New person can clone and run baseline in < 30 min
+- [x] New person can clone and run baseline in < 30 min
+
+## Phase 1 Checklist
+
+- [ ] Public-source ingestion stubs (transcripts, FiQA, Finance-Alpaca)
+- [ ] Chunking + proposition extraction
+- [ ] Grounded synthetic Q&A / summary generation
+- [ ] Multi-stage filtering (heuristic → dedup → LLM-as-judge)
+- [ ] Diversity selection + versioned splits + data card
 
 ## Notes for Automation
 
@@ -42,6 +51,7 @@ On each hourly run:
 
 ## Log
 
+- 2026-09-02 15:01 IST — docs: polished root README with Kaggle + local <30 min baseline path (`load_config` / `configs/default.yaml` / `notebooks/00_baseline_inference.ipynb`); closed Phase 0 and advanced to Phase 1.
 - 2026-09-02 14:02 IST — feat: added `src/earnings_call_research_assistant/config.py` (`AppConfig` + model/LoRA/training/inference settings) loading `configs/default.yaml` (or JSON); extended default config with an `inference` block.
 - 2026-09-02 13:01 IST — feat: extracted Unsloth chat-template generate harness into `src/earnings_call_research_assistant/inference.py`; notebook now imports `InferenceHarness` / `InferenceConfig`.
 - 2026-09-02 12:04 IST — feat: added Kaggle baseline inference notebook (`notebooks/00_baseline_inference.ipynb`) for Unsloth 4-bit smoke generation on Llama-3.2-3B-Instruct.
