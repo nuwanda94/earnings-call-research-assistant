@@ -24,9 +24,14 @@ training:
   num_train_epochs: 1
   warmup_steps: 10
   logging_steps: 10
+  save_steps: 50
+  max_steps: null          # set e.g. 20 for a Kaggle smoke train
   optim: "adamw_8bit"
   seed: 3407
   output_dir: "outputs"
+  adapter_dir: "outputs/adapters/llama32-3b-ecra-sft"
+  dataset_dir: "data/processed/ecra-sft-v0.1.0"
+  packing: false
 
 inference:
   max_new_tokens: 256

@@ -17,6 +17,8 @@ DEFAULT_SYSTEM_PROMPT = (
 
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_CONFIG_PATH = _REPO_ROOT / "configs" / DEFAULT_CONFIG_NAME
+DEFAULT_DATASET_DIR = "data/processed/ecra-sft-v0.1.0"
+DEFAULT_ADAPTER_DIR = "outputs/adapters/llama32-3b-ecra-sft"
 
 
 def _as_dict(value: Any) -> dict[str, Any]:
@@ -25,6 +27,12 @@ def _as_dict(value: Any) -> dict[str, Any]:
     if isinstance(value, Mapping):
         return dict(value)
     raise TypeError(f"Expected mapping, got {type(value).__name__}")
+
+
+def _optional_int(value: Any) -> int | None:
+    if value is None or value == "":
+        return None
+    return int(value)
 
 
 @dataclass(frozen=True)
@@ -82,9 +90,14 @@ class TrainingSettings:
     num_train_epochs: float = 1.0
     warmup_steps: int = 10
     logging_steps: int = 10
+    save_steps: int = 50
+    max_steps: int | None = None
     optim: str = "adamw_8bit"
     seed: int = 3407
     output_dir: str = "outputs"
+    adapter_dir: str = DEFAULT_ADAPTER_DIR
+    dataset_dir: str = DEFAULT_DATASET_DIR
+    packing: bool = False
 
     @classmethod
     def from_mapping(cls, mapping: Mapping[str, Any] | None) -> "TrainingSettings":
@@ -96,9 +109,14 @@ class TrainingSettings:
             num_train_epochs=float(data.get("num_train_epochs", 1)),
             warmup_steps=int(data.get("warmup_steps", 10)),
             logging_steps=int(data.get("logging_steps", 10)),
+            save_steps=int(data.get("save_steps", 50)),
+            max_steps=_optional_int(data.get("max_steps")),
             optim=str(data.get("optim", "adamw_8bit")),
             seed=int(data.get("seed", 3407)),
             output_dir=str(data.get("output_dir", "outputs")),
+            adapter_dir=str(data.get("adapter_dir", DEFAULT_ADAPTER_DIR)),
+            dataset_dir=str(data.get("dataset_dir", DEFAULT_DATASET_DIR)),
+            packing=bool(data.get("packing", False)),
         )
 
 

@@ -1,12 +1,12 @@
 # Progress Tracker
 
-Last updated: 2026-09-02 20:40 IST
+Last updated: 2026-09-02 22:23 IST
 
 ## Current Phase
 Phase 2 – Training Pipeline
 
 ## Next Action Item
-Add Unsloth QLoRA SFT training script + config wiring (`src/earnings_call_research_assistant/training/sft.py`, `scripts/train_sft.py`) that reads versioned splits and `configs/default.yaml`. Do not launch a long GPU run in automation — keep it a Kaggle-ready script with a CPU/dry-run path.
+Add optional 8B config path (`configs/llama32-8b.yaml` or a documented `model.name` override) that reuses the same SFT script with smaller batch / higher grad-accum for Kaggle T4 VRAM.
 
 ## Completed Items
 
@@ -23,6 +23,7 @@ Add Unsloth QLoRA SFT training script + config wiring (`src/earnings_call_resear
 - [x] Grounded synthetic Q&A / summary generation
 - [x] Multi-stage filtering (heuristic → dedup → LLM-as-judge stub)
 - [x] Diversity selection + versioned splits + data card
+- [x] Unsloth QLoRA SFT training script (3B) + externalized config / logging / checkpoints
 
 ## Phase 0 Checklist
 
@@ -41,12 +42,12 @@ Add Unsloth QLoRA SFT training script + config wiring (`src/earnings_call_resear
 - [x] Public-source ingestion stubs (transcripts, FiQA, Finance-Alpaca)
 - [x] Chunking + proposition extraction
 - [x] Grounded synthetic Q&A / summary generation
-- [x] Multi-stage filtering (heuristic → dedup → LLM-as-judge)
+- [x] Multi-stage filtering (heuristic → exact/semantic dedup → LLM-as-judge)
 - [x] Diversity selection + versioned splits + data card
 
 ## Phase 2 Checklist
 
-- [ ] Unsloth QLoRA SFT training script (3B) + externalized config / logging / checkpoints
+- [x] Unsloth QLoRA SFT training script (3B) + externalized config / logging / checkpoints
 - [ ] Optional 8B config path
 - [ ] Reproducibility notes (seed, adapter output dir, Kaggle how-to)
 
@@ -62,6 +63,7 @@ On each hourly run:
 
 ## Log
 
+- 2026-09-02 22:23 IST — feat: Unsloth QLoRA SFT (`training/sft.py` + `scripts/train_sft.py`); dry-run default writes `outputs/sft_plan.json`; `--run` is the Kaggle GPU path. Wired `training.dataset_dir` / `adapter_dir` / `save_steps` / `max_steps` in `configs/default.yaml`.
 - 2026-09-02 20:40 IST — feat: diversity selection + versioned splits (`data/select.py` + `scripts/select_dataset.py`) and `docs/DATA_CARD.md` for `ecra-sft-v0.1.0`; Phase 1 complete, advanced to Phase 2.
 - 2026-09-02 19:25 IST — feat: multi-stage filtering (`data/filter.py` + `scripts/filter_grounded_pairs.py`); heuristic length/citation checks, exact/near-dup Jaccard drop, optional LLM-as-judge stub (proxy default, Kaggle hook).
 - 2026-09-02 18:07 IST — feat: grounded synthetic Q&A / summary pairs (`data/generate.py` + `scripts/generate_grounded_pairs.py`); template path cites chunk+proposition; optional LLM rewrite hook for Kaggle.

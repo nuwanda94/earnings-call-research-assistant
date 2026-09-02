@@ -51,3 +51,22 @@ python scripts/select_dataset.py --out-dir data/processed/ecra-sft-v0.1.0
 Applies per-source/task caps and greedy Jaccard diversity, then writes
 hash-stable `train.jsonl` / `val.jsonl` / `test.jsonl` plus `manifest.json`.
 See [`docs/DATA_CARD.md`](../docs/DATA_CARD.md).
+
+## QLoRA SFT (Phase 2)
+
+```bash
+python scripts/train_sft.py
+python scripts/train_sft.py --dataset-dir data/processed/ecra-sft-v0.1.0
+```
+
+Dry-run by default: reads `configs/default.yaml`, formats chat examples from
+the versioned splits, and writes `outputs/sft_plan.json`. No weights load.
+
+On Kaggle T4, after Unsloth is installed:
+
+```bash
+python scripts/train_sft.py --run --max-steps 20
+```
+
+Full epoch uses YAML `training.*` (batch, LR, seed `3407`). The LoRA adapter
+lands in `outputs/adapters/llama32-3b-ecra-sft` unless `--adapter-dir` is set.
