@@ -1,12 +1,12 @@
 # Progress Tracker
 
-Last updated: 2026-09-02 15:01 IST
+Last updated: 2026-09-02 16:00 IST
 
 ## Current Phase
 Phase 1 – Robust Data Foundation
 
 ## Next Action Item
-Add a public-data ingestion stub: `src/earnings_call_research_assistant/data/ingest.py` plus a short `scripts/ingest_public_sources.py` that documents (and optionally samples) earnings-transcript / FiQA / Finance-Alpaca sources without downloading large corpora by default.
+Add chunking + proposition extraction: `src/earnings_call_research_assistant/data/chunk.py` that splits ingested transcript text into section-aware windows and extracts short factual propositions for grounded generation.
 
 ## Completed Items
 
@@ -18,6 +18,7 @@ Add a public-data ingestion stub: `src/earnings_call_research_assistant/data/ing
 - [x] Reusable base-model inference harness (`src/earnings_call_research_assistant/inference.py`)
 - [x] Typed config loader (`src/earnings_call_research_assistant/config.py`) reading YAML/JSON
 - [x] Root README with <30 min clone-and-run baseline (Kaggle + local, config + notebook)
+- [x] Public-source ingestion stubs (transcripts, FiQA, Finance-Alpaca)
 
 ## Phase 0 Checklist
 
@@ -33,7 +34,7 @@ Add a public-data ingestion stub: `src/earnings_call_research_assistant/data/ing
 
 ## Phase 1 Checklist
 
-- [ ] Public-source ingestion stubs (transcripts, FiQA, Finance-Alpaca)
+- [x] Public-source ingestion stubs (transcripts, FiQA, Finance-Alpaca)
 - [ ] Chunking + proposition extraction
 - [ ] Grounded synthetic Q&A / summary generation
 - [ ] Multi-stage filtering (heuristic → dedup → LLM-as-judge)
@@ -51,6 +52,7 @@ On each hourly run:
 
 ## Log
 
+- 2026-09-02 16:00 IST — feat: public-data ingestion stub (`data/ingest.py` + `scripts/ingest_public_sources.py`); catalog for transcripts / FiQA / Finance-Alpaca with offline fixtures and opt-in HF streaming.
 - 2026-09-02 15:01 IST — docs: polished root README with Kaggle + local <30 min baseline path (`load_config` / `configs/default.yaml` / `notebooks/00_baseline_inference.ipynb`); closed Phase 0 and advanced to Phase 1.
 - 2026-09-02 14:02 IST — feat: added `src/earnings_call_research_assistant/config.py` (`AppConfig` + model/LoRA/training/inference settings) loading `configs/default.yaml` (or JSON); extended default config with an `inference` block.
 - 2026-09-02 13:01 IST — feat: extracted Unsloth chat-template generate harness into `src/earnings_call_research_assistant/inference.py`; notebook now imports `InferenceHarness` / `InferenceConfig`.
