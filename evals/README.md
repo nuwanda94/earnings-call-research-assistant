@@ -37,3 +37,8 @@ python scripts/score_research_panel.py
 
 Writes [`reports/research_panel_metrics.json`](reports/research_panel_metrics.json).
 Library entry point: `earnings_call_research_assistant.eval.score_research_panel`.
+
+## Report and first iteration
+
+- [`reports/EVALUATION_REPORT.md`](reports/EVALUATION_REPORT.md) — how to read dry-run vs Kaggle scores.
+- [`reports/ITERATION_NOTE_v0.1.md`](reports/ITERATION_NOTE_v0.1.md) — single next change: add an insufficient-context slice to SFT data before a longer train.

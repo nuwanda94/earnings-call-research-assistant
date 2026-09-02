@@ -113,3 +113,7 @@ python scripts/score_research_panel.py
 Reads the side-by-side JSON (writes a dry-run comparison first if missing) and
 prints token-overlap F1/Jaccard vs context plus citation-hit and refusal rates
 for base vs adapter. Output: `evals/reports/research_panel_metrics.json`.
+
+Interpretation and the first training/data iteration:
+[`evals/reports/EVALUATION_REPORT.md`](../evals/reports/EVALUATION_REPORT.md),
+[`evals/reports/ITERATION_NOTE_v0.1.md`](../evals/reports/ITERATION_NOTE_v0.1.md).

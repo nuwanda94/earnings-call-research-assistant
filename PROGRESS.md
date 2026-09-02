@@ -1,12 +1,12 @@
 # Progress Tracker
 
-Last updated: 2026-09-03 02:00 IST
+Last updated: 2026-09-03 03:00 IST
 
 ## Current Phase
-Phase 3 – Evaluation & Iteration
+Phase 4 – Packaging & Portfolio Polish
 
 ## Next Action Item
-Write an evaluation report plus one iteration note that interprets dry-run (and optional Kaggle) base-vs-adapter metrics and names a single next training or data change.
+Add a CPU-safe Gradio demo stub that loads `InferenceHarness` (base or `--adapter-dir`) for a few research-panel prompts without starting a train.
 
 ## Completed Items
 
@@ -28,6 +28,7 @@ Write an evaluation report plus one iteration note that interprets dry-run (and 
 - [x] Reproducibility notes (seed 3407, adapter output dirs, Kaggle dry-run vs `--run`)
 - [x] Qualitative research panel (20 grounded prompts) + base vs adapter eval stub
 - [x] Quantitative metrics stub (token-overlap / citation-hit rates on panel JSON)
+- [x] Evaluation report + first iteration note (refusal-and-citation data mix)
 
 ## Phase 0 Checklist
 
@@ -59,7 +60,13 @@ Write an evaluation report plus one iteration note that interprets dry-run (and 
 
 - [x] Qualitative research panel (15–25 questions)
 - [x] Quantitative metrics stub + side-by-side base vs fine-tuned
-- [ ] Evaluation report + at least one iteration note
+- [x] Evaluation report + at least one iteration note
+
+## Phase 4 Checklist
+
+- [ ] Gradio / Streamlit demo stub
+- [ ] Hugging Face Hub adapter publish script (no secrets in repo)
+- [ ] Polished README + short walkthrough
 
 ## Notes for Automation
 
@@ -73,6 +80,7 @@ On each hourly run:
 
 ## Log
 
+- 2026-09-03 03:00 IST — docs: evaluation report + iteration note v0.1 (`evals/reports/`); dry-run metrics interpreted as harness-only; next change is an insufficient-context SFT slice. Phase 3 complete, advanced to Phase 4.
 - 2026-09-03 02:00 IST — feat: quantitative metrics stub (`eval/metrics.py`, `scripts/score_research_panel.py`) scoring panel comparison JSON with token-overlap F1/Jaccard vs context, citation-hit rate, and refusal accuracy; CPU-only, no GPU train.
 - 2026-09-03 01:02 IST — feat: qualitative research panel (`evals/research_panel.jsonl`, 20 grounded QA/summarization items) plus CPU dry-run eval stub (`eval/panel.py`, `scripts/eval_research_panel.py`); `--run` is Kaggle inference only.
 - 2026-09-03 00:00 IST — docs: QLoRA reproducibility (`docs/REPRODUCIBILITY.md`) — seed `3407`, `outputs/adapters/*`, dry-run vs `--run` Kaggle how-to; Phase 2 complete, advanced to Phase 3.

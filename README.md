@@ -13,10 +13,12 @@ Progress is tracked in [`PROGRESS.md`](PROGRESS.md). An hourly automation advanc
 | 0 | Foundation | Done |
 | 1 | Robust Data Foundation | Done |
 | 2 | Training Pipeline | Done |
-| 3 | Evaluation & Iteration | Next |
-| 4 | Packaging & Portfolio Polish | Pending |
+| 3 | Evaluation & Iteration | Done |
+| 4 | Packaging & Portfolio Polish | Next |
 
 Training reproducibility (seed `3407`, adapter dirs, Kaggle dry-run vs `--run`) is in [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md).
+
+Phase 3 write-up: [`evals/reports/EVALUATION_REPORT.md`](evals/reports/EVALUATION_REPORT.md) and [`evals/reports/ITERATION_NOTE_v0.1.md`](evals/reports/ITERATION_NOTE_v0.1.md).
 
 ## Key Principles
 
@@ -120,6 +122,15 @@ python scripts/train_sft.py --run --max-steps 20
 - 8B adapter: `outputs/adapters/llama31-8b-ecra-sft` (`--config configs/llama32-8b.yaml`)
 
 Details: [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md).
+
+## Evaluate (Phase 3)
+
+```bash
+python scripts/eval_research_panel.py
+python scripts/score_research_panel.py
+```
+
+Dry-run writes placeholder base/adapter columns and near-zero metrics. After an adapter exists on Kaggle, add `--run --adapter-dir outputs/adapters/llama32-3b-ecra-sft`. How to read the numbers: [`evals/reports/EVALUATION_REPORT.md`](evals/reports/EVALUATION_REPORT.md).
 
 ## Structure
 
