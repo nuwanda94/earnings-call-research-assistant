@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Model weights & adapters (large)
+*.bin
+*.safetensors
+*.pt
+*.pth
+outputs/
+checkpoints/
+lora_adapters/
+fin_research_lora/
+
+# Data (large raw / processed files)
+data/raw/
+data/processed/
+data/cache/
+*.parquet
+*.arrow
+!data/README.md
+
+# Secrets & env
+.env
+.env.*
+*.pem
+secrets/
+
+# Kaggle / local
+kaggle.json
+.DS_Store
+.idea/
+.vscode/
+
+# Logs
+*.log
+wandb/
+runs/
