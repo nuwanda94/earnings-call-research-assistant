@@ -5,9 +5,12 @@ versioned JSONL splits, format chat examples, and write a training plan.
 The GPU path (Unsloth + TRL ``SFTTrainer``) is intended for Kaggle T4 and
 is never launched unless ``--run`` is passed.
 
-An optional 8B path lives in ``configs/llama32-8b.yaml`` (Llama-3.1-8B-Instruct
-with batch 1 / grad-accum 8). ``--model-name`` overrides ``model.name`` only;
-use the 8B YAML when you also need the T4-safe batch settings.
+Effective batch size = per_device_train_batch_size × gradient_accumulation_steps.
+Default 3B YAML targets effective batch 16 (2 × 8). 8B YAML uses 1 × 16.
+
+An optional 8B path lives in ``configs/llama32-8b.yaml`` (Llama-3.1-8B-Instruct).
+``--model-name`` overrides ``model.name`` only; use the 8B YAML when you also
+need the T4-safe batch settings.
 """
 
 from __future__ import annotations
@@ -52,6 +55,7 @@ class SFTRunConfig:
     logging_steps: int
     save_steps: int = 50
     max_steps: int | None = None
+    max_grad_norm: float = 1.0
     optim: str = "adamw_8bit"
     seed: int = 3407
     output_dir: str = "outputs"
@@ -59,6 +63,10 @@ class SFTRunConfig:
     dataset_dir: str = str(DEFAULT_DATASET_DIR)
     system_prompt: str = DEFAULT_SYSTEM_PROMPT
     packing: bool = False
+
+    @property
+    def effective_batch_size(self) -> int:
+        return int(self.per_device_train_batch_size) * int(self.gradient_accumulation_steps)
 
     @classmethod
     def from_app(
@@ -71,10 +79,12 @@ class SFTRunConfig:
         max_steps: int | None = None,
         save_steps: int | None = None,
         model_name: str | None = None,
+        per_device_train_batch_size: int | None = None,
+        gradient_accumulation_steps: int | None = None,
+        max_grad_norm: float | None = None,
     ) -> "SFTRunConfig":
         extras = app.extras or {}
         train_extra = extras.get("training") if isinstance(extras.get("training"), dict) else {}
-        # Fields that may live in YAML extras or the training mapping via to_dict.
         train_dict = app.to_dict().get("training", {})
         resolved_dataset = (
             dataset_dir
@@ -94,6 +104,21 @@ class SFTRunConfig:
         raw_max = max_steps if max_steps is not None else train_dict.get("max_steps")
         raw_save = save_steps if save_steps is not None else train_dict.get("save_steps", 50)
         resolved_model = model_name or app.model.name
+        micro = (
+            per_device_train_batch_size
+            if per_device_train_batch_size is not None
+            else app.training.per_device_train_batch_size
+        )
+        accum = (
+            gradient_accumulation_steps
+            if gradient_accumulation_steps is not None
+            else app.training.gradient_accumulation_steps
+        )
+        grad_norm = (
+            max_grad_norm
+            if max_grad_norm is not None
+            else float(train_dict.get("max_grad_norm", getattr(app.training, "max_grad_norm", 1.0)))
+        )
         return cls(
             model_name=resolved_model,
             max_seq_length=app.model.max_seq_length,
@@ -102,14 +127,15 @@ class SFTRunConfig:
             lora_alpha=app.lora.lora_alpha,
             lora_dropout=app.lora.lora_dropout,
             target_modules=app.lora.target_modules,
-            per_device_train_batch_size=app.training.per_device_train_batch_size,
-            gradient_accumulation_steps=app.training.gradient_accumulation_steps,
+            per_device_train_batch_size=int(micro),
+            gradient_accumulation_steps=int(accum),
             learning_rate=app.training.learning_rate,
             num_train_epochs=app.training.num_train_epochs,
             warmup_steps=app.training.warmup_steps,
             logging_steps=app.training.logging_steps,
             save_steps=int(raw_save) if raw_save is not None else 50,
             max_steps=int(raw_max) if raw_max not in (None, "") else None,
+            max_grad_norm=float(grad_norm),
             optim=app.training.optim,
             seed=app.training.seed,
             output_dir=str(resolved_output),
@@ -122,6 +148,7 @@ class SFTRunConfig:
     def to_dict(self) -> dict[str, Any]:
         payload = asdict(self)
         payload["target_modules"] = list(self.target_modules)
+        payload["effective_batch_size"] = self.effective_batch_size
         return payload
 
 
@@ -137,6 +164,9 @@ class SFTPlan:
     adapter_dir: str
     output_dir: str
     seed: int
+    per_device_train_batch_size: int = 2
+    gradient_accumulation_steps: int = 8
+    effective_batch_size: int = 16
     preview_texts: list[str] = field(default_factory=list)
     notes: list[str] = field(default_factory=list)
 
@@ -230,8 +260,13 @@ def build_plan(
     notes = [
         "Public grounded pairs only; do not invent figures at train time.",
         f"Versioned splits expected at {run.dataset_dir}.",
+        (
+            f"Effective batch = {run.per_device_train_batch_size} micro × "
+            f"{run.gradient_accumulation_steps} accum = {run.effective_batch_size}."
+        ),
         "Kaggle: enable T4 GPU, pip install unsloth + trl, then pass --run.",
-        "8B path: --config configs/llama32-8b.yaml (batch 1 / accum 8).",
+        "8B path: --config configs/llama32-8b.yaml (batch 1 / accum 16).",
+        "OOM: lower --batch-size to 1 and raise --grad-accum to keep effective batch.",
         "Dry-run never loads weights or starts SFTTrainer.",
     ]
     if dry_run:
@@ -245,6 +280,9 @@ def build_plan(
         adapter_dir=run.adapter_dir,
         output_dir=run.output_dir,
         seed=run.seed,
+        per_device_train_batch_size=run.per_device_train_batch_size,
+        gradient_accumulation_steps=run.gradient_accumulation_steps,
+        effective_batch_size=run.effective_batch_size,
         preview_texts=preview,
         notes=notes,
     )
@@ -287,6 +325,12 @@ def _make_trainer(model: Any, tokenizer: Any, run: SFTRunConfig, train_ds: Any, 
 
     out = Path(run.output_dir)
     out.mkdir(parents=True, exist_ok=True)
+    logger.info(
+        "SFTTrainer effective_batch=%s (micro=%s × accum=%s)",
+        run.effective_batch_size,
+        run.per_device_train_batch_size,
+        run.gradient_accumulation_steps,
+    )
     args_kwargs: dict[str, Any] = {
         "output_dir": str(out),
         "per_device_train_batch_size": run.per_device_train_batch_size,
@@ -298,6 +342,7 @@ def _make_trainer(model: Any, tokenizer: Any, run: SFTRunConfig, train_ds: Any, 
         "num_train_epochs": run.num_train_epochs,
         "optim": run.optim,
         "seed": run.seed,
+        "max_grad_norm": run.max_grad_norm,
         "fp16": True,
         "bf16": False,
         "report_to": "none",
@@ -311,7 +356,6 @@ def _make_trainer(model: Any, tokenizer: Any, run: SFTRunConfig, train_ds: Any, 
     try:
         args = TrainingArguments(**args_kwargs)
     except TypeError:
-        # Older transformers used evaluation_strategy.
         args_kwargs.pop("eval_strategy", None)
         if val_ds is not None and len(val_ds) > 0:
             args_kwargs["evaluation_strategy"] = "steps"
@@ -348,6 +392,9 @@ def run_sft(
     save_steps: int | None = None,
     require_train: bool = True,
     model_name: str | None = None,
+    per_device_train_batch_size: int | None = None,
+    gradient_accumulation_steps: int | None = None,
+    max_grad_norm: float | None = None,
 ) -> SFTPlan:
     """Load config + splits and either write a plan or run QLoRA SFT."""
     app = load_config(config_path)
@@ -359,6 +406,9 @@ def run_sft(
         max_steps=max_steps,
         save_steps=save_steps,
         model_name=model_name,
+        per_device_train_batch_size=per_device_train_batch_size,
+        gradient_accumulation_steps=gradient_accumulation_steps,
+        max_grad_norm=max_grad_norm,
     )
     splits = load_sft_splits(run.dataset_dir, require_train=require_train and not dry_run)
     if dry_run:

@@ -4,12 +4,14 @@
 Default is a CPU dry-run: no model download, no trainer.train().
 Pass --run only on a Kaggle T4 (or local CUDA box) after the dataset exists.
 
+Effective batch = --batch-size × --grad-accum (defaults from YAML: 2×8=16 on 3B).
+
 Examples
 --------
     python scripts/train_sft.py
     python scripts/train_sft.py --dataset-dir data/processed/ecra-sft-v0.1.0
     python scripts/train_sft.py --config configs/llama32-8b.yaml
-    python scripts/train_sft.py --model-name unsloth/Meta-Llama-3.1-8B-Instruct
+    python scripts/train_sft.py --grad-accum 16 --batch-size 1
     python scripts/train_sft.py --run --max-steps 20
 """
 
@@ -65,6 +67,24 @@ def _parse_args() -> argparse.Namespace:
         help="Where to save the LoRA adapter after --run.",
     )
     parser.add_argument(
+        "--batch-size",
+        type=int,
+        default=None,
+        help="Override per_device_train_batch_size (micro-batch).",
+    )
+    parser.add_argument(
+        "--grad-accum",
+        type=int,
+        default=None,
+        help="Override gradient_accumulation_steps (effective batch = batch × accum).",
+    )
+    parser.add_argument(
+        "--max-grad-norm",
+        type=float,
+        default=None,
+        help="Override gradient clipping norm (default 1.0 from YAML).",
+    )
+    parser.add_argument(
         "--run",
         action="store_true",
         help="Actually load Unsloth and call trainer.train(). Off by default.",
@@ -91,10 +111,16 @@ def main() -> int:
         save_steps=args.save_steps,
         require_train=args.run,
         model_name=args.model_name,
+        per_device_train_batch_size=args.batch_size,
+        gradient_accumulation_steps=args.grad_accum,
+        max_grad_norm=args.max_grad_norm,
     )
     print(
         f"dry_run={plan.dry_run} model={plan.model_name} "
         f"train={plan.n_train} val={plan.n_val} "
+        f"micro={plan.per_device_train_batch_size} "
+        f"accum={plan.gradient_accumulation_steps} "
+        f"effective_batch={plan.effective_batch_size} "
         f"dataset={plan.dataset_dir} adapter={plan.adapter_dir}"
     )
     print(json.dumps(plan.to_dict(), indent=2)[:2000])

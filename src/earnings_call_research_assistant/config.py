@@ -85,13 +85,14 @@ class LoRASettings:
 @dataclass(frozen=True)
 class TrainingSettings:
     per_device_train_batch_size: int = 2
-    gradient_accumulation_steps: int = 4
+    gradient_accumulation_steps: int = 8
     learning_rate: float = 2.0e-4
     num_train_epochs: float = 1.0
     warmup_steps: int = 10
     logging_steps: int = 10
     save_steps: int = 50
     max_steps: int | None = None
+    max_grad_norm: float = 1.0
     optim: str = "adamw_8bit"
     seed: int = 3407
     output_dir: str = "outputs"
@@ -99,18 +100,24 @@ class TrainingSettings:
     dataset_dir: str = DEFAULT_DATASET_DIR
     packing: bool = False
 
+    @property
+    def effective_batch_size(self) -> int:
+        """Micro-batch × grad-accum (single process / single GPU)."""
+        return int(self.per_device_train_batch_size) * int(self.gradient_accumulation_steps)
+
     @classmethod
     def from_mapping(cls, mapping: Mapping[str, Any] | None) -> "TrainingSettings":
         data = _as_dict(mapping)
         return cls(
             per_device_train_batch_size=int(data.get("per_device_train_batch_size", 2)),
-            gradient_accumulation_steps=int(data.get("gradient_accumulation_steps", 4)),
+            gradient_accumulation_steps=int(data.get("gradient_accumulation_steps", 8)),
             learning_rate=float(data.get("learning_rate", 2.0e-4)),
             num_train_epochs=float(data.get("num_train_epochs", 1)),
             warmup_steps=int(data.get("warmup_steps", 10)),
             logging_steps=int(data.get("logging_steps", 10)),
             save_steps=int(data.get("save_steps", 50)),
             max_steps=_optional_int(data.get("max_steps")),
+            max_grad_norm=float(data.get("max_grad_norm", 1.0)),
             optim=str(data.get("optim", "adamw_8bit")),
             seed=int(data.get("seed", 3407)),
             output_dir=str(data.get("output_dir", "outputs")),
