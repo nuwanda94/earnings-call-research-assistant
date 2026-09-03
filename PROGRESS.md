@@ -1,12 +1,12 @@
 # Progress Tracker
 
-Last updated: 2026-09-03 06:01 IST
+Last updated: 2026-09-03 07:00 IST
 
 ## Current Phase
-Phase 4 – Packaging & Portfolio Polish
+Complete — Phases 0–4 delivered (portfolio video is a script/notes stub; binary recording stays off-repo)
 
 ## Next Action Item
-Add a short portfolio demo video stub (script + recording notes) covering baseline → grounded data → adapter demo, without requiring a recorded file in-repo.
+Project complete. No further automated code changes. Optional human follow-ups: record the demo from `docs/DEMO_VIDEO.md`, run Kaggle `--run` training/eval, publish the adapter with `scripts/publish_adapter.py --run`.
 
 ## Completed Items
 
@@ -32,6 +32,7 @@ Add a short portfolio demo video stub (script + recording notes) covering baseli
 - [x] CPU-safe Gradio demo stub (`demo.py` + `scripts/demo_gradio.py`)
 - [x] Hugging Face Hub adapter publish script (env token only; dry-run default)
 - [x] Polished README + clone-to-demo walkthrough (baseline → data → train dry-run → eval → Gradio → HF)
+- [x] Portfolio demo video script + recording notes (`docs/DEMO_VIDEO.md`; no binary in repo)
 
 ## Phase 0 Checklist
 
@@ -70,7 +71,7 @@ Add a short portfolio demo video stub (script + recording notes) covering baseli
 - [x] Gradio / Streamlit demo stub
 - [x] Hugging Face Hub adapter publish script (no secrets in repo)
 - [x] Polished README + short walkthrough
-- [ ] Short portfolio demo video (script / notes; recording optional off-repo)
+- [x] Short portfolio demo video (script / notes; recording optional off-repo)
 
 ## Notes for Automation
 
@@ -81,9 +82,11 @@ On each hourly run:
 4. Commit via GitHub connector with a conventional message (`feat:`, `chore:`, or `fix:`).
 5. Update this PROGRESS.md (mark item done, set new Next Action Item, append brief log).
 6. If a phase is complete, advance Current Phase.
+7. If all phases are done, make no further code changes.
 
 ## Log
 
+- 2026-09-03 07:00 IST — docs: portfolio demo video script + recording notes (`docs/DEMO_VIDEO.md`) covering baseline → grounded data → adapter demo; no binary in repo. Phase 4 complete; project checklist done.
 - 2026-09-03 06:01 IST — docs: polished root README with clone-to-demo walkthrough (baseline → ingest/chunk/generate/filter/select → train dry-run → eval → Gradio → HF publish); kept <30 min baseline path.
 - 2026-09-03 05:01 IST — feat: HF Hub adapter publish (`src/earnings_call_research_assistant/publish.py`, `scripts/publish_adapter.py`); dry-run default writes `outputs/publish_plan.json`; token from `HF_TOKEN` / `huggingface-cli login` only.
 - 2026-09-03 04:00 IST — feat: CPU-safe Gradio demo (`src/earnings_call_research_assistant/demo.py`, `scripts/demo_gradio.py`); dry-run default, `--run` / `--adapter-dir` load `InferenceHarness` only. No train.

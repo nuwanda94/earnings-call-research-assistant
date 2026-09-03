@@ -6,7 +6,7 @@ Domain-adapted LLM for financial research Q&A and summarization from public earn
 
 ## Status
 
-Progress: [`PROGRESS.md`](PROGRESS.md). Hourly automation advances one action item per run.
+Progress: [`PROGRESS.md`](PROGRESS.md). Hourly automation advanced one action item per run; **Phases 0–4 are complete**.
 
 | Phase | Name | Status |
 |-------|------|--------|
@@ -14,11 +14,12 @@ Progress: [`PROGRESS.md`](PROGRESS.md). Hourly automation advances one action it
 | 1 | Robust Data Foundation | Done |
 | 2 | Training Pipeline | Done |
 | 3 | Evaluation & Iteration | Done |
-| 4 | Packaging & Portfolio Polish | In progress (README walkthrough done) |
+| 4 | Packaging & Portfolio Polish | Done |
 
 - Reproducibility (seed `3407`, adapter dirs, dry-run vs `--run`): [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md)
 - Data card (`ecra-sft-v0.1.0`): [`docs/DATA_CARD.md`](docs/DATA_CARD.md)
 - Eval write-up: [`evals/reports/EVALUATION_REPORT.md`](evals/reports/EVALUATION_REPORT.md) · [`evals/reports/ITERATION_NOTE_v0.1.md`](evals/reports/ITERATION_NOTE_v0.1.md)
+- Demo video script (record off-repo): [`docs/DEMO_VIDEO.md`](docs/DEMO_VIDEO.md)
 
 ## Key principles
 
@@ -203,6 +204,10 @@ huggingface-cli login
 python scripts/publish_adapter.py --repo-id nuwanda94/llama32-3b-ecra-sft --run
 ```
 
+### 7. Record the portfolio clip (optional, off-repo)
+
+Follow [`docs/DEMO_VIDEO.md`](docs/DEMO_VIDEO.md) (3–4.5 min script: baseline → grounded data → adapter demo). Do not commit the video file.
+
 ---
 
 ## Structure
@@ -214,7 +219,7 @@ data/          # raw / processed (gitignored large files)
 configs/       # default.yaml + llama32-8b.yaml
 evals/         # research panel + reports
 scripts/       # thin CLIs around the package
-docs/          # plan, data card, reproducibility
+docs/          # plan, data card, reproducibility, demo video script
 ```
 
 See [`docs/PROJECT_PLAN.md`](docs/PROJECT_PLAN.md) for the full plan.
