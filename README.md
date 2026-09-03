@@ -2,11 +2,11 @@
 
 Domain-adapted LLM for financial research Q&A and summarization from public earnings call transcripts.
 
-**Goal**: Fine-tune a small open model (Llama-3.2-3B / Qwen2.5-3B) with QLoRA on Kaggle so it outperforms the base model on research-style financial questions — suitable as an interview portfolio piece for roles at firms like Morningstar / PitchBook.
+**Goal**: Fine-tune a small open model (Llama-3.2-3B / optional Llama-3.1-8B) with QLoRA on Kaggle so it outperforms the base model on research-style financial questions — a portfolio piece for research-tooling roles (Morningstar / PitchBook style).
 
 ## Status
 
-Progress is tracked in [`PROGRESS.md`](PROGRESS.md). An hourly automation advances one action item per run and commits the result.
+Progress: [`PROGRESS.md`](PROGRESS.md). Hourly automation advances one action item per run.
 
 | Phase | Name | Status |
 |-------|------|--------|
@@ -14,19 +14,22 @@ Progress is tracked in [`PROGRESS.md`](PROGRESS.md). An hourly automation advanc
 | 1 | Robust Data Foundation | Done |
 | 2 | Training Pipeline | Done |
 | 3 | Evaluation & Iteration | Done |
-| 4 | Packaging & Portfolio Polish | Next |
+| 4 | Packaging & Portfolio Polish | In progress (README walkthrough done) |
 
-Training reproducibility (seed `3407`, adapter dirs, Kaggle dry-run vs `--run`) is in [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md).
+- Reproducibility (seed `3407`, adapter dirs, dry-run vs `--run`): [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md)
+- Data card (`ecra-sft-v0.1.0`): [`docs/DATA_CARD.md`](docs/DATA_CARD.md)
+- Eval write-up: [`evals/reports/EVALUATION_REPORT.md`](evals/reports/EVALUATION_REPORT.md) · [`evals/reports/ITERATION_NOTE_v0.1.md`](evals/reports/ITERATION_NOTE_v0.1.md)
 
-Phase 3 write-up: [`evals/reports/EVALUATION_REPORT.md`](evals/reports/EVALUATION_REPORT.md) and [`evals/reports/ITERATION_NOTE_v0.1.md`](evals/reports/ITERATION_NOTE_v0.1.md).
-
-## Key Principles
+## Key principles
 
 - Public data only
 - Grounded synthetic generation + multi-stage quality filtering
 - Quality over quantity (target 3k–6k high-signal examples)
 - Reproducible on free Kaggle GPUs (T4 / 2×T4)
 - Clear before/after qualitative evidence for interviews
+- Every GPU script is **dry-run by default**; pass `--run` only on a real GPU box
+
+---
 
 ## Clone and run baseline (< 30 min)
 
@@ -36,7 +39,7 @@ You need:
 
 - Python 3.10+
 - A CUDA GPU with ~8 GB+ VRAM (Kaggle T4 is the intended target)
-- Hugging Face access to the base model (public Unsloth snapshot)
+- Hugging Face access to the public Unsloth snapshot
 
 ### Option A — Kaggle (recommended)
 
@@ -73,7 +76,7 @@ pip install -e .
 Optional extras:
 
 ```bash
-pip install -e ".[eval,demo]"   # metrics + Gradio later
+pip install -e ".[eval,demo]"   # metrics + Gradio
 pip install -e ".[all]"         # eval + demo + dev
 ```
 
@@ -97,51 +100,121 @@ print(harness.generate("What is the difference between prepared remarks and Q&A 
 
 `load_config("configs/default.yaml")` also accepts a path (YAML or JSON). Missing keys fall back to the typed defaults in `src/earnings_call_research_assistant/config.py`.
 
-### Config that the baseline uses
+### Config the baseline uses
 
-[`configs/default.yaml`](configs/default.yaml) is the single source of truth for Phase 0/2:
+[`configs/default.yaml`](configs/default.yaml) is the single source of truth:
 
 - `model` — name, max sequence length, 4-bit load
-- `lora` — QLoRA ranks / targets (unused until Phase 2)
-- `training` — SFT hyperparameters (unused until Phase 2)
+- `lora` — QLoRA ranks / targets
+- `training` — SFT hyperparameters
 - `inference` — `max_new_tokens`, sampling, conservative system prompt
 
 The notebook maps that YAML through `InferenceConfig.from_mapping(...)`. The package-level `load_config()` returns a typed `AppConfig` with the same blocks.
 
-## Train on Kaggle (Phase 2)
+---
 
-Do **not** start a full epoch from CI. Dry-run first, then `--run` on a T4:
+## Full walkthrough (CPU dry-run → Kaggle GPU)
+
+Commands below are **CPU-safe** unless you add `--run`. After `pip install -e ".[eval,demo]"` you can walk the pipeline on a laptop in a few minutes; GPU steps stay on Kaggle.
+
+### 1. Baseline (Phase 0)
+
+Use the <30 min path above. Success = three coherent generations from `InferenceHarness`.
+
+### 2. Data foundation (Phase 1)
+
+Offline fixtures only; no large downloads unless you pass `--download`.
+
+```bash
+python scripts/ingest_public_sources.py --catalog-only
+python scripts/ingest_public_sources.py --out data/raw/public_sample.jsonl
+python scripts/chunk_propositions.py --out data/processed/chunks.jsonl
+python scripts/generate_grounded_pairs.py --out data/processed/grounded_pairs.jsonl
+python scripts/filter_grounded_pairs.py --out data/processed/filtered_pairs.jsonl
+python scripts/select_dataset.py --out-dir data/processed/ecra-sft-v0.1.0
+```
+
+Writes hash-stable `train.jsonl` / `val.jsonl` / `test.jsonl` plus `manifest.json`. Schema and lineage: [`docs/DATA_CARD.md`](docs/DATA_CARD.md). CLI details: [`scripts/README.md`](scripts/README.md).
+
+### 3. Train dry-run (Phase 2)
 
 ```bash
 python scripts/train_sft.py
+python scripts/train_sft.py --dataset-dir data/processed/ecra-sft-v0.1.0
+```
+
+Dry-run formats chat examples and writes `outputs/sft_plan.json`. No weights load.
+
+On a Kaggle T4 after Unsloth is installed (smoke, not a full epoch):
+
+```bash
 python scripts/train_sft.py --run --max-steps 20
 ```
 
 - Seed: `3407`
 - 3B adapter: `outputs/adapters/llama32-3b-ecra-sft`
-- 8B adapter: `outputs/adapters/llama31-8b-ecra-sft` (`--config configs/llama32-8b.yaml`)
+- Optional 8B: `--config configs/llama32-8b.yaml` → `outputs/adapters/llama31-8b-ecra-sft`
 
-Details: [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md).
-
-## Evaluate (Phase 3)
+### 4. Eval (Phase 3)
 
 ```bash
 python scripts/eval_research_panel.py
 python scripts/score_research_panel.py
 ```
 
-Dry-run writes placeholder base/adapter columns and near-zero metrics. After an adapter exists on Kaggle, add `--run --adapter-dir outputs/adapters/llama32-3b-ecra-sft`. How to read the numbers: [`evals/reports/EVALUATION_REPORT.md`](evals/reports/EVALUATION_REPORT.md).
+Dry-run writes placeholder base/adapter columns and near-zero metrics to `evals/reports/`.
+After an adapter exists on Kaggle:
+
+```bash
+python scripts/eval_research_panel.py --run --adapter-dir outputs/adapters/llama32-3b-ecra-sft
+python scripts/score_research_panel.py
+```
+
+How to read the numbers: [`evals/reports/EVALUATION_REPORT.md`](evals/reports/EVALUATION_REPORT.md).
+
+### 5. Gradio demo (Phase 4)
+
+```bash
+pip install -e ".[demo]"
+python scripts/demo_gradio.py
+```
+
+CPU stub: dropdown of four research-panel prompts (guidance, missing-FCF refusal, margin summary, unanswerable date). No weights.
+
+On a GPU box:
+
+```bash
+python scripts/demo_gradio.py --run --adapter-dir outputs/adapters/llama32-3b-ecra-sft
+```
+
+### 6. Publish adapter to Hugging Face Hub (Phase 4)
+
+```bash
+python scripts/publish_adapter.py
+```
+
+Dry-run inspects `outputs/adapters/llama32-3b-ecra-sft`, notes whether `HF_TOKEN` / `HUGGING_FACE_HUB_TOKEN` is set (value never printed), and writes `outputs/publish_plan.json`. No Hub call.
+
+Login on the machine that will upload:
+
+```bash
+huggingface-cli login
+# or: export HF_TOKEN=hf_xxx     # write-scoped; do not commit
+python scripts/publish_adapter.py --repo-id nuwanda94/llama32-3b-ecra-sft --run
+```
+
+---
 
 ## Structure
 
 ```
-src/earnings_call_research_assistant/   # config, inference, data, train, eval
+src/earnings_call_research_assistant/   # config, inference, data, train, eval, demo, publish
 notebooks/     # Kaggle notebooks; start with 00_baseline_inference.ipynb
 data/          # raw / processed (gitignored large files)
-configs/       # default.yaml — model, LoRA, training, inference
-evals/         # evaluation scripts & reports
-scripts/       # utilities
-docs/          # plan, data card, reproducibility, design notes
+configs/       # default.yaml + llama32-8b.yaml
+evals/         # research panel + reports
+scripts/       # thin CLIs around the package
+docs/          # plan, data card, reproducibility
 ```
 
-See [`docs/PROJECT_PLAN.md`](docs/PROJECT_PLAN.md) for the full plan and acceptance criteria.
+See [`docs/PROJECT_PLAN.md`](docs/PROJECT_PLAN.md) for the full plan.

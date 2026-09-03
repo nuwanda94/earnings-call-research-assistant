@@ -1,12 +1,12 @@
 # Progress Tracker
 
-Last updated: 2026-09-03 05:01 IST
+Last updated: 2026-09-03 06:01 IST
 
 ## Current Phase
 Phase 4 – Packaging & Portfolio Polish
 
 ## Next Action Item
-Polish the root README with a short clone-to-demo walkthrough (baseline → data → train dry-run → eval → Gradio → HF publish) and keep the <30 min baseline path.
+Add a short portfolio demo video stub (script + recording notes) covering baseline → grounded data → adapter demo, without requiring a recorded file in-repo.
 
 ## Completed Items
 
@@ -31,6 +31,7 @@ Polish the root README with a short clone-to-demo walkthrough (baseline → data
 - [x] Evaluation report + first iteration note (refusal-and-citation data mix)
 - [x] CPU-safe Gradio demo stub (`demo.py` + `scripts/demo_gradio.py`)
 - [x] Hugging Face Hub adapter publish script (env token only; dry-run default)
+- [x] Polished README + clone-to-demo walkthrough (baseline → data → train dry-run → eval → Gradio → HF)
 
 ## Phase 0 Checklist
 
@@ -68,7 +69,8 @@ Polish the root README with a short clone-to-demo walkthrough (baseline → data
 
 - [x] Gradio / Streamlit demo stub
 - [x] Hugging Face Hub adapter publish script (no secrets in repo)
-- [ ] Polished README + short walkthrough
+- [x] Polished README + short walkthrough
+- [ ] Short portfolio demo video (script / notes; recording optional off-repo)
 
 ## Notes for Automation
 
@@ -82,6 +84,7 @@ On each hourly run:
 
 ## Log
 
+- 2026-09-03 06:01 IST — docs: polished root README with clone-to-demo walkthrough (baseline → ingest/chunk/generate/filter/select → train dry-run → eval → Gradio → HF publish); kept <30 min baseline path.
 - 2026-09-03 05:01 IST — feat: HF Hub adapter publish (`src/earnings_call_research_assistant/publish.py`, `scripts/publish_adapter.py`); dry-run default writes `outputs/publish_plan.json`; token from `HF_TOKEN` / `huggingface-cli login` only.
 - 2026-09-03 04:00 IST — feat: CPU-safe Gradio demo (`src/earnings_call_research_assistant/demo.py`, `scripts/demo_gradio.py`); dry-run default, `--run` / `--adapter-dir` load `InferenceHarness` only. No train.
 - 2026-09-03 03:00 IST — docs: evaluation report + iteration note v0.1 (`evals/reports/`); dry-run metrics interpreted as harness-only; next change is an insufficient-context SFT slice. Phase 3 complete, advanced to Phase 4.
