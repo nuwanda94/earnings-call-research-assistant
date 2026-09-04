@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Launch the CPU-safe Gradio research-panel demo.
+"""Launch the Gradio research-panel demo (single model or base vs adapter).
 
 Default is a dry-run UI: no model download, no train.
 
@@ -8,6 +8,7 @@ On a GPU box after adapters exist::
     pip install -e ".[demo]"
     python scripts/demo_gradio.py --run
     python scripts/demo_gradio.py --run --adapter-dir outputs/adapters/llama32-3b-ecra-sft
+    python scripts/demo_gradio.py --run --side-by-side --adapter-dir outputs/adapters/llama32-3b-ecra-sft
 """
 
 from __future__ import annotations
@@ -54,6 +55,11 @@ def _parse_args() -> argparse.Namespace:
         help="Load InferenceHarness and generate. Off by default (CPU stub).",
     )
     parser.add_argument(
+        "--side-by-side",
+        action="store_true",
+        help="Show base (before) and fine-tuned (after) answers side by side.",
+    )
+    parser.add_argument(
         "--share",
         action="store_true",
         help="Ask Gradio for a temporary public link.",
@@ -73,6 +79,7 @@ def main() -> int:
         share=args.share,
         server_name=args.host,
         server_port=args.port,
+        side_by_side=args.side_by_side,
     )
     return 0
 
