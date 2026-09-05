@@ -17,7 +17,5 @@ tags:
 
 Free **static** Hugging Face Space (no PRO / no Gradio runtime).
 
-Shows portfolio before/after examples and links to the fine-tuned adapter model.
-
-- Adapter model: [nuwanda94/llama32-3b-ecra-sft](https://huggingface.co/nuwanda94/llama32-3b-ecra-sft)
+- Adapter model: [skaran786/llama32-3b-ecra-sft](https://huggingface.co/skaran786/llama32-3b-ecra-sft)
 - Code: [github.com/nuwanda94/earnings-call-research-assistant](https://github.com/nuwanda94/earnings-call-research-assistant)

@@ -19,7 +19,8 @@ from earnings_call_research_assistant.publish import resolve_hub_token, token_so
 logger = logging.getLogger(__name__)
 
 DEFAULT_SPACE_DIR = Path("spaces/ecra-static")
-DEFAULT_SPACE_REPO_ID = "nuwanda94/earnings-call-research-assistant"
+# HF username (Hub), not the GitHub user
+DEFAULT_SPACE_REPO_ID = "skaran786/earnings-call-research-assistant"
 DEFAULT_PLAN_PATH = Path("outputs/space_publish_plan.json")
 DEFAULT_SPACE_SDK = "static"
 

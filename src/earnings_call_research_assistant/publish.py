@@ -17,7 +17,8 @@ from typing import Any
 logger = logging.getLogger(__name__)
 
 DEFAULT_ADAPTER_DIR = Path("outputs/adapters/llama32-3b-ecra-sft")
-DEFAULT_REPO_ID = "nuwanda94/llama32-3b-ecra-sft"
+# HF username (Hub), not the GitHub org/user
+DEFAULT_REPO_ID = "skaran786/llama32-3b-ecra-sft"
 DEFAULT_PLAN_PATH = Path("outputs/publish_plan.json")
 TOKEN_ENV_KEYS = ("HF_TOKEN", "HUGGING_FACE_HUB_TOKEN")
 
@@ -161,7 +162,7 @@ def publish_adapter(
 
     try:
         from huggingface_hub import HfApi
-    except ImportError as exc:  # pragma: no cover - optional at import time
+    except ImportError as exc:  # pragma: no cover
         raise RuntimeError(
             "huggingface_hub is required for --run. "
             "`pip install huggingface_hub` (or `transformers` extra)."
