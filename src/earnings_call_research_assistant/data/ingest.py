@@ -3,18 +3,24 @@
 Default path is offline: catalog + tiny baked-in samples so clone-and-run
 never pulls multi-GB transcript corpora. Optional Hugging Face sampling is
 opt-in via ``load_public_source(..., download=True)`` or the CLI ``--download``.
+
+On Hub 429 / network errors with ``download=True``, callers can use
+``download="auto"`` (or ``ingest_catalog(..., download="auto")``) to fall back
+to offline fixtures instead of hanging on retries.
 """
 
 from __future__ import annotations
 
 import json
+import logging
+import os
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
-from typing import Any, Iterable, Mapping
+from typing import Any, Iterable, Mapping, Union
 
-# ---------------------------------------------------------------------------
-# Catalog (public data only)
-# ---------------------------------------------------------------------------
+logger = logging.getLogger(__name__)
+
+DownloadFlag = Union[bool, str]  # True | False | "auto"
 
 
 @dataclass(frozen=True)
@@ -171,7 +177,6 @@ def _text_from_row(row: Mapping[str, Any], fields: Iterable[str]) -> str:
             parts.append(text)
     if parts:
         return "\n\n".join(parts)
-    # last-ditch: first reasonably long string field
     for value in row.values():
         if isinstance(value, str) and len(value.strip()) >= 40:
             return value.strip()
@@ -191,6 +196,38 @@ def _offline_records(source_id: str, max_samples: int) -> list[IngestRecord]:
     return records
 
 
+def _wire_hf_token() -> None:
+    """Ensure huggingface_hub sees HF_TOKEN / HUGGING_FACE_HUB_TOKEN if set."""
+    tok = (
+        os.environ.get("HF_TOKEN", "").strip()
+        or os.environ.get("HUGGING_FACE_HUB_TOKEN", "").strip()
+    )
+    if not tok:
+        return
+    os.environ.setdefault("HF_TOKEN", tok)
+    os.environ.setdefault("HUGGING_FACE_HUB_TOKEN", tok)
+    try:
+        from huggingface_hub import login
+
+        login(token=tok, add_to_git_credential=False)
+    except Exception as exc:  # pragma: no cover
+        logger.debug("huggingface_hub login skipped: %s", type(exc).__name__)
+
+
+def _is_rate_limit_error(exc: BaseException) -> bool:
+    text = f"{type(exc).__name__} {exc}".lower()
+    return any(
+        needle in text
+        for needle in (
+            "429",
+            "rate limit",
+            "ratelimited",
+            "too many requests",
+            "httperror 429",
+        )
+    )
+
+
 def _hf_records(spec: SourceSpec, max_samples: int) -> list[IngestRecord]:
     if not spec.hf_id:
         raise ValueError(f"{spec.source_id} has no Hugging Face id configured")
@@ -201,7 +238,17 @@ def _hf_records(spec: SourceSpec, max_samples: int) -> list[IngestRecord]:
             "Optional download requires the `datasets` package (already in pyproject)."
         ) from exc
 
+    _wire_hf_token()
+
     kwargs: dict[str, Any] = {"split": spec.default_split, "streaming": True}
+    token = (
+        os.environ.get("HF_TOKEN", "").strip()
+        or os.environ.get("HUGGING_FACE_HUB_TOKEN", "").strip()
+        or None
+    )
+    if token:
+        kwargs["token"] = token
+
     if spec.hf_config:
         ds = load_dataset(spec.hf_id, spec.hf_config, **kwargs)
     else:
@@ -227,25 +274,48 @@ def load_public_source(
     source_id: str,
     *,
     max_samples: int = 3,
-    download: bool = False,
+    download: DownloadFlag = False,
 ) -> list[IngestRecord]:
     """Return a small sample from ``source_id``.
 
-    ``download=False`` (default) uses the baked-in fixtures and never hits the network.
+    ``download=False`` (default) uses baked-in fixtures and never hits the network.
+    ``download=True`` streams from Hugging Face (may 429 on free tier).
+    ``download="auto"`` tries Hub once, then falls back to offline fixtures on
+    rate-limit / network errors.
     """
     if max_samples < 1:
         raise ValueError("max_samples must be >= 1")
     spec = get_source(source_id)
-    if download:
+
+    use_hf = download is True or (isinstance(download, str) and download.lower() == "auto")
+    auto = isinstance(download, str) and download.lower() == "auto"
+
+    if not use_hf:
+        return _offline_records(source_id, max_samples)
+
+    try:
         return _hf_records(spec, max_samples)
-    return _offline_records(source_id, max_samples)
+    except Exception as exc:
+        if auto or _is_rate_limit_error(exc):
+            logger.warning(
+                "HF download failed for %s (%s: %s). Using offline fixtures.",
+                source_id,
+                type(exc).__name__,
+                str(exc)[:160],
+            )
+            print(
+                f"[ingest] {source_id}: Hub error ({type(exc).__name__}); "
+                f"falling back to offline fixtures."
+            )
+            return _offline_records(source_id, max_samples)
+        raise
 
 
 def ingest_catalog(
     *,
     source_ids: Iterable[str] | None = None,
     max_samples: int = 3,
-    download: bool = False,
+    download: DownloadFlag = False,
 ) -> list[IngestRecord]:
     ids = list(source_ids) if source_ids is not None else [s.source_id for s in PUBLIC_SOURCES]
     out: list[IngestRecord] = []
