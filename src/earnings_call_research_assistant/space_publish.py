@@ -1,4 +1,7 @@
-"""Publish the Gradio Space folder under ``spaces/ecra-demo`` to the Hugging Face Hub.
+"""Publish a Hugging Face Space (static by default — free, no PRO).
+
+Gradio Spaces on free ``cpu-basic`` currently require a PRO subscription (HTTP 402).
+This module defaults to ``space_sdk="static"`` and ``spaces/ecra-static``.
 
 Token from env only (``HF_TOKEN`` / ``HUGGING_FACE_HUB_TOKEN``). Dry-run by default.
 """
@@ -15,10 +18,15 @@ from earnings_call_research_assistant.publish import resolve_hub_token, token_so
 
 logger = logging.getLogger(__name__)
 
-DEFAULT_SPACE_DIR = Path("spaces/ecra-demo")
+DEFAULT_SPACE_DIR = Path("spaces/ecra-static")
 DEFAULT_SPACE_REPO_ID = "nuwanda94/earnings-call-research-assistant"
 DEFAULT_PLAN_PATH = Path("outputs/space_publish_plan.json")
-REQUIRED_FILES = ("app.py", "requirements.txt", "README.md")
+DEFAULT_SPACE_SDK = "static"
+
+REQUIRED_BY_SDK: dict[str, tuple[str, ...]] = {
+    "static": ("index.html", "README.md"),
+    "gradio": ("app.py", "requirements.txt", "README.md"),
+}
 
 
 @dataclass
@@ -27,6 +35,7 @@ class SpacePublishPlan:
     space_dir: str
     repo_id: str
     private: bool
+    space_sdk: str
     commit_message: str
     space_dir_exists: bool
     has_required_files: bool
@@ -46,34 +55,39 @@ def plan_space_publish(
     repo_id: str = DEFAULT_SPACE_REPO_ID,
     *,
     private: bool = False,
-    commit_message: str = "feat: deploy ECRA Gradio Space",
+    space_sdk: str = DEFAULT_SPACE_SDK,
+    commit_message: str = "feat: deploy ECRA static Space",
     dry_run: bool = True,
 ) -> SpacePublishPlan:
     root = Path(space_dir)
+    sdk = (space_sdk or DEFAULT_SPACE_SDK).lower().strip()
+    required = REQUIRED_BY_SDK.get(sdk, REQUIRED_BY_SDK["static"])
     exists = root.is_dir()
     files = sorted(p.name for p in root.iterdir()) if exists else []
-    has_req = exists and all((root / name).is_file() for name in REQUIRED_FILES)
+    has_req = exists and all((root / name).is_file() for name in required)
     token = resolve_hub_token()
     notes: list[str] = []
     if not exists:
         notes.append(f"Space directory missing: {root}")
     elif not has_req:
-        notes.append(f"Expected files {REQUIRED_FILES} under {root}")
+        notes.append(f"Expected files {required} under {root} for sdk={sdk}")
     if token is None:
         notes.append(
             "No Hub token. Use `huggingface-cli login` or export HF_TOKEN (write scope)."
         )
-    notes.append(
-        "After upload: Space Settings → Hardware → GPU (T4) recommended for live weights."
-    )
-    notes.append(
-        "Optional Space variables: ADAPTER_REPO, BASE_MODEL, SIDE_BY_SIDE, MAX_NEW_TOKENS."
-    )
+    if sdk == "gradio":
+        notes.append(
+            "WARNING: Gradio Spaces on free cpu-basic may return HTTP 402 (PRO required). "
+            "Prefer sdk=static on a free account."
+        )
+    else:
+        notes.append("Static Space is free (no live model). Links to adapter model repo.")
     return SpacePublishPlan(
         dry_run=dry_run,
         space_dir=str(root),
         repo_id=repo_id,
         private=private,
+        space_sdk=sdk,
         commit_message=commit_message,
         space_dir_exists=exists,
         has_required_files=has_req,
@@ -99,7 +113,8 @@ def publish_space(
     repo_id: str = DEFAULT_SPACE_REPO_ID,
     *,
     private: bool = False,
-    commit_message: str = "feat: deploy ECRA Gradio Space",
+    space_sdk: str = DEFAULT_SPACE_SDK,
+    commit_message: str = "feat: deploy ECRA static Space",
     dry_run: bool = True,
     plan_path: Path | str = DEFAULT_PLAN_PATH,
 ) -> SpacePublishPlan:
@@ -107,11 +122,12 @@ def publish_space(
         space_dir,
         repo_id,
         private=private,
+        space_sdk=space_sdk,
         commit_message=commit_message,
         dry_run=dry_run,
     )
     if dry_run:
-        plan.notes.append("Dry-run only; no Hub upload. Pass --run after login.")
+        plan.notes.append("Dry-run only; no Hub upload. Pass dry_run=False after login.")
         write_space_plan(plan, plan_path)
         return plan
 
@@ -129,17 +145,29 @@ def publish_space(
         from huggingface_hub import HfApi
     except ImportError as exc:  # pragma: no cover
         raise RuntimeError(
-            "huggingface_hub is required for --run. pip install huggingface_hub"
+            "huggingface_hub is required. pip install huggingface_hub"
         ) from exc
 
     api = HfApi(token=token)
-    api.create_repo(
-        repo_id=repo_id,
-        exist_ok=True,
-        private=private,
-        repo_type="space",
-        space_sdk="gradio",
-    )
+    try:
+        api.create_repo(
+            repo_id=repo_id,
+            exist_ok=True,
+            private=private,
+            repo_type="space",
+            space_sdk=plan.space_sdk,
+        )
+    except Exception as exc:
+        msg = str(exc)
+        if "402" in msg or "Payment Required" in msg or "PRO subscription" in msg:
+            raise RuntimeError(
+                "Hugging Face returned 402 for this Space SDK. "
+                "Gradio/Docker free CPU often requires PRO. "
+                "Use space_sdk='static' and spaces/ecra-static (default). "
+                f"Original error: {exc}"
+            ) from exc
+        raise
+
     api.upload_folder(
         folder_path=str(space_dir),
         repo_id=repo_id,

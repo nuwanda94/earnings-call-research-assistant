@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Earnings Call Research Assistant</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --card: #121a2b;
+      --text: #e8eefc;
+      --muted: #9db0d0;
+      --accent: #5b8cff;
+      --base: #2a3548;
+      --tuned: #1f3d32;
+      --border: #243049;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: radial-gradient(1200px 600px at 10% -10%, #1a2744, var(--bg));
+      color: var(--text);
+      line-height: 1.5;
+    }
+    main { max-width: 980px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    h1 { font-size: 1.75rem; margin: 0 0 0.35rem; }
+    .sub { color: var(--muted); margin-bottom: 1.5rem; }
+    .banner {
+      background: #162033;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.9rem 1rem;
+      margin-bottom: 1.25rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .links a {
+      color: var(--accent);
+      margin-right: 1rem;
+      text-decoration: none;
+    }
+    .links a:hover { text-decoration: underline; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1rem 1.1rem;
+      margin: 1rem 0;
+    }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 0.5rem; }
+    .q { font-weight: 600; margin-bottom: 0.75rem; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    @media (max-width: 720px) { .row { grid-template-columns: 1fr; } }
+    .col { border-radius: 10px; padding: 0.75rem; border: 1px solid var(--border); }
+    .col.base { background: var(--base); }
+    .col.tuned { background: var(--tuned); }
+    .label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); margin-bottom: 0.35rem; }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin: 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.85rem;
+    }
+    footer { margin-top: 2rem; color: var(--muted); font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Earnings Call Research Assistant</h1>
+    <p class="sub">Domain-adapted QLoRA demo for research-style financial Q&amp;A (portfolio static Space).</p>
+
+    <div class="banner">
+      <strong>Free static Space</strong> — no live GPU inference here (HF free Gradio requires PRO).
+      Load the adapter locally or on Kaggle for live generation. Side-by-side examples below are illustrative grounded prompts.
+    </div>
+
+    <p class="links">
+      <a href="https://huggingface.co/nuwanda94/llama32-3b-ecra-sft" target="_blank" rel="noopener">Adapter model</a>
+      <a href="https://github.com/nuwanda94/earnings-call-research-assistant" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://huggingface.co/unsloth/Llama-3.2-3B-Instruct" target="_blank" rel="noopener">Base model</a>
+    </p>
+
+    <div class="card">
+      <div class="meta">p03 · missing FCF · refusal behavior</div>
+      <div class="q">What was free cash flow for the quarter? (context omits FCF)</div>
+      <div class="row">
+        <div class="col base">
+          <div class="label">Base (before)</div>
+          <pre>May invent a number or answer generally without refusing when FCF is absent from context.</pre>
+        </div>
+        <div class="col tuned">
+          <div class="label">Fine-tuned goal (after)</div>
+          <pre>Should say the excerpt does not quantify free cash flow and refuse to invent a figure.</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="meta">p04 · margins · grounded summary</div>
+      <div class="q">Summarize the margin commentary from the provided context.</div>
+      <div class="row">
+        <div class="col base">
+          <div class="label">Base (before)</div>
+          <pre>Generic margin discussion; may drift beyond the given excerpt.</pre>
+        </div>
+        <div class="col tuned">
+          <div class="label">Fine-tuned goal (after)</div>
+          <pre>Stick to stated bps / mix / reinvestment points and cite the grounded context.</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="meta">How to run live inference</div>
+      <pre>pip install -e ".[demo]"
+python scripts/demo_gradio.py --run --side-by-side \
+  --adapter-dir outputs/adapters/llama32-3b-ecra-sft
+
+# or on Kaggle after training notebook 02</pre>
+    </div>
+
+    <footer>
+      Static Space SDK (free). Gradio live hosting on free CPU requires Hugging Face PRO as of 2026.
+    </footer>
+  </main>
+</body>
+</html>
