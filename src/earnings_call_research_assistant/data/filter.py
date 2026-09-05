@@ -2,10 +2,10 @@
 
 Pipeline (offline by default):
   1. Heuristic length / emptiness / citation checks.
-  2. Exact then near-duplicate drop (normalized text + token Jaccard).
-  3. Optional LLM-as-judge stub for Kaggle (caller supplies a callable).
+  2. Exact then near-duplicate drop (hash + bucketed token Jaccard).
+  3. Optional LLM-as-judge stub for Kaggle.
 
-Kept free of GPU work so automation and CI stay cheap.
+Near-dup is **bucketed** (not full O(n²)) so 10k–60k pair runs finish on CPU.
 """
 
 from __future__ import annotations
@@ -13,6 +13,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+from collections import defaultdict
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any, Callable, Iterable, Sequence
@@ -28,8 +29,6 @@ _CITE_HINT = re.compile(r"\b(citation|citations|chunk_|source)\b", re.I)
 
 @dataclass(frozen=True)
 class FilterConfig:
-    """Thresholds for each filter stage."""
-
     min_instruction_chars: int = 12
     max_instruction_chars: int = 600
     min_output_chars: int = 40
@@ -40,6 +39,8 @@ class FilterConfig:
     near_dup_jaccard: float = 0.88
     use_llm_judge: bool = False
     min_judge_score: float = 0.6
+    # Cap pairwise compares inside each near-dup bucket (keeps CPU bounded).
+    near_dup_bucket_compare_limit: int = 64
 
     def __post_init__(self) -> None:
         if self.min_instruction_chars < 0 or self.min_output_chars < 0:
@@ -75,7 +76,9 @@ class FilterReport:
             "n_kept": self.n_kept,
             "n_dropped": self.n_in - self.n_kept,
             "dropped_by_stage": dict(self.dropped_by_stage),
-            "decisions": [d.to_dict() for d in self.decisions],
+            # Keep report light for large runs
+            "decisions": [d.to_dict() for d in self.decisions[:5000]],
+            "decisions_truncated": len(self.decisions) > 5000,
         }
 
 
@@ -104,8 +107,14 @@ def _fingerprint(pair: InstructionPair) -> str:
     return hashlib.sha1(key.encode("utf-8")).hexdigest()
 
 
+def _near_dup_bucket_key(pair: InstructionPair, toks: set[str]) -> str:
+    """Coarse bucket so near-dup only compares similar pairs."""
+    head = " ".join(sorted(toks)[:4]) if toks else ""
+    length_band = len(pair.output or "") // 80
+    return f"{pair.source_id}|{pair.task}|{length_band}|{head}"
+
+
 def heuristic_check(pair: InstructionPair, config: FilterConfig) -> FilterDecision:
-    """Length, emptiness, and citation presence."""
     reasons: list[str] = []
     inst = (pair.instruction or "").strip()
     out = (pair.output or "").strip()
@@ -154,14 +163,21 @@ def drop_duplicates(
     *,
     config: FilterConfig | None = None,
 ) -> tuple[list[InstructionPair], list[FilterDecision]]:
-    """Exact hash drop, then near-dup via token Jaccard on instruction+output."""
+    """Exact hash drop, then bucketed near-dup (not full pairwise O(n²))."""
     cfg = config or FilterConfig()
     kept: list[InstructionPair] = []
     decisions: list[FilterDecision] = []
     seen_fp: set[str] = set()
-    kept_tokens: list[set[str]] = []
+    # bucket_key -> list of token sets for kept items in that bucket
+    bucket_tokens: dict[str, list[set[str]]] = defaultdict(list)
 
-    for pair in pairs:
+    n = len(pairs)
+    report_every = max(5000, n // 10) if n else 5000
+
+    for i, pair in enumerate(pairs):
+        if report_every and i and i % report_every == 0:
+            print(f"[filter:dedup] {i}/{n} scanned, kept={len(kept)}")
+
         fp = _fingerprint(pair)
         if fp in seen_fp:
             decisions.append(
@@ -176,9 +192,12 @@ def drop_duplicates(
             continue
 
         toks = _tokens(f"{pair.instruction} {pair.output}")
+        bkey = _near_dup_bucket_key(pair, toks)
+        prior_list = bucket_tokens[bkey]
         near = False
         best = 0.0
-        for prior in kept_tokens:
+        # Only compare against a limited number of priors in the same bucket
+        for prior in prior_list[-cfg.near_dup_bucket_compare_limit :]:
             jac = _jaccard(toks, prior)
             if jac > best:
                 best = jac
@@ -198,7 +217,7 @@ def drop_duplicates(
             continue
 
         seen_fp.add(fp)
-        kept_tokens.append(toks)
+        bucket_tokens[bkey].append(toks)
         kept.append(pair)
         decisions.append(
             FilterDecision(
@@ -209,15 +228,12 @@ def drop_duplicates(
                 scores={"jaccard": best},
             )
         )
+
+    print(f"[filter:dedup] done scanned={n} kept={len(kept)}")
     return kept, decisions
 
 
 def default_llm_judge(pair: InstructionPair) -> dict[str, Any]:
-    """Deterministic stand-in used when no callable is wired.
-
-    Scores groundedness from citation overlap and output length. Real judging
-    belongs on Kaggle: pass ``judge=my_model_fn`` into ``filter_pairs``.
-    """
     out = (pair.output or "").lower()
     hits = 0
     for cite in pair.citations:
@@ -276,9 +292,9 @@ def filter_pairs(
     config: FilterConfig | None = None,
     judge: LLMJudge | None = None,
 ) -> tuple[list[InstructionPair], FilterReport]:
-    """Run heuristic → dedup → optional judge. Returns kept pairs + report."""
     cfg = config or FilterConfig()
     incoming = list(pairs)
+    print(f"[filter] start n_in={len(incoming)}")
     dropped: dict[str, int] = {"heuristic": 0, "exact_dup": 0, "near_dup": 0, "llm_judge": 0}
     decisions: list[FilterDecision] = []
 
@@ -290,6 +306,7 @@ def filter_pairs(
             after_h.append(pair)
         else:
             dropped["heuristic"] += 1
+    print(f"[filter] after heuristic kept={len(after_h)}")
 
     after_d, d_decs = drop_duplicates(after_h, config=cfg)
     for dec in d_decs:
@@ -313,6 +330,7 @@ def filter_pairs(
         dropped_by_stage=dropped,
         decisions=decisions,
     )
+    print(f"[filter] done n_kept={report.n_kept} dropped={report.dropped_by_stage}")
     return kept, report
 
 
@@ -345,5 +363,7 @@ def load_pairs_jsonl(path: str | Path) -> list[InstructionPair]:
 def write_filter_report(report: FilterReport, path: str | Path) -> Path:
     dest = Path(path)
     dest.parent.mkdir(parents=True, exist_ok=True)
-    dest.write_text(json.dumps(report.to_dict(), indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    dest.write_text(
+        json.dumps(report.to_dict(), indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+    )
     return dest

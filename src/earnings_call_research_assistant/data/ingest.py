@@ -1,8 +1,7 @@
 """Public-source ingestion for Phase 1.
 
 Default path is offline fixtures. With ``download=True`` (and ``HF_TOKEN`` set),
-streams capped samples from public Hugging Face datasets. Never downloads an
-entire multi-GB transcript dump — use ``max_samples`` / per-source caps.
+streams capped samples from public Hugging Face datasets.
 """
 
 from __future__ import annotations
@@ -17,9 +16,8 @@ from typing import Any, Iterable, Mapping, Union
 
 logger = logging.getLogger(__name__)
 
-DownloadFlag = Union[bool, str]  # True | False | "auto"
+DownloadFlag = Union[bool, str]
 
-# Sensible per-source caps for a Kaggle "full" portfolio run (not the entire Hub).
 DEFAULT_MAX_PER_SOURCE: dict[str, int] = {
     "earnings_transcripts": 400,
     "fiqa": 200,
@@ -194,7 +192,6 @@ def resolve_hf_token() -> str | None:
 
 
 def wire_hf_token(token: str | None = None) -> bool:
-    """Push token into env + huggingface_hub login. Returns True if a token is active."""
     tok = (token or "").strip() or resolve_hf_token()
     if not tok:
         return False
@@ -213,13 +210,7 @@ def _is_rate_limit_error(exc: BaseException) -> bool:
     text = f"{type(exc).__name__} {exc}".lower()
     return any(
         needle in text
-        for needle in (
-            "429",
-            "rate limit",
-            "ratelimited",
-            "too many requests",
-            "httperror 429",
-        )
+        for needle in ("429", "rate limit", "ratelimited", "too many requests", "httperror 429")
     )
 
 
@@ -240,11 +231,8 @@ def _hf_records(spec: SourceSpec, max_samples: int) -> list[IngestRecord]:
         f"token={'yes' if token else 'no'})"
     )
 
-    kwargs: dict[str, Any] = {
-        "split": spec.default_split,
-        "streaming": True,
-        "trust_remote_code": True,
-    }
+    # Do not pass trust_remote_code — newer datasets rejects it.
+    kwargs: dict[str, Any] = {"split": spec.default_split, "streaming": True}
     if token:
         kwargs["token"] = token
 
@@ -258,7 +246,6 @@ def _hf_records(spec: SourceSpec, max_samples: int) -> list[IngestRecord]:
         text = _text_from_row(row, spec.text_fields)
         if not text:
             continue
-        # Keep transcript chunks manageable for chunking stage
         if len(text) > 12000:
             text = text[:12000]
         meta = {
@@ -281,8 +268,6 @@ def load_public_source(
 ) -> list[IngestRecord]:
     if max_samples < 1:
         raise ValueError("max_samples must be >= 1")
-    spec = get_source(source_id)
-
     use_hf = download is True or (isinstance(download, str) and download.lower() == "auto")
     auto = isinstance(download, str) and download.lower() == "auto"
 
@@ -290,15 +275,9 @@ def load_public_source(
         return _offline_records(source_id, max_samples)
 
     try:
-        return _hf_records(spec, max_samples)
+        return _hf_records(get_source(source_id), max_samples)
     except Exception as exc:
         if auto or _is_rate_limit_error(exc):
-            logger.warning(
-                "HF download failed for %s (%s: %s). Using offline fixtures.",
-                source_id,
-                type(exc).__name__,
-                str(exc)[:160],
-            )
             print(
                 f"[ingest] {source_id}: Hub error ({type(exc).__name__}); "
                 f"falling back to offline fixtures."
@@ -315,11 +294,6 @@ def ingest_catalog(
     download: DownloadFlag = False,
     pause_between_sources_s: float = 1.0,
 ) -> list[IngestRecord]:
-    """Ingest all catalog sources.
-
-    ``max_samples`` is a uniform cap per source when ``max_per_source`` is omitted.
-    For a full portfolio Kaggle run prefer ``max_per_source=DEFAULT_MAX_PER_SOURCE``.
-    """
     ids = list(source_ids) if source_ids is not None else [s.source_id for s in PUBLIC_SOURCES]
     caps = dict(DEFAULT_MAX_PER_SOURCE)
     if max_per_source:
