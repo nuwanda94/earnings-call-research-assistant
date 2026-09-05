@@ -1,12 +1,8 @@
-"""Public-source ingestion stubs for Phase 1.
+"""Public-source ingestion for Phase 1.
 
-Default path is offline: catalog + tiny baked-in samples so clone-and-run
-never pulls multi-GB transcript corpora. Optional Hugging Face sampling is
-opt-in via ``load_public_source(..., download=True)`` or the CLI ``--download``.
-
-On Hub 429 / network errors with ``download=True``, callers can use
-``download="auto"`` (or ``ingest_catalog(..., download="auto")``) to fall back
-to offline fixtures instead of hanging on retries.
+Default path is offline fixtures. With ``download=True`` (and ``HF_TOKEN`` set),
+streams capped samples from public Hugging Face datasets. Never downloads an
+entire multi-GB transcript dump — use ``max_samples`` / per-source caps.
 """
 
 from __future__ import annotations
@@ -14,6 +10,7 @@ from __future__ import annotations
 import json
 import logging
 import os
+import time
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Union
@@ -22,11 +19,16 @@ logger = logging.getLogger(__name__)
 
 DownloadFlag = Union[bool, str]  # True | False | "auto"
 
+# Sensible per-source caps for a Kaggle "full" portfolio run (not the entire Hub).
+DEFAULT_MAX_PER_SOURCE: dict[str, int] = {
+    "earnings_transcripts": 400,
+    "fiqa": 200,
+    "finance_alpaca": 150,
+}
+
 
 @dataclass(frozen=True)
 class SourceSpec:
-    """One public corpus we may sample from later in Phase 1."""
-
     source_id: str
     display_name: str
     role: str
@@ -54,10 +56,7 @@ PUBLIC_SOURCES: tuple[SourceSpec, ...] = (
         homepage="https://huggingface.co/datasets/kurry/sp500_earnings_transcripts",
         license_note="MIT on the HF card; still public-company disclosures only.",
         text_fields=("transcript", "content", "text"),
-        notes=(
-            "Large (tens of thousands of calls). Never stream the full set by "
-            "default. Use streaming + ticker/year filters when download=True."
-        ),
+        notes="Large corpus. Always stream + cap with max_samples.",
     ),
     SourceSpec(
         source_id="fiqa",
@@ -68,10 +67,7 @@ PUBLIC_SOURCES: tuple[SourceSpec, ...] = (
         homepage="https://sites.google.com/view/fiqa/",
         license_note="Academic / task release; check the HF card before redistribution.",
         text_fields=("question", "answer", "text"),
-        notes=(
-            "Opinion-oriented financial QA. Useful for question style, not as a "
-            "grounded transcript source. Pair later with extracted propositions."
-        ),
+        notes="Question style prior; not grounded transcripts.",
     ),
     SourceSpec(
         source_id="finance_alpaca",
@@ -82,17 +78,12 @@ PUBLIC_SOURCES: tuple[SourceSpec, ...] = (
         homepage="https://huggingface.co/datasets/gbharti/finance-alpaca",
         license_note="Derived Alpaca + FiQA mix; treat as public research sample.",
         text_fields=("instruction", "input", "output", "text"),
-        notes=(
-            "Not grounded in a specific call. Sample a few hundred rows max for "
-            "prompt-style diversity; do not dump the full 60k+ set into SFT."
-        ),
+        notes="Style prior only; keep capped.",
     ),
 )
 
 SOURCE_BY_ID: dict[str, SourceSpec] = {s.source_id: s for s in PUBLIC_SOURCES}
 
-
-# Tiny offline fixtures so the stub is runnable without `datasets` or network.
 OFFLINE_SAMPLES: dict[str, list[dict[str, Any]]] = {
     "earnings_transcripts": [
         {
@@ -144,8 +135,6 @@ OFFLINE_SAMPLES: dict[str, list[dict[str, Any]]] = {
 
 @dataclass
 class IngestRecord:
-    """Normalized row used by later chunking / generation stages."""
-
     source_id: str
     text: str
     metadata: dict[str, Any] = field(default_factory=dict)
@@ -196,22 +185,28 @@ def _offline_records(source_id: str, max_samples: int) -> list[IngestRecord]:
     return records
 
 
-def _wire_hf_token() -> None:
-    """Ensure huggingface_hub sees HF_TOKEN / HUGGING_FACE_HUB_TOKEN if set."""
+def resolve_hf_token() -> str | None:
     tok = (
         os.environ.get("HF_TOKEN", "").strip()
         or os.environ.get("HUGGING_FACE_HUB_TOKEN", "").strip()
     )
+    return tok or None
+
+
+def wire_hf_token(token: str | None = None) -> bool:
+    """Push token into env + huggingface_hub login. Returns True if a token is active."""
+    tok = (token or "").strip() or resolve_hf_token()
     if not tok:
-        return
-    os.environ.setdefault("HF_TOKEN", tok)
-    os.environ.setdefault("HUGGING_FACE_HUB_TOKEN", tok)
+        return False
+    os.environ["HF_TOKEN"] = tok
+    os.environ["HUGGING_FACE_HUB_TOKEN"] = tok
     try:
         from huggingface_hub import login
 
         login(token=tok, add_to_git_credential=False)
     except Exception as exc:  # pragma: no cover
-        logger.debug("huggingface_hub login skipped: %s", type(exc).__name__)
+        logger.warning("huggingface_hub login: %s", type(exc).__name__)
+    return True
 
 
 def _is_rate_limit_error(exc: BaseException) -> bool:
@@ -238,14 +233,18 @@ def _hf_records(spec: SourceSpec, max_samples: int) -> list[IngestRecord]:
             "Optional download requires the `datasets` package (already in pyproject)."
         ) from exc
 
-    _wire_hf_token()
-
-    kwargs: dict[str, Any] = {"split": spec.default_split, "streaming": True}
-    token = (
-        os.environ.get("HF_TOKEN", "").strip()
-        or os.environ.get("HUGGING_FACE_HUB_TOKEN", "").strip()
-        or None
+    wire_hf_token()
+    token = resolve_hf_token()
+    print(
+        f"[ingest] streaming {spec.hf_id} (cap={max_samples}, "
+        f"token={'yes' if token else 'no'})"
     )
+
+    kwargs: dict[str, Any] = {
+        "split": spec.default_split,
+        "streaming": True,
+        "trust_remote_code": True,
+    }
     if token:
         kwargs["token"] = token
 
@@ -259,6 +258,9 @@ def _hf_records(spec: SourceSpec, max_samples: int) -> list[IngestRecord]:
         text = _text_from_row(row, spec.text_fields)
         if not text:
             continue
+        # Keep transcript chunks manageable for chunking stage
+        if len(text) > 12000:
+            text = text[:12000]
         meta = {
             k: v
             for k, v in dict(row).items()
@@ -267,6 +269,7 @@ def _hf_records(spec: SourceSpec, max_samples: int) -> list[IngestRecord]:
         records.append(IngestRecord(source_id=spec.source_id, text=text, metadata=meta))
         if len(records) >= max_samples:
             break
+    print(f"[ingest] {spec.source_id}: got {len(records)} records")
     return records
 
 
@@ -276,13 +279,6 @@ def load_public_source(
     max_samples: int = 3,
     download: DownloadFlag = False,
 ) -> list[IngestRecord]:
-    """Return a small sample from ``source_id``.
-
-    ``download=False`` (default) uses baked-in fixtures and never hits the network.
-    ``download=True`` streams from Hugging Face (may 429 on free tier).
-    ``download="auto"`` tries Hub once, then falls back to offline fixtures on
-    rate-limit / network errors.
-    """
     if max_samples < 1:
         raise ValueError("max_samples must be >= 1")
     spec = get_source(source_id)
@@ -314,13 +310,28 @@ def load_public_source(
 def ingest_catalog(
     *,
     source_ids: Iterable[str] | None = None,
-    max_samples: int = 3,
+    max_samples: int | None = None,
+    max_per_source: Mapping[str, int] | None = None,
     download: DownloadFlag = False,
+    pause_between_sources_s: float = 1.0,
 ) -> list[IngestRecord]:
+    """Ingest all catalog sources.
+
+    ``max_samples`` is a uniform cap per source when ``max_per_source`` is omitted.
+    For a full portfolio Kaggle run prefer ``max_per_source=DEFAULT_MAX_PER_SOURCE``.
+    """
     ids = list(source_ids) if source_ids is not None else [s.source_id for s in PUBLIC_SOURCES]
+    caps = dict(DEFAULT_MAX_PER_SOURCE)
+    if max_per_source:
+        caps.update({k: int(v) for k, v in max_per_source.items()})
+    uniform = int(max_samples) if max_samples is not None else None
+
     out: list[IngestRecord] = []
-    for sid in ids:
-        out.extend(load_public_source(sid, max_samples=max_samples, download=download))
+    for i, sid in enumerate(ids):
+        cap = uniform if uniform is not None else caps.get(sid, 50)
+        out.extend(load_public_source(sid, max_samples=cap, download=download))
+        if download and pause_between_sources_s > 0 and i < len(ids) - 1:
+            time.sleep(pause_between_sources_s)
     return out
 
 

@@ -27,6 +27,7 @@ from earnings_call_research_assistant.data.generate import (
     write_pairs_jsonl,
 )
 from earnings_call_research_assistant.data.ingest import (
+    DEFAULT_MAX_PER_SOURCE,
     PUBLIC_SOURCES,
     IngestRecord,
     SourceSpec,
@@ -34,6 +35,8 @@ from earnings_call_research_assistant.data.ingest import (
     ingest_catalog,
     list_sources,
     load_public_source,
+    resolve_hf_token,
+    wire_hf_token,
     write_jsonl,
 )
 from earnings_call_research_assistant.data.select import (
@@ -48,6 +51,7 @@ from earnings_call_research_assistant.data.select import (
 
 __all__ = [
     "DATASET_VERSION",
+    "DEFAULT_MAX_PER_SOURCE",
     "PUBLIC_SOURCES",
     "ChunkConfig",
     "FilterConfig",
@@ -61,7 +65,6 @@ __all__ = [
     "SelectReport",
     "SourceSpec",
     "SplitAssignment",
-    "TextChunk",
     "assign_split",
     "chunk_records",
     "chunk_text",
@@ -76,7 +79,9 @@ __all__ = [
     "load_pairs_jsonl",
     "load_public_source",
     "pairs_from_chunk",
+    "resolve_hf_token",
     "select_and_split",
+    "wire_hf_token",
     "write_chunks_jsonl",
     "write_filter_report",
     "write_jsonl",
