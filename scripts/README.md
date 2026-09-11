@@ -167,3 +167,15 @@ python scripts/publish_adapter.py --adapter-dir outputs/adapters/llama31-8b-ecra
 ```
 
 Implementation: `src/earnings_call_research_assistant/publish.py`.
+
+## RAG corpus + BM25 index (Phase 5)
+
+```bash
+python scripts/build_rag_corpus.py
+python scripts/build_rag_index.py
+python scripts/build_rag_index.py --query "operating margin guidance" --k 3
+```
+
+Builds (or reuses) `data/rag/corpus_v0.1.0`, writes an Okapi BM25 JSON index to
+`data/rag/indices/bm25/`, and prints top-k hits. CPU-only; `--run` is reserved
+for dense embeddings in Phase 5.3. Defaults: [`configs/rag.yaml`](../configs/rag.yaml).
