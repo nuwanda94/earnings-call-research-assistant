@@ -27,9 +27,12 @@ fin_research_lora/
 data/raw/
 data/processed/
 data/cache/
+data/rag/corpus_*/
+data/rag/indices/
 *.parquet
 *.arrow
 !data/README.md
+!data/rag/README.md
 
 # Secrets & env
 .env

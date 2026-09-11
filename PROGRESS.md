@@ -1,12 +1,12 @@
 # Progress Tracker
 
-Last updated: 2026-09-11 13:15 IST
+Last updated: 2026-09-11 13:40 IST
 
 ## Current Phase
 Phase 5 — Hybrid RAG + measurable retrieval metrics (Phases 0–4 complete)
 
 ## Next Action Item
-Phase 5.1: implement RAG corpus builder (`src/.../rag/corpus.py` + `scripts/build_rag_corpus.py`) that writes versioned `data/rag/corpus_v0.1.0/chunks.jsonl` + `manifest.json` with measured **N** (chunk count) from Phase-1 chunks / public fixtures.
+Phase 5.2: implement BM25 index + retrieve CLI (`src/.../rag/bm25.py` + `scripts/build_rag_index.py` BM25 path / retrieve stub) that indexes `data/rag/corpus_v0.1.0` and returns top-k hits offline on fixtures.
 
 ## Completed Items
 
@@ -34,6 +34,7 @@ Phase 5.1: implement RAG corpus builder (`src/.../rag/corpus.py` + `scripts/buil
 - [x] Polished README + clone-to-demo walkthrough (baseline → data → train dry-run → eval → Gradio → HF)
 - [x] Portfolio demo video script + recording notes (`docs/DEMO_VIDEO.md`; no binary in repo)
 - [x] Docs: Phase 5 hybrid RAG plan (BM25 + dense, Recall@k / nDCG@k / grounded accuracy, Kaggle + HF/GitHub publish path)
+- [x] Phase 5.1 RAG corpus builder (`rag/corpus.py` + `scripts/build_rag_corpus.py`) with measured N in `manifest.json`
 
 ## Phase 0 Checklist
 
@@ -76,7 +77,7 @@ Phase 5.1: implement RAG corpus builder (`src/.../rag/corpus.py` + `scripts/buil
 
 ## Phase 5 Checklist — Hybrid RAG + metrics
 
-- [ ] 5.1 Corpus builder + `manifest.json` with measured **N**
+- [x] 5.1 Corpus builder + `manifest.json` with measured **N**
 - [ ] 5.2 BM25 index + retrieve CLI
 - [ ] 5.3 Dense embeddings + hybrid (RRF) fusion
 - [ ] 5.4 Fixed eval set with gold chunk IDs
@@ -100,6 +101,7 @@ On each hourly run:
 
 ## Log
 
+- 2026-09-11 13:40 IST — feat: Phase 5.1 RAG corpus builder (`src/.../rag/corpus.py`, `scripts/build_rag_corpus.py`) writes versioned `chunks.jsonl` + `manifest.json` with measured N; next = BM25 index + retrieve CLI (5.2).
 - 2026-09-11 13:15 IST — docs: Phase 5 hybrid RAG plan in `docs/PROJECT_PLAN.md` (BM25 + dense, Recall@k / nDCG@k / grounded accuracy, Kaggle train path, HF + GitHub publish). Reopened tracker; next = corpus builder (5.1).
 - 2026-09-03 07:00 IST — docs: portfolio demo video script + recording notes (`docs/DEMO_VIDEO.md`); Phase 4 complete.
 - 2026-09-03 06:01 IST — docs: polished root README with clone-to-demo walkthrough.
