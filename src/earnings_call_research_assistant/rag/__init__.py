@@ -6,7 +6,6 @@ from earnings_call_research_assistant.rag.bm25 import (
     build_bm25_from_corpus,
     build_bm25_index,
     load_bm25_index,
-    retrieve_bm25 := None,  # placeholder avoided; export retrieve via index
 )
 from earnings_call_research_assistant.rag.corpus import (
     CORPUS_VERSION,
