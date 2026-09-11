@@ -1,0 +1,12 @@
+# Hybrid RAG defaults (Phase 5). Dense fields unused until 5.3.
+corpus_dir: data/rag/corpus_v0.1.0
+bm25_index_dir: data/rag/indices/bm25
+dense_index_dir: data/rag/indices/dense
+embed_model: sentence-transformers/all-MiniLM-L6-v2
+k: 5
+k_values: [1, 3, 5, 10]
+rrf_k: 60
+seed: 3407
+bm25:
+  k1: 1.5
+  b: 0.75
