@@ -168,14 +168,22 @@ python scripts/publish_adapter.py --adapter-dir outputs/adapters/llama31-8b-ecra
 
 Implementation: `src/earnings_call_research_assistant/publish.py`.
 
-## RAG corpus + BM25 index (Phase 5)
+## RAG corpus + hybrid index (Phase 5)
 
 ```bash
 python scripts/build_rag_corpus.py
 python scripts/build_rag_index.py
 python scripts/build_rag_index.py --query "operating margin guidance" --k 3
+python scripts/build_rag_index.py --bm25-only --query "operating margin guidance" --k 3
 ```
 
-Builds (or reuses) `data/rag/corpus_v0.1.0`, writes an Okapi BM25 JSON index to
-`data/rag/indices/bm25/`, and prints top-k hits. CPU-only; `--run` is reserved
-for dense embeddings in Phase 5.3. Defaults: [`configs/rag.yaml`](../configs/rag.yaml).
+Builds (or reuses) `data/rag/corpus_v0.1.0`, writes Okapi BM25 to
+`data/rag/indices/bm25/` and a dense index to `data/rag/indices/dense/`.
+Default dense backend is a hashed bag-of-tokens embedding (offline). On Kaggle:
+
+```bash
+python scripts/build_rag_index.py --run --query "operating margin guidance" --k 5
+```
+
+`--run` loads `sentence-transformers/all-MiniLM-L6-v2` and persists real vectors.
+Hybrid retrieve uses RRF (`rrf_k=60`). Defaults: [`configs/rag.yaml`](../configs/rag.yaml).

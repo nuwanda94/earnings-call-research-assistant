@@ -1,12 +1,12 @@
 # Progress Tracker
 
-Last updated: 2026-09-11 13:52 IST
+Last updated: 2026-09-13 12:50 IST
 
 ## Current Phase
 Phase 5 — Hybrid RAG + measurable retrieval metrics (Phases 0–4 complete)
 
 ## Next Action Item
-Phase 5.3: implement dense embeddings + hybrid RRF fusion (`src/.../rag/dense.py`, `rag/hybrid.py`) and extend `scripts/build_rag_index.py --run` to persist `data/rag/indices/dense/` while keeping BM25-only offline retrieve.
+Phase 5.4: fixed retrieval eval set with gold chunk IDs (`evals/rag_eval_set.jsonl` + `scripts/build_rag_eval_set.py`, seed 3407).
 
 ## Completed Items
 
@@ -36,6 +36,7 @@ Phase 5.3: implement dense embeddings + hybrid RRF fusion (`src/.../rag/dense.py
 - [x] Docs: Phase 5 hybrid RAG plan (BM25 + dense, Recall@k / nDCG@k / grounded accuracy, Kaggle + HF/GitHub publish path)
 - [x] Phase 5.1 RAG corpus builder (`rag/corpus.py` + `scripts/build_rag_corpus.py`) with measured N in `manifest.json`
 - [x] Phase 5.2 BM25 index + retrieve CLI (`rag/bm25.py` + `scripts/build_rag_index.py`)
+- [x] Phase 5.3 dense embeddings + hybrid RRF (`rag/dense.py`, `rag/hybrid.py`; `--run` persists ST vectors)
 
 ## Phase 0 Checklist
 
@@ -80,7 +81,7 @@ Phase 5.3: implement dense embeddings + hybrid RRF fusion (`src/.../rag/dense.py
 
 - [x] 5.1 Corpus builder + `manifest.json` with measured **N**
 - [x] 5.2 BM25 index + retrieve CLI
-- [ ] 5.3 Dense embeddings + hybrid (RRF) fusion
+- [x] 5.3 Dense embeddings + hybrid (RRF) fusion
 - [ ] 5.4 Fixed eval set with gold chunk IDs
 - [ ] 5.5 `eval_retrieval.py` → Recall@k + nDCG@k
 - [ ] 5.6 `eval_rag_generate.py` → grounded answer accuracy (base vs adapter)
@@ -102,6 +103,7 @@ On each hourly run:
 
 ## Log
 
+- 2026-09-13 12:50 IST — feat: Phase 5.3 dense + hybrid RRF (`src/.../rag/dense.py`, `rag/hybrid.py`); `build_rag_index.py --run` persists `data/rag/indices/dense/`; hash embeddings keep BM25+dense retrieve offline. Next = gold eval set (5.4).
 - 2026-09-11 13:52 IST — feat: Phase 5.2 BM25 index + retrieve CLI (`src/.../rag/bm25.py`, `scripts/build_rag_index.py`, `configs/rag.yaml`); CPU-only Okapi BM25 persisted as JSON; next = dense + hybrid RRF (5.3).
 - 2026-09-11 13:40 IST — feat: Phase 5.1 RAG corpus builder (`src/.../rag/corpus.py`, `scripts/build_rag_corpus.py`) writes versioned `chunks.jsonl` + `manifest.json` with measured N; next = BM25 index + retrieve CLI (5.2).
 - 2026-09-11 13:15 IST — docs: Phase 5 hybrid RAG plan in `docs/PROJECT_PLAN.md` (BM25 + dense, Recall@k / nDCG@k / grounded accuracy, Kaggle train path, HF + GitHub publish). Reopened tracker; next = corpus builder (5.1).
