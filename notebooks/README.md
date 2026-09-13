@@ -7,6 +7,10 @@ Kaggle-first workflows. Prefer short, restartable cells and public data only.
 | `00_baseline_inference.ipynb` | Base-model smoke test |
 | `01_data_and_sft.ipynb` | Data pipeline + optional short train |
 | `02_full_train_and_hf_demo.ipynb` | Full train + side-by-side compare + **HF adapter** + **HF Space Gradio deploy** |
+| `03_publish_static_space.ipynb` | Static Space helper |
+| `03_rag_eval_and_publish.ipynb` | Phase 5 hybrid RAG: corpus → index → Recall@k/nDCG → optional SFT → generate eval → publish |
+
+`03_rag_eval_and_publish.ipynb` is **dry-run by default** (`RUN_GPU = False`). Flip flags only on a Kaggle T4. Do not treat fixture metric JSON as resume numbers.
 
 ## Hugging Face Space (permanent Gradio app)
 
@@ -26,7 +30,7 @@ Set Space variable `ADAPTER_REPO` to your adapter model id (default `nuwanda94/l
 
 Notebook 02 does the same when `PUBLISH_SPACE=True`.
 
-### Hugging Face token (notebook 02)
+### Hugging Face token (notebook 02 / 03 RAG publish cell)
 
 1. Write token: https://huggingface.co/settings/tokens  
 2. Kaggle → **Add-ons → Secrets** → `HF_TOKEN`  

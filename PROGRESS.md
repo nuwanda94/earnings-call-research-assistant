@@ -1,12 +1,12 @@
 # Progress Tracker
 
-Last updated: 2026-09-13 15:05 IST
+Last updated: 2026-09-13 16:05 IST
 
 ## Current Phase
 Phase 5 — Hybrid RAG + measurable retrieval metrics (Phases 0–4 complete)
 
 ## Next Action Item
-Phase 5.7: Kaggle notebook `notebooks/03_rag_eval_and_publish.ipynb` (clone → corpus → index → retrieval metrics → optional train → `eval_rag_generate` → publish cells). Dry-run cells only; no long GPU job in-notebook by default.
+Phase 5.8: `evals/reports/RAG_EVAL_REPORT.md` + README Results section + `docs/MODEL_CARD_RAG.md`. Cite N and metrics **only** from `manifest.json` / `rag_metrics.json` / `rag_generation_metrics.json` (or mark TBD if those files are dry-run fixtures).
 
 ## Completed Items
 
@@ -40,6 +40,7 @@ Phase 5.7: Kaggle notebook `notebooks/03_rag_eval_and_publish.ipynb` (clone → 
 - [x] Phase 5.4 fixed retrieval eval set with gold chunk IDs (`evals/rag_eval_set.jsonl` + `scripts/build_rag_eval_set.py`, seed 3407)
 - [x] Phase 5.5 retrieval metrics (`rag/metrics.py` + `scripts/eval_retrieval.py`) → Recall@k / nDCG@k → `evals/reports/rag_metrics.json`
 - [x] Phase 5.6 grounded generate eval (`rag/generate_eval.py` + `scripts/eval_rag_generate.py`) → citation-hit + token F1 → `evals/reports/rag_generation_metrics.json`
+- [x] Phase 5.7 Kaggle notebook `notebooks/03_rag_eval_and_publish.ipynb` (dry-run default; GPU flags off)
 
 ## Phase 0 Checklist
 
@@ -88,7 +89,7 @@ Phase 5.7: Kaggle notebook `notebooks/03_rag_eval_and_publish.ipynb` (clone → 
 - [x] 5.4 Fixed eval set with gold chunk IDs
 - [x] 5.5 `eval_retrieval.py` → Recall@k + nDCG@k
 - [x] 5.6 `eval_rag_generate.py` → grounded answer accuracy (base vs adapter)
-- [ ] 5.7 Kaggle notebook `03_rag_eval_and_publish.ipynb`
+- [x] 5.7 Kaggle notebook `03_rag_eval_and_publish.ipynb`
 - [ ] 5.8 `RAG_EVAL_REPORT.md` + README results + HF model card template
 - [ ] 5.9 Human Kaggle full run + publish adapter/metrics to HF + GitHub
 
@@ -106,6 +107,7 @@ On each hourly run:
 
 ## Log
 
+- 2026-09-13 16:05 IST — feat: Phase 5.7 Kaggle notebook `notebooks/03_rag_eval_and_publish.ipynb` (clone → corpus → index → retrieval metrics → optional train → generate eval → publish). Flags default off; no long GPU job. Next = RAG_EVAL_REPORT + README results + MODEL_CARD_RAG (5.8).
 - 2026-09-13 15:05 IST — feat: Phase 5.6 grounded generate eval (`rag/generate_eval.py`, `scripts/eval_rag_generate.py`) writes `evals/reports/rag_generation_metrics.json`; dry-run default; citation-hit + token F1; base vs adapter via InferenceHarness on `--run`. Next = Kaggle notebook 03_rag_eval_and_publish (5.7).
 - 2026-09-13 14:05 IST — feat: Phase 5.5 Recall@k + nDCG@k (`rag/metrics.py`, `scripts/eval_retrieval.py`) writes `evals/reports/rag_metrics.json` for BM25 / dense / hybrid; k ∈ {1,3,5,10}. Next = eval_rag_generate grounded accuracy (5.6).
 - 2026-09-13 13:00 IST — feat: Phase 5.4 gold eval set (`rag/eval_set.py`, `scripts/build_rag_eval_set.py`, `evals/rag_eval_set.jsonl`); seed 3407; exclude SFT train pair_ids; gold IDs must exist in corpus. Next = eval_retrieval Recall@k / nDCG@k (5.5).
