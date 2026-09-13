@@ -11,6 +11,7 @@ python scripts/build_rag_corpus.py
 python scripts/build_rag_index.py
 python scripts/build_rag_index.py --query "operating margin guidance" --k 3
 python scripts/build_rag_index.py --run   # sentence-transformers on Kaggle
+python scripts/build_rag_eval_set.py      # gold-ID eval set, seed 3407
 ```
 
 `manifest.json` records measured **N** (`n_chunks`). Do not invent N in reports.

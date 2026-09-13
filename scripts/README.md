@@ -187,3 +187,16 @@ python scripts/build_rag_index.py --run --query "operating margin guidance" --k 
 
 `--run` loads `sentence-transformers/all-MiniLM-L6-v2` and persists real vectors.
 Hybrid retrieve uses RRF (`rrf_k=60`). Defaults: [`configs/rag.yaml`](../configs/rag.yaml).
+
+## RAG eval set with gold chunk IDs (Phase 5.4)
+
+```bash
+python scripts/build_rag_eval_set.py
+```
+
+Writes [`evals/rag_eval_set.jsonl`](../evals/rag_eval_set.jsonl) plus
+`evals/rag_eval_set.manifest.json`. Each row has `query_id`, `query`,
+`gold_chunk_ids`, optional `gold_answer`, and lineage (`pair_id`, `source_id`).
+Seed is `3407`. Pair IDs found in `data/processed/ecra-sft-v0.1.0/train.jsonl`
+are dropped so retrieval labels do not leak the SFT train split. Gold IDs are
+required to exist in the corpus inventory.

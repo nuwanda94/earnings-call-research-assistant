@@ -1,4 +1,4 @@
-"""Hybrid RAG stack (Phase 5): corpus inventory, BM25 + dense + RRF."""
+"""Hybrid RAG stack (Phase 5): corpus inventory, BM25 + dense + RRF, eval set."""
 
 from earnings_call_research_assistant.rag.bm25 import (
     Bm25Index,
@@ -21,12 +21,23 @@ from earnings_call_research_assistant.rag.dense import (
     build_dense_index,
     load_dense_index,
 )
+from earnings_call_research_assistant.rag.eval_set import (
+    EVAL_SET_VERSION,
+    EvalSetManifest,
+    RagEvalRow,
+    build_rag_eval_set,
+    load_eval_set,
+    write_eval_set,
+)
 from earnings_call_research_assistant.rag.hybrid import HybridRetriever, fuse_hits, load_hybrid
 
 __all__ = [
     "CORPUS_VERSION",
+    "EVAL_SET_VERSION",
     "CorpusManifest",
+    "EvalSetManifest",
     "RagChunk",
+    "RagEvalRow",
     "Bm25Index",
     "DenseIndex",
     "Hit",
@@ -42,4 +53,7 @@ __all__ = [
     "load_dense_index",
     "fuse_hits",
     "load_hybrid",
+    "build_rag_eval_set",
+    "load_eval_set",
+    "write_eval_set",
 ]

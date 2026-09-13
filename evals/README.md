@@ -42,3 +42,17 @@ Library entry point: `earnings_call_research_assistant.eval.score_research_panel
 
 - [`reports/EVALUATION_REPORT.md`](reports/EVALUATION_REPORT.md) — how to read dry-run vs Kaggle scores.
 - [`reports/ITERATION_NOTE_v0.1.md`](reports/ITERATION_NOTE_v0.1.md) — single next change: add an insufficient-context slice to SFT data before a longer train.
+
+## RAG retrieval eval set (Phase 5.4)
+
+[`rag_eval_set.jsonl`](rag_eval_set.jsonl) is the locked query set for Recall@k /
+nDCG@k. Rebuild (CPU, seed `3407`):
+
+```bash
+python scripts/build_rag_eval_set.py
+```
+
+Rows: `query_id`, `query`, `gold_chunk_ids[]`, optional `gold_answer`, `source`.
+Every gold ID must exist in `data/rag/corpus_v0.1.0`. Train-split pair IDs from
+the SFT dataset are excluded. Fixture corpora produce a small N; grow the set
+when the public chunk inventory scales to hundreds–thousands.
