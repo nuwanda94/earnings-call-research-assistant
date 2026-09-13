@@ -1,12 +1,12 @@
 # Progress Tracker
 
-Last updated: 2026-09-13 17:22 IST
+Last updated: 2026-09-13 19:50 IST
 
 ## Current Phase
 Phase 5 — Hybrid RAG + measurable retrieval metrics (5.1–5.8 templates done; 5.9 is the human Kaggle + HF/GitHub publish)
 
 ## Next Action Item
-Phase 5.9: Human Kaggle full run (`notebooks/03_rag_eval_and_publish.ipynb` or CLI `--run`) + paste N / Recall@k / nDCG@k / grounded accuracy from `manifest.json` / `rag_metrics.json` / `rag_generation_metrics.json` into `evals/reports/RAG_EVAL_REPORT.md` and README Results + publish adapter/metrics to HF using `docs/MODEL_CARD_RAG.md`. Automation must not invent percentages or start a long GPU job.
+Phase 5.9: Human Kaggle full run via **`notebooks/04_finetune_and_phase59.ipynb`** (preferred) or `03_rag_eval_and_publish.ipynb` / CLI `--run`. Set `RUN_TRAIN=True`, `RUN_RAG=True`, optional `PUBLISH_HF` + `PUSH_GITHUB`. Paste/auto-fill N / Recall@k / nDCG@k / grounded accuracy from JSON into `RAG_EVAL_REPORT.md` + README Results; publish adapter with `docs/MODEL_CARD_RAG.md`. Automation must not invent percentages or start a long GPU job.
 
 ## Completed Items
 
@@ -42,6 +42,7 @@ Phase 5.9: Human Kaggle full run (`notebooks/03_rag_eval_and_publish.ipynb` or C
 - [x] Phase 5.6 grounded generate eval (`rag/generate_eval.py` + `scripts/eval_rag_generate.py`) → citation-hit + token F1 → `evals/reports/rag_generation_metrics.json`
 - [x] Phase 5.7 Kaggle notebook `notebooks/03_rag_eval_and_publish.ipynb` (dry-run default; GPU flags off)
 - [x] Phase 5.8 `evals/reports/RAG_EVAL_REPORT.md` + README Results + `docs/MODEL_CARD_RAG.md` (N/metrics TBD until JSON exists)
+- [x] Notebook `04_finetune_and_phase59.ipynb` (data → SFT → RAG metrics → report fill → optional HF + GitHub push)
 
 ## Phase 0 Checklist
 
@@ -109,6 +110,7 @@ On each hourly run:
 
 ## Log
 
+- 2026-09-13 19:50 IST — feat: added `notebooks/04_finetune_and_phase59.ipynb` (data → QLoRA SFT → RAG metrics → auto-fill report/README → optional HF + GitHub push). Phase 5.9 still human-run on Kaggle T4.
 - 2026-09-13 17:22 IST — chore: Phase 5.9 still blocked on a human Kaggle `--run`. No metrics invented; no GPU job started. Next remains 5.9 (paste N / Recall@k / nDCG@k / grounded accuracy from JSON artifacts, then HF + GitHub publish).
 - 2026-09-13 17:01 IST — docs: Phase 5.8 `evals/reports/RAG_EVAL_REPORT.md` + README Results + `docs/MODEL_CARD_RAG.md`. N / Recall / nDCG / grounded accuracy marked TBD (no `manifest.json` / `rag_metrics.json` / `rag_generation_metrics.json` in git). Next = 5.9 human Kaggle `--run` + publish.
 - 2026-09-13 16:05 IST — feat: Phase 5.7 Kaggle notebook `notebooks/03_rag_eval_and_publish.ipynb` (clone → corpus → index → retrieval metrics → optional train → generate eval → publish). Flags default off; no long GPU job. Next = RAG_EVAL_REPORT + README results + MODEL_CARD_RAG (5.8).
