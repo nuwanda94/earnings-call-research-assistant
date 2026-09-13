@@ -6,7 +6,7 @@ Domain-adapted LLM for financial research Q&A and summarization from public earn
 
 ## Status
 
-Progress: [`PROGRESS.md`](PROGRESS.md). Hourly automation advanced one action item per run; **Phases 0–4 are complete**.
+Progress: [`PROGRESS.md`](PROGRESS.md). Hourly automation advanced one action item per run; **Phases 0–4 are complete**. Phase 5 instrumentation (corpus → hybrid retrieve → metrics scripts → report templates) is in repo; **published Recall / nDCG / grounded accuracy remain TBD** until Kaggle `--run` writes the JSON artifacts.
 
 | Phase | Name | Status |
 |-------|------|--------|
@@ -15,11 +15,38 @@ Progress: [`PROGRESS.md`](PROGRESS.md). Hourly automation advanced one action it
 | 2 | Training Pipeline | Done |
 | 3 | Evaluation & Iteration | Done |
 | 4 | Packaging & Portfolio Polish | Done |
+| 5 | Hybrid RAG + measurable metrics | In progress (5.1–5.8 code/docs; 5.9 human Kaggle + publish) |
 
 - Reproducibility (seed `3407`, adapter dirs, dry-run vs `--run`): [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md)
 - Data card (`ecra-sft-v0.1.0`): [`docs/DATA_CARD.md`](docs/DATA_CARD.md)
 - Eval write-up: [`evals/reports/EVALUATION_REPORT.md`](evals/reports/EVALUATION_REPORT.md) · [`evals/reports/ITERATION_NOTE_v0.1.md`](evals/reports/ITERATION_NOTE_v0.1.md)
+- RAG metrics report: [`evals/reports/RAG_EVAL_REPORT.md`](evals/reports/RAG_EVAL_REPORT.md)
+- HF model card template: [`docs/MODEL_CARD_RAG.md`](docs/MODEL_CARD_RAG.md)
 - Demo video script (record off-repo): [`docs/DEMO_VIDEO.md`](docs/DEMO_VIDEO.md)
+
+## Results
+
+Numbers in this section come **only** from `manifest.json`, `evals/reports/rag_metrics.json`, and `evals/reports/rag_generation_metrics.json`. Those files are **not in git** yet (they are written by the RAG scripts). Until a human Kaggle `--run` commits or pastes them, every cell is **TBD**.
+
+| Claim | Source | Value |
+|-------|--------|-------|
+| N (chunk count) | corpus `manifest.json` → `n_chunks` | **TBD** |
+| Recall@k (hybrid) | `rag_metrics.json` → `backends.hybrid.mean_recall` | **TBD** |
+| nDCG@k (hybrid) | `rag_metrics.json` → `backends.hybrid.mean_ndcg` | **TBD** |
+| Grounded answer accuracy | `rag_generation_metrics.json` → `aggregate` (and `dry_run=false`) | **TBD** |
+
+Do not put R / D / A on a resume while this table says TBD. After the Kaggle run, edit [`evals/reports/RAG_EVAL_REPORT.md`](evals/reports/RAG_EVAL_REPORT.md) first, then copy the same literals here.
+
+Reproduce (CPU dry-run first; add `--run` on Kaggle):
+
+```bash
+python scripts/build_rag_corpus.py
+python scripts/build_rag_index.py --run
+python scripts/eval_retrieval.py --run
+python scripts/eval_rag_generate.py --run --adapter-dir outputs/adapters/llama32-3b-ecra-sft
+```
+
+Notebook path: [`notebooks/03_rag_eval_and_publish.ipynb`](notebooks/03_rag_eval_and_publish.ipynb).
 
 ## Key principles
 
@@ -204,7 +231,20 @@ huggingface-cli login
 python scripts/publish_adapter.py --repo-id nuwanda94/llama32-3b-ecra-sft --run
 ```
 
-### 7. Record the portfolio clip (optional, off-repo)
+Paste [`docs/MODEL_CARD_RAG.md`](docs/MODEL_CARD_RAG.md) into the Hub README after metrics JSON exists.
+
+### 7. Hybrid RAG eval (Phase 5)
+
+```bash
+python scripts/build_rag_corpus.py
+python scripts/build_rag_index.py
+python scripts/eval_retrieval.py
+python scripts/eval_rag_generate.py
+```
+
+Add `--run` on Kaggle for sentence-transformer embeddings and real generations. Report template: [`evals/reports/RAG_EVAL_REPORT.md`](evals/reports/RAG_EVAL_REPORT.md).
+
+### 8. Record the portfolio clip (optional, off-repo)
 
 Follow [`docs/DEMO_VIDEO.md`](docs/DEMO_VIDEO.md) (3–4.5 min script: baseline → grounded data → adapter demo). Do not commit the video file.
 
@@ -213,13 +253,13 @@ Follow [`docs/DEMO_VIDEO.md`](docs/DEMO_VIDEO.md) (3–4.5 min script: baseline 
 ## Structure
 
 ```
-src/earnings_call_research_assistant/   # config, inference, data, train, eval, demo, publish
+src/earnings_call_research_assistant/   # config, inference, data, train, eval, demo, publish, rag
 notebooks/     # Kaggle notebooks; start with 00_baseline_inference.ipynb
 data/          # raw / processed (gitignored large files)
-configs/       # default.yaml + llama32-8b.yaml
-evals/         # research panel + reports
+configs/       # default.yaml + llama32-8b.yaml + rag.yaml
+evals/         # research panel + RAG eval set + reports
 scripts/       # thin CLIs around the package
-docs/          # plan, data card, reproducibility, demo video script
+docs/          # plan, data card, reproducibility, demo video, RAG model card
 ```
 
 See [`docs/PROJECT_PLAN.md`](docs/PROJECT_PLAN.md) for the full plan.
