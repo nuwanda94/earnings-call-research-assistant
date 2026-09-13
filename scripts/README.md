@@ -218,3 +218,18 @@ Do **not** copy fixture percentages onto a resume. After a real ST index:
 python scripts/build_rag_index.py --run
 python scripts/eval_retrieval.py --run
 ```
+
+## Grounded generation accuracy (Phase 5.6)
+
+```bash
+python scripts/eval_rag_generate.py
+```
+
+Retrieves hybrid top-k, packs tagged excerpts, and scores base vs adapter
+outputs with citation-hit + optional token F1 vs `gold_answer`. Dry-run writes
+placeholders to [`evals/reports/rag_generation_metrics.json`](../evals/reports/rag_generation_metrics.json)
+(near-zero accuracy is expected). On Kaggle:
+
+```bash
+python scripts/eval_rag_generate.py --run --adapter-dir outputs/adapters/llama32-3b-ecra-sft
+```

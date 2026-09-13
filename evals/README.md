@@ -56,3 +56,14 @@ Rows: `query_id`, `query`, `gold_chunk_ids[]`, optional `gold_answer`, `source`.
 Every gold ID must exist in `data/rag/corpus_v0.1.0`. Train-split pair IDs from
 the SFT dataset are excluded. Fixture corpora produce a small N; grow the set
 when the public chunk inventory scales to hundreds–thousands.
+
+## Grounded generation metrics (Phase 5.6)
+
+```bash
+python scripts/eval_rag_generate.py
+```
+
+Writes [`reports/rag_generation_metrics.json`](reports/rag_generation_metrics.json):
+per-query retrieved IDs, packed context size, base vs adapter answers, citation-hit
+and token F1. Dry-run does not load weights. Quote `grounded_answer_accuracy` only
+after a Kaggle `--run`.

@@ -29,6 +29,12 @@ from earnings_call_research_assistant.rag.eval_set import (
     load_eval_set,
     write_eval_set,
 )
+from earnings_call_research_assistant.rag.generate_eval import (
+    build_grounded_prompt,
+    evaluate_rag_generate,
+    pack_context,
+    score_generation,
+)
 from earnings_call_research_assistant.rag.hybrid import HybridRetriever, fuse_hits, load_hybrid
 from earnings_call_research_assistant.rag.metrics import (
     evaluate_retrieval,
@@ -66,4 +72,8 @@ __all__ = [
     "ndcg_at_k",
     "evaluate_retriever",
     "evaluate_retrieval",
+    "pack_context",
+    "build_grounded_prompt",
+    "score_generation",
+    "evaluate_rag_generate",
 ]
