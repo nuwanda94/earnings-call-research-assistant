@@ -30,6 +30,12 @@ from earnings_call_research_assistant.rag.eval_set import (
     write_eval_set,
 )
 from earnings_call_research_assistant.rag.hybrid import HybridRetriever, fuse_hits, load_hybrid
+from earnings_call_research_assistant.rag.metrics import (
+    evaluate_retrieval,
+    evaluate_retriever,
+    ndcg_at_k,
+    recall_at_k,
+)
 
 __all__ = [
     "CORPUS_VERSION",
@@ -56,4 +62,8 @@ __all__ = [
     "build_rag_eval_set",
     "load_eval_set",
     "write_eval_set",
+    "recall_at_k",
+    "ndcg_at_k",
+    "evaluate_retriever",
+    "evaluate_retrieval",
 ]

@@ -1,12 +1,12 @@
 # Progress Tracker
 
-Last updated: 2026-09-13 13:00 IST
+Last updated: 2026-09-13 14:05 IST
 
 ## Current Phase
 Phase 5 — Hybrid RAG + measurable retrieval metrics (Phases 0–4 complete)
 
 ## Next Action Item
-Phase 5.5: `scripts/eval_retrieval.py` + `rag/metrics.py` → Recall@k and nDCG@k on `evals/rag_eval_set.jsonl` (k ∈ {1,3,5,10}); write `evals/reports/rag_metrics.json`.
+Phase 5.6: `scripts/eval_rag_generate.py` → grounded answer accuracy (retrieve top-k → pack context → base vs adapter via InferenceHarness; citation-hit + optional token F1; write `evals/reports/rag_generation_metrics.json`). Dry-run default; no long GPU job.
 
 ## Completed Items
 
@@ -38,6 +38,7 @@ Phase 5.5: `scripts/eval_retrieval.py` + `rag/metrics.py` → Recall@k and nDCG@
 - [x] Phase 5.2 BM25 index + retrieve CLI (`rag/bm25.py` + `scripts/build_rag_index.py`)
 - [x] Phase 5.3 dense embeddings + hybrid RRF (`rag/dense.py`, `rag/hybrid.py`; `--run` persists ST vectors)
 - [x] Phase 5.4 fixed retrieval eval set with gold chunk IDs (`evals/rag_eval_set.jsonl` + `scripts/build_rag_eval_set.py`, seed 3407)
+- [x] Phase 5.5 retrieval metrics (`rag/metrics.py` + `scripts/eval_retrieval.py`) → Recall@k / nDCG@k → `evals/reports/rag_metrics.json`
 
 ## Phase 0 Checklist
 
@@ -84,7 +85,7 @@ Phase 5.5: `scripts/eval_retrieval.py` + `rag/metrics.py` → Recall@k and nDCG@
 - [x] 5.2 BM25 index + retrieve CLI
 - [x] 5.3 Dense embeddings + hybrid (RRF) fusion
 - [x] 5.4 Fixed eval set with gold chunk IDs
-- [ ] 5.5 `eval_retrieval.py` → Recall@k + nDCG@k
+- [x] 5.5 `eval_retrieval.py` → Recall@k + nDCG@k
 - [ ] 5.6 `eval_rag_generate.py` → grounded answer accuracy (base vs adapter)
 - [ ] 5.7 Kaggle notebook `03_rag_eval_and_publish.ipynb`
 - [ ] 5.8 `RAG_EVAL_REPORT.md` + README results + HF model card template
@@ -104,6 +105,7 @@ On each hourly run:
 
 ## Log
 
+- 2026-09-13 14:05 IST — feat: Phase 5.5 Recall@k + nDCG@k (`rag/metrics.py`, `scripts/eval_retrieval.py`) writes `evals/reports/rag_metrics.json` for BM25 / dense / hybrid; k ∈ {1,3,5,10}. Next = eval_rag_generate grounded accuracy (5.6).
 - 2026-09-13 13:00 IST — feat: Phase 5.4 gold eval set (`rag/eval_set.py`, `scripts/build_rag_eval_set.py`, `evals/rag_eval_set.jsonl`); seed 3407; exclude SFT train pair_ids; gold IDs must exist in corpus. Next = eval_retrieval Recall@k / nDCG@k (5.5).
 - 2026-09-13 12:50 IST — feat: Phase 5.3 dense + hybrid RRF (`src/.../rag/dense.py`, `rag/hybrid.py`); `build_rag_index.py --run` persists `data/rag/indices/dense/`; hash embeddings keep BM25+dense retrieve offline. Next = gold eval set (5.4).
 - 2026-09-11 13:52 IST — feat: Phase 5.2 BM25 index + retrieve CLI (`src/.../rag/bm25.py`, `scripts/build_rag_index.py`, `configs/rag.yaml`); CPU-only Okapi BM25 persisted as JSON; next = dense + hybrid RRF (5.3).

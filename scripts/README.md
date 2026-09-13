@@ -200,3 +200,21 @@ Writes [`evals/rag_eval_set.jsonl`](../evals/rag_eval_set.jsonl) plus
 Seed is `3407`. Pair IDs found in `data/processed/ecra-sft-v0.1.0/train.jsonl`
 are dropped so retrieval labels do not leak the SFT train split. Gold IDs are
 required to exist in the corpus inventory.
+
+## Retrieval metrics — Recall@k / nDCG@k (Phase 5.5)
+
+```bash
+python scripts/eval_retrieval.py
+python scripts/eval_retrieval.py --backends bm25,hybrid
+```
+
+Scores BM25, dense, and hybrid-RRF on [`evals/rag_eval_set.jsonl`](../evals/rag_eval_set.jsonl)
+for `k ∈ {1,3,5,10}`. Builds missing BM25 / hash-dense indices on CPU. Writes
+[`evals/reports/rag_metrics.json`](../evals/reports/rag_metrics.json).
+
+Do **not** copy fixture percentages onto a resume. After a real ST index:
+
+```bash
+python scripts/build_rag_index.py --run
+python scripts/eval_retrieval.py --run
+```
