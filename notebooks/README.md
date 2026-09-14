@@ -10,6 +10,7 @@ Kaggle-first workflows. Prefer short, restartable cells and public data only.
 | `03_publish_static_space.ipynb` | Static Space helper |
 | `03_rag_eval_and_publish.ipynb` | Phase 5 hybrid RAG: corpus → index → Recall@k/nDCG → optional SFT → generate eval → publish |
 | `04_finetune_and_phase59.ipynb` | **End-to-end Phase 5.9**: data → QLoRA SFT → RAG metrics → fill report/README → optional HF + **GitHub push** |
+| `05_full_scale_sft_t4.ipynb` | **Max T4-scale run**: HF stream (transcripts 400 / FiQA 200 / Alpaca 150) → 3k–6k pairs → full-epoch 3B QLoRA → optional scaled RAG |
 
 `03_rag_eval_and_publish.ipynb` is **dry-run by default** (`RUN_GPU = False`). Flip flags only on a Kaggle T4. Do not treat fixture metric JSON as resume numbers.
 
@@ -21,6 +22,8 @@ Kaggle-first workflows. Prefer short, restartable cells and public data only.
 - `PUSH_GITHUB=True` + Kaggle secret `GITHUB_TOKEN` (classic PAT, `repo` scope)
 
 It commits only small artifacts (`rag_metrics.json`, `rag_generation_metrics.json`, report, README, PROGRESS) — not adapter weights or full corpus.
+
+`05_full_scale_sft_t4.ipynb` is the **scale** path after smoke corpus (N=4). Defaults: `DOWNLOAD_HF=True`, catalog caps (400/200/150), `MAX_STEPS=None` (1 epoch), `RUN_TRAIN=False` until you flip it on a T4. Optional `RUN_RAG` rebuilds corpus/index/metrics from the same `chunks.jsonl`. Expect multi-hour wall time; copy the adapter off the session before it dies.
 
 ## Hugging Face Space (permanent Gradio app)
 
@@ -40,7 +43,7 @@ Set Space variable `ADAPTER_REPO` to your adapter model id (default `nuwanda94/l
 
 Notebook 02 does the same when `PUBLISH_SPACE=True`.
 
-### Hugging Face token (notebook 02 / 03 RAG / 04 publish cell)
+### Hugging Face token (notebook 02 / 03 RAG / 04 / 05)
 
 1. Write token: https://huggingface.co/settings/tokens  
 2. Kaggle → **Add-ons → Secrets** → `HF_TOKEN`  
