@@ -30,6 +30,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 IST = timezone(timedelta(hours=5, minutes=30))
 
+GIT_NAME = "kaggle-ecra"
+GIT_EMAIL = "kaggle-bot@users.noreply.github.com"
+
 DEFAULT_FILES = [
     "outputs/sft_plan.json",
     "data/processed/ecra-sft-v0.1.0/manifest.json",
@@ -45,9 +48,25 @@ DEFAULT_FILES = [
 ]
 
 
-def _run(cmd: list[str]) -> None:
+def _run(cmd: list[str], *, env: dict[str, str] | None = None) -> None:
     print("+", " ".join(c if "token" not in c.lower() else "***" for c in cmd))
-    subprocess.check_call(cmd)
+    subprocess.check_call(cmd, env=env)
+
+
+def _run_capture(cmd: list[str], *, env: dict[str, str] | None = None) -> subprocess.CompletedProcess[str]:
+    print("+", " ".join(c if "token" not in c.lower() else "***" for c in cmd))
+    return subprocess.run(cmd, env=env, text=True, capture_output=True)
+
+
+def _git_env() -> dict[str, str]:
+    env = os.environ.copy()
+    env["GIT_AUTHOR_NAME"] = GIT_NAME
+    env["GIT_AUTHOR_EMAIL"] = GIT_EMAIL
+    env["GIT_COMMITTER_NAME"] = GIT_NAME
+    env["GIT_COMMITTER_EMAIL"] = GIT_EMAIL
+    # Avoid interactive prompts / dubious ownership on Kaggle clones.
+    env.setdefault("GIT_TERMINAL_PROMPT", "0")
+    return env
 
 
 def _load_github_token(in_kaggle: bool) -> str | None:
@@ -98,11 +117,11 @@ def main() -> int:
     os.chdir(ROOT)
     in_kaggle = Path("/kaggle").exists()
     now_ist = datetime.now(IST).strftime("%Y-%m-%d %H:%M IST")
+    env = _git_env()
 
     candidates = list(DEFAULT_FILES)
     if args.files:
         candidates.extend(args.files)
-    # de-dupe preserve order
     seen: set[str] = set()
     existing: list[str] = []
     for f in candidates:
@@ -132,21 +151,58 @@ def main() -> int:
     remote = f"https://x-access-token:{token}@github.com/{args.owner}/{args.repo}.git"
     public = f"https://github.com/{args.owner}/{args.repo}.git"
 
-    _run(["git", "config", "user.email", "kaggle-bot@users.noreply.github.com"])
-    _run(["git", "config", "user.name", "kaggle-ecra"])
-    _run(["git", "remote", "set-url", "origin", remote])
+    # Mark the working tree safe (Kaggle clones often trip "dubious ownership").
+    _run(["git", "config", "--global", "--add", "safe.directory", str(ROOT)], env=env)
+    _run(["git", "config", "user.email", GIT_EMAIL], env=env)
+    _run(["git", "config", "user.name", GIT_NAME], env=env)
+    _run(["git", "remote", "set-url", "origin", remote], env=env)
+
     try:
         for f in existing:
-            _run(["git", "add", "-f", f])
-        st = subprocess.check_output(["git", "status", "--porcelain"], text=True).strip()
+            _run(["git", "add", "-f", "--", f], env=env)
+
+        st = subprocess.check_output(
+            ["git", "status", "--porcelain"], text=True, env=env
+        ).strip()
+        print("git status --porcelain:")
+        print(st or "(empty)")
+
         if not st:
             print("Nothing to commit (already up to date).")
+            return 0
+
+        # Pass identity via -c so commit never depends on missing local config.
+        commit_cmd = [
+            "git",
+            "-c", f"user.name={GIT_NAME}",
+            "-c", f"user.email={GIT_EMAIL}",
+            "commit",
+            "--allow-empty-message",
+            "-m",
+            msg,
+        ]
+        proc = _run_capture(commit_cmd, env=env)
+        if proc.returncode != 0:
+            err = (proc.stderr or "") + (proc.stdout or "")
+            # Treat "nothing to commit" as success (race / already staged elsewhere).
+            if "nothing to commit" in err.lower() or "no changes added" in err.lower():
+                print("Commit skipped: nothing to commit after staging.")
+            else:
+                print("git commit FAILED")
+                print(err)
+                raise subprocess.CalledProcessError(proc.returncode, commit_cmd, output=proc.stdout, stderr=proc.stderr)
         else:
-            _run(["git", "commit", "-m", msg])
-            _run(["git", "push", "origin", f"HEAD:{args.branch}"])
-            print(f"Pushed to {args.owner}/{args.repo}@{args.branch}")
+            print((proc.stdout or "").strip() or "commit ok")
+
+        push = _run_capture(["git", "push", "origin", f"HEAD:{args.branch}"], env=env)
+        if push.returncode != 0:
+            print("git push FAILED")
+            print((push.stderr or "") + (push.stdout or ""))
+            raise subprocess.CalledProcessError(push.returncode, push.args, output=push.stdout, stderr=push.stderr)
+        print((push.stdout or "").strip() or "push ok")
+        print(f"Pushed to {args.owner}/{args.repo}@{args.branch}")
     finally:
-        _run(["git", "remote", "set-url", "origin", public])
+        _run(["git", "remote", "set-url", "origin", public], env=env)
         print("remote URL scrubbed (no token)")
     return 0
 
