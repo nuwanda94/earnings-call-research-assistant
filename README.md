@@ -30,9 +30,9 @@ Numbers in this section come **only** from `manifest.json`, `evals/reports/rag_m
 
 | Claim | Source | Value |
 |-------|--------|-------|
-| N (chunk count) | corpus `manifest.json` → `n_chunks` | **TBD** |
-| Recall@k (hybrid) | `rag_metrics.json` → `backends.hybrid.mean_recall` | **TBD** |
-| nDCG@k (hybrid) | `rag_metrics.json` → `backends.hybrid.mean_ndcg` | **TBD** |
+| N (chunk count) | corpus `manifest.json` → `n_chunks` | **4** |
+| Recall@k (hybrid) | `rag_metrics.json` → `backends.hybrid.mean_recall` | **{'@1': 0.333333, '@3': 0.833333, '@5': 1.0, '@10': 1.0}** |
+| nDCG@k (hybrid) | `rag_metrics.json` → `backends.hybrid.mean_ndcg` | **{'@1': 0.333333, '@3': 0.605155, '@5': 0.676935, '@10': 0.676935}** |
 | Grounded answer accuracy | `rag_generation_metrics.json` → `aggregate` (and `dry_run=false`) | **TBD** |
 
 Do not put R / D / A on a resume while this table says TBD. After the Kaggle run, edit [`evals/reports/RAG_EVAL_REPORT.md`](evals/reports/RAG_EVAL_REPORT.md) first, then copy the same literals here.

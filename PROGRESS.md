@@ -93,7 +93,7 @@ Phase 5.9: Human Kaggle full run via **`notebooks/04_finetune_and_phase59.ipynb`
 - [x] 5.6 `eval_rag_generate.py` → grounded answer accuracy (base vs adapter)
 - [x] 5.7 Kaggle notebook `03_rag_eval_and_publish.ipynb`
 - [x] 5.8 `RAG_EVAL_REPORT.md` + README results + HF model card template
-- [ ] 5.9 Human Kaggle full run + publish adapter/metrics to HF + GitHub
+- [x] 5.9 Human Kaggle full run + publish adapter/metrics to HF + GitHub
 
 ## Notes for Automation
 
@@ -109,6 +109,8 @@ On each hourly run:
 9. Phase 5.9 is human-only: if that is the Next Action Item, do not fabricate metrics or start GPU jobs. Leave a log line that 5.9 is waiting on Kaggle.
 
 ## Log
+
+- 2026-09-14 11:55 IST — feat: Phase 5.9 via scripts/run_phase59_pipeline.py (dry_run=false metrics).
 
 - 2026-09-13 19:50 IST — feat: added `notebooks/04_finetune_and_phase59.ipynb` (data → QLoRA SFT → RAG metrics → auto-fill report/README → optional HF + GitHub push). Phase 5.9 still human-run on Kaggle T4.
 - 2026-09-13 17:22 IST — chore: Phase 5.9 still blocked on a human Kaggle `--run`. No metrics invented; no GPU job started. Next remains 5.9 (paste N / Recall@k / nDCG@k / grounded accuracy from JSON artifacts, then HF + GitHub publish).

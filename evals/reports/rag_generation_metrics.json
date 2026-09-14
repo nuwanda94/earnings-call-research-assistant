@@ -1,0 +1,379 @@
+{
+  "created_utc": "2026-09-14T06:32:44Z",
+  "eval_set": "/kaggle/working/earnings-call-research-assistant/evals/rag_eval_set.jsonl",
+  "n_queries": 6,
+  "top_k": 5,
+  "rrf_k": 60,
+  "max_context_chars": 3500,
+  "corpus_dir": "/kaggle/working/earnings-call-research-assistant/data/rag/corpus_v0.1.0",
+  "bm25_dir": "/kaggle/working/earnings-call-research-assistant/data/rag/indices/bm25",
+  "dense_dir": "/kaggle/working/earnings-call-research-assistant/data/rag/indices/dense",
+  "dense_backend": "sentence-transformers",
+  "n_index_docs": 4,
+  "corpus_version": "v0.1.0",
+  "dry_run": false,
+  "adapter_dir": "outputs/adapters/llama32-3b-ecra-sft",
+  "note": "Dry-run placeholders score near zero by design. Fill generations with --run on Kaggle before quoting grounded_answer_accuracy.",
+  "aggregate": {
+    "base": {
+      "citation_hit_rate": 0.4861,
+      "mean_token_f1_vs_context": 0.357233,
+      "mean_token_f1_vs_gold": 0.3206,
+      "grounded_answer_accuracy": 0.666667
+    },
+    "adapter": {
+      "citation_hit_rate": 0.56945,
+      "mean_token_f1_vs_context": 0.250017,
+      "mean_token_f1_vs_gold": 0.48525,
+      "grounded_answer_accuracy": 1.0
+    }
+  },
+  "items": [
+    {
+      "query_id": "q:08c92e070731",
+      "query": "Write a short research note grounded only in this earnings-call excerpt.",
+      "gold_chunk_ids": [
+        "fiqa:unknown:0-1:ad10d17281b6"
+      ],
+      "retrieved_ids": [
+        "finance_alpaca:qa:0-2:33ff30950ed3",
+        "fiqa:unknown:0-1:ad10d17281b6",
+        "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29",
+        "earnings_transcripts:qa:0-1:7b087b296300"
+      ],
+      "packed_chars": 1012,
+      "gold_answer": "Research note from the earnings-call excerpt (grounded):\n- A beat means reported EPS or revenue exceeded the consensus estimate; a miss means results came in below that estimate.\n\nCitations: fiqa:unknown:0-1:ad10d17281b6#s1. No figures beyond these source sentences.",
+      "base": {
+        "output": "Based on the provided excerpts, here is a short research note:\n\nApple's first quarter fiscal 2024 results exceeded expectations, with an all-time revenue record of $119.6 billion, up 2 percent year over year. The revenue growth was driven by iPhone and Services. Notably, Azure growth was reported at 30 percent, with AI services contributing several points. This suggests a strong performance in the company's cloud computing segment.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 3,
+            "hits": [
+              "0",
+              "1",
+              "a"
+            ],
+            "rate": 0.25
+          },
+          "token_f1_vs_context": 0.5062,
+          "token_f1_vs_gold": 0.1875,
+          "grounded_hit": 0.0
+        }
+      },
+      "adapter": {
+        "output": "Research note from the earnings-call excerpt (fiqa:qa:0-1:ad10d17281b6 | fiqa):\n- A beat means reported EPS or revenue exceeded the consensus estimate; a miss means results came in below that estimate.\n\nCitations: earnings_transcripts:qa:0-1:ad10d17281b6 | fiqa; earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29 | earnings_transcripts; earnings_transcripts:qa:0-1:7b087b296300 | earnings_transcripts. No figures beyond these source excerpts.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 12,
+            "hits": [
+              "0",
+              "1",
+              "a",
+              "ad10d17281b6",
+              "beat",
+              "below",
+              "call",
+              "came",
+              "consensus",
+              "earnings",
+              "eps",
+              "estimate"
+            ],
+            "rate": 1.0
+          },
+          "token_f1_vs_context": 0.4196,
+          "token_f1_vs_gold": 0.8571,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:3f46e8f7b162",
+      "query": "Which quantitative results are stated in the Q&A passage?",
+      "gold_chunk_ids": [
+        "finance_alpaca:qa:0-2:33ff30950ed3"
+      ],
+      "retrieved_ids": [
+        "finance_alpaca:qa:0-2:33ff30950ed3",
+        "fiqa:unknown:0-1:ad10d17281b6",
+        "earnings_transcripts:qa:0-1:7b087b296300",
+        "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29"
+      ],
+      "packed_chars": 1012,
+      "gold_answer": "From the Q&A excerpt, the supported facts are:\n- Prepared remarks are a scripted management overview of results and outlook.\n\nCitations: finance_alpaca:qa:0-2:33ff30950ed3#s1. No figures beyond these source sentences.",
+      "base": {
+        "output": "The quantitative results stated in the Q&A passage are:\n\n- 30 percent (Azure growth excluding the impact of the extra calendar day)\n- 28 percent (Azure growth constant currency)",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 5,
+            "hits": [
+              "0",
+              "2",
+              "a",
+              "are",
+              "of"
+            ],
+            "rate": 0.4167
+          },
+          "token_f1_vs_context": 0.304,
+          "token_f1_vs_gold": 0.2264,
+          "grounded_hit": 0.0
+        }
+      },
+      "adapter": {
+        "output": "Citations: earnings_transcripts:qa:0-1:7b087b296300; earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29.\n\nCitations beyondqa:0-1:7b087b296300 and prepared_remarks:0-1:cfc1e8fabf29 are unverified beyond this source.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 5,
+            "hits": [
+              "0",
+              "2",
+              "a",
+              "and",
+              "are"
+            ],
+            "rate": 0.4167
+          },
+          "token_f1_vs_context": 0.1833,
+          "token_f1_vs_gold": 0.375,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:58be2f3785d8",
+      "query": "Which quantitative results are stated in the Q&A passage?",
+      "gold_chunk_ids": [
+        "earnings_transcripts:qa:0-1:7b087b296300"
+      ],
+      "retrieved_ids": [
+        "finance_alpaca:qa:0-2:33ff30950ed3",
+        "fiqa:unknown:0-1:ad10d17281b6",
+        "earnings_transcripts:qa:0-1:7b087b296300",
+        "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29"
+      ],
+      "packed_chars": 1012,
+      "gold_answer": "From the Q&A excerpt, the supported facts are:\n- Azure grew 30 percent, and 28 percent constant currency, with AI services contributing several points.\n\nCitations: earnings_transcripts:qa:0-1:7b087b296300#s1. No figures beyond these source sentences.",
+      "base": {
+        "output": "The quantitative results stated in the Q&A passage are:\n\n- 30 percent (Azure growth excluding the impact of the extra calendar day)\n- 28 percent (Azure growth constant currency)",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 7,
+            "hits": [
+              "0",
+              "28",
+              "30",
+              "a",
+              "are",
+              "azure",
+              "constant"
+            ],
+            "rate": 0.5833
+          },
+          "token_f1_vs_context": 0.304,
+          "token_f1_vs_gold": 0.3448,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Citations: earnings_transcripts:qa:0-1:7b087b296300; earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29.\n\nCitations beyondqa:0-1:7b087b296300 and prepared_remarks:0-1:cfc1e8fabf29 are unverified beyond this source.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 7,
+            "hits": [
+              "0",
+              "1",
+              "30",
+              "7b087b296300",
+              "a",
+              "and",
+              "are"
+            ],
+            "rate": 0.5833
+          },
+          "token_f1_vs_context": 0.1833,
+          "token_f1_vs_gold": 0.4151,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:921d1d4388a7",
+      "query": "Which quantitative results are stated in the prepared remarks passage?",
+      "gold_chunk_ids": [
+        "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29"
+      ],
+      "retrieved_ids": [
+        "finance_alpaca:qa:0-2:33ff30950ed3",
+        "fiqa:unknown:0-1:ad10d17281b6",
+        "earnings_transcripts:qa:0-1:7b087b296300",
+        "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29"
+      ],
+      "packed_chars": 1012,
+      "gold_answer": "From the prepared remarks excerpt, the supported facts are:\n- We set an all-time revenue record of $119.6 billion, up 2 percent year over year, driven by iPhone and Services.\n\nCitations: earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29#s1. No figures beyond these source sentences.",
+      "base": {
+        "output": "The prepared remarks passage states the following quantitative results:\n\n1. $119.6 billion (all-time revenue record)\n2. 2 percent (year-over-year revenue growth)",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 7,
+            "hits": [
+              "$119.6",
+              "1",
+              "2",
+              "all",
+              "an",
+              "are",
+              "billion"
+            ],
+            "rate": 0.5833
+          },
+          "token_f1_vs_context": 0.2602,
+          "token_f1_vs_gold": 0.459,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Citations: earnings_transcripts:qa:0-1:7b087b296300; earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29.\nNo figures beyond these source excerpts.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 6,
+            "hits": [
+              "0",
+              "1",
+              "2",
+              "an",
+              "are",
+              "cfc1e8fabf29"
+            ],
+            "rate": 0.5
+          },
+          "token_f1_vs_context": 0.1513,
+          "token_f1_vs_gold": 0.4561,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:a20d45cef5fe",
+      "query": "What did management report in this Q&A excerpt?",
+      "gold_chunk_ids": [
+        "earnings_transcripts:qa:0-1:7b087b296300"
+      ],
+      "retrieved_ids": [
+        "finance_alpaca:qa:0-2:33ff30950ed3",
+        "fiqa:unknown:0-1:ad10d17281b6",
+        "earnings_transcripts:qa:0-1:7b087b296300",
+        "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29"
+      ],
+      "packed_chars": 1012,
+      "gold_answer": "From the Q&A excerpt, the supported facts are:\n- Azure grew 30 percent, and 28 percent constant currency, with AI services contributing several points.\n\nCitations: earnings_transcripts:qa:0-1:7b087b296300#s1. No figures beyond these source sentences.",
+      "base": {
+        "output": "In the provided excerpt, the Q&A portion of an earnings call, management reported the following:\n\n- Azure grew 30 percent.\n- Azure grew 28 percent in constant currency.\n- AI services contributed several points to Azure growth.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 7,
+            "hits": [
+              "0",
+              "28",
+              "30",
+              "a",
+              "ai",
+              "azure",
+              "constant"
+            ],
+            "rate": 0.5833
+          },
+          "token_f1_vs_context": 0.3511,
+          "token_f1_vs_gold": 0.5,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Citations: earnings_transcripts:qa:0-1:7b087b296300; earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29.\nNo figures beyond these source excerpts.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 6,
+            "hits": [
+              "0",
+              "1",
+              "30",
+              "7b087b296300",
+              "a",
+              "are"
+            ],
+            "rate": 0.5
+          },
+          "token_f1_vs_context": 0.1513,
+          "token_f1_vs_gold": 0.4615,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:da53e5db452e",
+      "query": "Which quantitative results are stated in the earnings-call passage?",
+      "gold_chunk_ids": [
+        "fiqa:unknown:0-1:ad10d17281b6"
+      ],
+      "retrieved_ids": [
+        "fiqa:unknown:0-1:ad10d17281b6",
+        "finance_alpaca:qa:0-2:33ff30950ed3",
+        "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29",
+        "earnings_transcripts:qa:0-1:7b087b296300"
+      ],
+      "packed_chars": 1012,
+      "gold_answer": "From the earnings-call excerpt, the supported facts are:\n- A beat means reported EPS or revenue exceeded the consensus estimate; a miss means results came in below that estimate.\n\nCitations: fiqa:unknown:0-1:ad10d17281b6#s1. No figures beyond these source sentences.",
+      "base": {
+        "output": "The quantitative results stated in the earnings-call passage are:\n\n- $119.6 billion (all-time revenue record)\n- 2 percent (year-over-year revenue growth)\n- 30 percent (Azure growth excluding the impact of the extra calendar day)\n- 28 percent (Azure growth constant currency)",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 6,
+            "hits": [
+              "0",
+              "1",
+              "a",
+              "are",
+              "call",
+              "earnings"
+            ],
+            "rate": 0.5
+          },
+          "token_f1_vs_context": 0.4179,
+          "token_f1_vs_gold": 0.2059,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Citations: earnings_transcripts:qa:0-1:7b087b296300, earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29.\n\nAdverse grounded_citations: earnings_transcripts:qa:0-1:33ff30950ed3.\n\nCitations beyond the ground facts:\n- Prepared remarks are a scripted management overview of results and outlook.\n- Q&A is unscripted analyst questioning and is usually richer for research.\n\nNo figures beyond these grounded facts.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 5,
+            "hits": [
+              "0",
+              "1",
+              "a",
+              "are",
+              "earnings"
+            ],
+            "rate": 0.4167
+          },
+          "token_f1_vs_context": 0.4113,
+          "token_f1_vs_gold": 0.3467,
+          "grounded_hit": 1.0
+        }
+      }
+    }
+  ]
+}
