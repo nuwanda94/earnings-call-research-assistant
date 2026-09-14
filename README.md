@@ -17,11 +17,32 @@ Progress: [`PROGRESS.md`](PROGRESS.md). **Phases 0–5 complete** (full-scale T4
 | 4 | Packaging & Portfolio Polish | Done |
 | 5 | Hybrid RAG + measurable metrics | Done (scaled N; see Results caveat on R@k) |
 
-- Reproducibility: [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md)
-- Data card: [`docs/DATA_CARD.md`](docs/DATA_CARD.md)
-- RAG report: [`evals/reports/RAG_EVAL_REPORT.md`](evals/reports/RAG_EVAL_REPORT.md)
-- HF model card template: [`docs/MODEL_CARD_RAG.md`](docs/MODEL_CARD_RAG.md)
-- Adapter (Hub): https://huggingface.co/nuwanda94/llama32-3b-ecra-sft
+Docs: [`PROGRESS.md`](PROGRESS.md) · [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md) · [`docs/DATA_CARD.md`](docs/DATA_CARD.md) · [`docs/PROJECT_PLAN.md`](docs/PROJECT_PLAN.md)
+
+## Artifacts
+
+| Artifact | Link |
+|----------|------|
+| **QLoRA adapter (Hugging Face)** | [nuwanda94/llama32-3b-ecra-sft](https://huggingface.co/nuwanda94/llama32-3b-ecra-sft) |
+| Full eval report | [`evals/reports/RAG_EVAL_REPORT.md`](evals/reports/RAG_EVAL_REPORT.md) |
+| SFT plan (train/val, seed, batch) | [`outputs/sft_plan.json`](outputs/sft_plan.json) |
+| Retrieval metrics JSON | [`evals/reports/rag_metrics.json`](evals/reports/rag_metrics.json) |
+| Generation metrics JSON | [`evals/reports/rag_generation_metrics.json`](evals/reports/rag_generation_metrics.json) |
+| HF model card template | [`docs/MODEL_CARD_RAG.md`](docs/MODEL_CARD_RAG.md) |
+| Scale notebook (Kaggle T4) | [`notebooks/05_full_scale_sft_t4.ipynb`](notebooks/05_full_scale_sft_t4.ipynb) |
+
+Load the published adapter:
+
+```python
+from peft import PeftModel
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
+base = "unsloth/Llama-3.2-3B-Instruct"
+adapter = "nuwanda94/llama32-3b-ecra-sft"
+tok = AutoTokenizer.from_pretrained(base)
+model = AutoModelForCausalLM.from_pretrained(base, device_map="auto")
+model = PeftModel.from_pretrained(model, adapter)
+```
 
 ## Results
 
