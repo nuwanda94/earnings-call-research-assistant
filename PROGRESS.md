@@ -1,6 +1,6 @@
 # Progress Tracker
 
-Last updated: 2026-09-14 12:35 IST
+Last updated: 2026-09-14 13:00 IST
 
 ## Current Phase
 Phase 5 — Hybrid RAG + measurable retrieval metrics (5.1–5.8 templates done; smoke metrics committed; 5.9 human Kaggle + HF/GitHub publish still open)
@@ -112,6 +112,7 @@ On each hourly run:
 
 ## Log
 
+- 2026-09-14 13:00 IST — chore: Phase 5.9 still blocked on a human Kaggle T4 `--run` (`notebooks/05_full_scale_sft_t4.ipynb` or `04_finetune_and_phase59.ipynb`) + HF/GitHub publish. No metrics invented; no GPU job started. Smoke artifacts remain N=4 / 6 queries. Next remains 5.9 (human).
 - 2026-09-14 12:35 IST — feat: `notebooks/05_full_scale_sft_t4.ipynb` (catalog caps 400/200/150 HF stream → 3k–6k select band → full-epoch 3B QLoRA; optional RAG). Next = human T4 run + publish (5.9).
 - 2026-09-14 12:26 IST — chore: Phase 5.9 still blocked on a human Kaggle `--run` + HF/GitHub publish. No metrics invented; no GPU job started. Committed smoke artifacts remain N=4 / 6 queries. Next remains 5.9 (human), then scale corpus.
 - 2026-09-14 11:55 IST — feat: Phase 5.9 via scripts/run_phase59_pipeline.py (dry_run=false metrics).
