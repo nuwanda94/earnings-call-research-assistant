@@ -1,14 +1,12 @@
 # Progress Tracker
 
-Last updated: 2026-09-14 12:26 IST
+Last updated: 2026-09-14 12:35 IST
 
 ## Current Phase
 Phase 5 — Hybrid RAG + measurable retrieval metrics (5.1–5.8 templates done; smoke metrics committed; 5.9 human Kaggle + HF/GitHub publish still open)
 
 ## Next Action Item
-Phase 5.9 (human-only): Full Kaggle run via `notebooks/04_finetune_and_phase59.ipynb` (or `scripts/run_phase59_pipeline.py --run`). Do **not** invent N / Recall@k / nDCG@k / grounded accuracy. After a real `--run` on a larger corpus, paste JSON into `RAG_EVAL_REPORT.md` + README Results and publish the adapter with `docs/MODEL_CARD_RAG.md`. Automation must not start a long GPU job.
-
-After 5.9 publish: **scale RAG corpus** (target hundreds–thousands of public chunks; current committed N=4 is fixture-only).
+**Human (Kaggle T4):** Run `notebooks/05_full_scale_sft_t4.ipynb` with `RUN_TRAIN=True` (and optionally `RUN_RAG=True`) for max catalog caps → full-epoch 3B QLoRA → measured N/metrics. Or close smoke 5.9 via `04_finetune_and_phase59.ipynb`. Do **not** invent percentages. Publish adapter + paste JSON into `RAG_EVAL_REPORT.md` / README / `docs/MODEL_CARD_RAG.md`. Automation must not start a long GPU job.
 
 ## Completed Items
 
@@ -46,6 +44,7 @@ After 5.9 publish: **scale RAG corpus** (target hundreds–thousands of public c
 - [x] Phase 5.8 `evals/reports/RAG_EVAL_REPORT.md` + README Results + `docs/MODEL_CARD_RAG.md` (N/metrics TBD until JSON exists)
 - [x] Notebook `04_finetune_and_phase59.ipynb` (data → SFT → RAG metrics → report fill → optional HF + GitHub push)
 - [x] Smoke-scale Phase 5.9 artifacts on fixture corpus (N=4; committed JSON; not a coverage claim)
+- [x] Notebook `05_full_scale_sft_t4.ipynb` (HF stream at catalog caps → 3k–6k band → full-epoch 3B QLoRA → optional scaled RAG)
 
 ## Phase 0 Checklist
 
@@ -113,6 +112,7 @@ On each hourly run:
 
 ## Log
 
+- 2026-09-14 12:35 IST — feat: `notebooks/05_full_scale_sft_t4.ipynb` (catalog caps 400/200/150 HF stream → 3k–6k select band → full-epoch 3B QLoRA; optional RAG). Next = human T4 run + publish (5.9).
 - 2026-09-14 12:26 IST — chore: Phase 5.9 still blocked on a human Kaggle `--run` + HF/GitHub publish. No metrics invented; no GPU job started. Committed smoke artifacts remain N=4 / 6 queries. Next remains 5.9 (human), then scale corpus.
 - 2026-09-14 11:55 IST — feat: Phase 5.9 via scripts/run_phase59_pipeline.py (dry_run=false metrics).
 
