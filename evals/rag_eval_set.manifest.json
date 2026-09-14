@@ -1,0 +1,11 @@
+{
+  "version": "v0.1.0",
+  "seed": 3407,
+  "n_queries": 50,
+  "corpus_version": "v0.1.0",
+  "corpus_n_chunks": 19990,
+  "n_unique_gold_chunks": 50,
+  "excluded_train_pairs": 2129,
+  "notes": "Seed=3407. Sampled 50 / 57843 grounded candidates. Every gold_chunk_id is in corpus /kaggle/working/earnings-call-research-assistant/data/rag/corpus_v0.1.0 (N=19990). Excluded 2129 train-split pair_ids. v0.1 fixture corpora yield fewer than 30–50 queries; grow when N scales.",
+  "created_utc": "2026-09-14T08:06:53Z"
+}

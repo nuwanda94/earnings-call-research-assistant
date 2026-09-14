@@ -1,11 +1,11 @@
 {
   "version": "v0.1.0",
-  "n_chunks": 4,
+  "n_chunks": 19990,
   "n_documents": 3,
   "sources": {
-    "earnings_transcripts": 2,
-    "finance_alpaca": 1,
-    "fiqa": 1
+    "earnings_transcripts": 18474,
+    "finance_alpaca": 656,
+    "fiqa": 860
   },
   "license_notes": [
     "earnings_transcripts: MIT on the HF card; still public-company disclosures only.",
@@ -13,7 +13,7 @@
     "finance_alpaca: Derived Alpaca + FiQA mix; treat as public research sample.",
     "Public data only. Do not mix paid terminal extracts."
   ],
-  "created_utc": "2026-09-14T06:29:55Z",
-  "input_path": "/kaggle/working/earnings-call-research-assistant/data/processed/chunks.jsonl",
-  "notes": "Origin=phase1_jsonl:/kaggle/working/earnings-call-research-assistant/data/processed/chunks.jsonl. N is measured chunk count after empty/id dedupe. IDs are sha1(source|section|start|end|text)[:12]."
+  "created_utc": "2026-09-14T08:05:52Z",
+  "input_path": "data/processed/chunks.jsonl",
+  "notes": "Origin=phase1_jsonl:data/processed/chunks.jsonl. N is measured chunk count after empty/id dedupe. IDs are sha1(source|section|start|end|text)[:12]."
 }

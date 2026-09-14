@@ -1,7 +1,7 @@
 {
-  "created_utc": "2026-09-14T06:30:57Z",
+  "created_utc": "2026-09-14T08:17:02Z",
   "eval_set": "/kaggle/working/earnings-call-research-assistant/evals/rag_eval_set.jsonl",
-  "n_queries": 6,
+  "n_queries": 50,
   "k_values": [
     1,
     3,
@@ -14,13 +14,13 @@
   "dense_dir": "/kaggle/working/earnings-call-research-assistant/data/rag/indices/dense",
   "dense_backend": "sentence-transformers",
   "dense_embed_model": "sentence-transformers/all-MiniLM-L6-v2",
-  "n_index_docs": 4,
+  "n_index_docs": 19990,
   "corpus_version": "v0.1.0",
   "note": "Means are computed on this eval set only. Do not put percentages on a resume until a full-corpus --run (ST embeddings) is logged.",
   "backends": {
     "bm25": {
       "backend": "bm25",
-      "n_queries": 6,
+      "n_queries": 50,
       "k_values": [
         1,
         3,
@@ -28,155 +28,1423 @@
         10
       ],
       "mean_recall": {
-        "@1": 0.5,
-        "@3": 0.666667,
-        "@5": 1.0,
-        "@10": 1.0
+        "@1": 0.0,
+        "@3": 0.0,
+        "@5": 0.0,
+        "@10": 0.0
       },
       "mean_ndcg": {
-        "@1": 0.5,
-        "@3": 0.583333,
-        "@5": 0.726892,
-        "@10": 0.726892
+        "@1": 0.0,
+        "@3": 0.0,
+        "@5": 0.0,
+        "@10": 0.0
       },
       "queries": [
         {
-          "query_id": "q:08c92e070731",
+          "query_id": "q:0753167abc7e",
           "n_gold": 1,
           "ranked_ids": [
-            "fiqa:unknown:0-1:ad10d17281b6",
-            "finance_alpaca:qa:0-2:33ff30950ed3",
-            "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29",
-            "earnings_transcripts:qa:0-1:7b087b296300"
-          ],
-          "recall": {
-            "@1": 1.0,
-            "@3": 1.0,
-            "@5": 1.0,
-            "@10": 1.0
-          },
-          "ndcg": {
-            "@1": 1.0,
-            "@3": 1.0,
-            "@5": 1.0,
-            "@10": 1.0
-          }
-        },
-        {
-          "query_id": "q:3f46e8f7b162",
-          "n_gold": 1,
-          "ranked_ids": [
-            "finance_alpaca:qa:0-2:33ff30950ed3",
-            "fiqa:unknown:0-1:ad10d17281b6",
-            "earnings_transcripts:qa:0-1:7b087b296300",
-            "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29"
-          ],
-          "recall": {
-            "@1": 1.0,
-            "@3": 1.0,
-            "@5": 1.0,
-            "@10": 1.0
-          },
-          "ndcg": {
-            "@1": 1.0,
-            "@3": 1.0,
-            "@5": 1.0,
-            "@10": 1.0
-          }
-        },
-        {
-          "query_id": "q:58be2f3785d8",
-          "n_gold": 1,
-          "ranked_ids": [
-            "finance_alpaca:qa:0-2:33ff30950ed3",
-            "fiqa:unknown:0-1:ad10d17281b6",
-            "earnings_transcripts:qa:0-1:7b087b296300",
-            "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29"
-          ],
-          "recall": {
-            "@1": 0.0,
-            "@3": 1.0,
-            "@5": 1.0,
-            "@10": 1.0
-          },
-          "ndcg": {
-            "@1": 0.0,
-            "@3": 0.5,
-            "@5": 0.5,
-            "@10": 0.5
-          }
-        },
-        {
-          "query_id": "q:921d1d4388a7",
-          "n_gold": 1,
-          "ranked_ids": [
-            "finance_alpaca:qa:0-2:33ff30950ed3",
-            "fiqa:unknown:0-1:ad10d17281b6",
-            "earnings_transcripts:qa:0-1:7b087b296300",
-            "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29"
+            "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+            "earnings_transcripts:prepared_remarks:32-35:5e6694c4118b",
+            "earnings_transcripts:prepared_remarks:54-57:04afa549851b",
+            "earnings_transcripts:prepared_remarks:2-5:1bce0b96177e",
+            "earnings_transcripts:prepared_remarks:34-37:2a16497df4b7",
+            "earnings_transcripts:prepared_remarks:0-3:b4550bdb5c0c",
+            "earnings_transcripts:prepared_remarks:2-5:7730e7ae1507",
+            "earnings_transcripts:prepared_remarks:0-3:0b3b22ffa12d",
+            "earnings_transcripts:prepared_remarks:0-3:ac7644689c84",
+            "earnings_transcripts:prepared_remarks:0-3:18f2734ac042"
           ],
           "recall": {
             "@1": 0.0,
             "@3": 0.0,
-            "@5": 1.0,
-            "@10": 1.0
+            "@5": 0.0,
+            "@10": 0.0
           },
           "ndcg": {
             "@1": 0.0,
             "@3": 0.0,
-            "@5": 0.430677,
-            "@10": 0.430677
+            "@5": 0.0,
+            "@10": 0.0
           }
         },
         {
-          "query_id": "q:a20d45cef5fe",
+          "query_id": "q:0b7c330af216",
           "n_gold": 1,
           "ranked_ids": [
-            "finance_alpaca:qa:0-2:33ff30950ed3",
-            "fiqa:unknown:0-1:ad10d17281b6",
-            "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29",
-            "earnings_transcripts:qa:0-1:7b087b296300"
+            "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+            "earnings_transcripts:prepared_remarks:32-35:5e6694c4118b",
+            "earnings_transcripts:prepared_remarks:54-57:04afa549851b",
+            "earnings_transcripts:prepared_remarks:2-5:1bce0b96177e",
+            "earnings_transcripts:prepared_remarks:34-37:2a16497df4b7",
+            "earnings_transcripts:prepared_remarks:0-3:b4550bdb5c0c",
+            "earnings_transcripts:prepared_remarks:2-5:7730e7ae1507",
+            "earnings_transcripts:prepared_remarks:0-3:0b3b22ffa12d",
+            "earnings_transcripts:prepared_remarks:0-3:ac7644689c84",
+            "earnings_transcripts:prepared_remarks:0-3:18f2734ac042"
           ],
           "recall": {
             "@1": 0.0,
             "@3": 0.0,
-            "@5": 1.0,
-            "@10": 1.0
+            "@5": 0.0,
+            "@10": 0.0
           },
           "ndcg": {
             "@1": 0.0,
             "@3": 0.0,
-            "@5": 0.430677,
-            "@10": 0.430677
+            "@5": 0.0,
+            "@10": 0.0
           }
         },
         {
-          "query_id": "q:da53e5db452e",
+          "query_id": "q:0eb8709e9332",
           "n_gold": 1,
           "ranked_ids": [
-            "fiqa:unknown:0-1:ad10d17281b6",
-            "finance_alpaca:qa:0-2:33ff30950ed3",
-            "earnings_transcripts:qa:0-1:7b087b296300",
-            "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29"
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:0-3:b36b27eb9526",
+            "earnings_transcripts:prepared_remarks:0-3:e6e57b352df9",
+            "earnings_transcripts:prepared_remarks:0-3:ecfe52ba33ae",
+            "earnings_transcripts:prepared_remarks:0-3:502de0d9f328",
+            "earnings_transcripts:prepared_remarks:0-3:2767ceb33d31"
           ],
           "recall": {
-            "@1": 1.0,
-            "@3": 1.0,
-            "@5": 1.0,
-            "@10": 1.0
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
           },
           "ndcg": {
-            "@1": 1.0,
-            "@3": 1.0,
-            "@5": 1.0,
-            "@10": 1.0
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:117dbaf015b5",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:62-65:2760b3585fdd",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:0-3:b4550bdb5c0c",
+            "earnings_transcripts:prepared_remarks:30-33:44da94d32372",
+            "earnings_transcripts:prepared_remarks:0-3:0b3b22ffa12d",
+            "earnings_transcripts:prepared_remarks:0-3:ac7644689c84",
+            "earnings_transcripts:prepared_remarks:0-3:18f2734ac042",
+            "earnings_transcripts:prepared_remarks:0-3:58132b5a475e"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:146c23f1746a",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:62-65:2760b3585fdd",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:0-3:b4550bdb5c0c",
+            "earnings_transcripts:prepared_remarks:30-33:44da94d32372",
+            "earnings_transcripts:prepared_remarks:0-3:0b3b22ffa12d",
+            "earnings_transcripts:prepared_remarks:0-3:ac7644689c84",
+            "earnings_transcripts:prepared_remarks:0-3:18f2734ac042",
+            "earnings_transcripts:prepared_remarks:0-3:58132b5a475e"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:15004437a249",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:62-65:2760b3585fdd",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:0-3:b4550bdb5c0c",
+            "earnings_transcripts:prepared_remarks:30-33:44da94d32372",
+            "earnings_transcripts:prepared_remarks:0-3:0b3b22ffa12d",
+            "earnings_transcripts:prepared_remarks:0-3:ac7644689c84",
+            "earnings_transcripts:prepared_remarks:0-3:18f2734ac042",
+            "earnings_transcripts:prepared_remarks:0-3:58132b5a475e"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:18afa10894ae",
+          "n_gold": 1,
+          "ranked_ids": [
+            "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+            "earnings_transcripts:prepared_remarks:12-15:d2e62d6d4b3f",
+            "earnings_transcripts:prepared_remarks:12-15:b8b738314b33",
+            "earnings_transcripts:prepared_remarks:12-15:f80b938f442c",
+            "earnings_transcripts:prepared_remarks:12-15:ff1a2dd06b64",
+            "earnings_transcripts:prepared_remarks:12-15:321ca83deacf",
+            "earnings_transcripts:prepared_remarks:12-15:1144fa29c1c9",
+            "earnings_transcripts:prepared_remarks:12-15:03b6142922c1",
+            "earnings_transcripts:prepared_remarks:12-15:fb76c1bfe95d",
+            "earnings_transcripts:prepared_remarks:14-17:25cef2b65b63"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:1a169c664de0",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:0-3:b36b27eb9526",
+            "earnings_transcripts:prepared_remarks:0-3:e6e57b352df9",
+            "earnings_transcripts:prepared_remarks:0-3:ecfe52ba33ae",
+            "earnings_transcripts:prepared_remarks:0-3:502de0d9f328",
+            "earnings_transcripts:prepared_remarks:0-3:2767ceb33d31"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:1e18d50c13dd",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:78-81:59623e2861c1",
+            "earnings_transcripts:prepared_remarks:32-35:bde9f7618c80",
+            "earnings_transcripts:prepared_remarks:32-35:d74312327af4",
+            "earnings_transcripts:prepared_remarks:52-55:1e815b023b59",
+            "earnings_transcripts:prepared_remarks:10-13:e8ff2c01bbaf",
+            "earnings_transcripts:prepared_remarks:30-33:9963a8356895",
+            "earnings_transcripts:prepared_remarks:28-31:45e08e3dfaba",
+            "earnings_transcripts:prepared_remarks:10-13:17c1115c840a",
+            "earnings_transcripts:prepared_remarks:100-103:ef4f476e58b8",
+            "fiqa:unknown:8-11:54f408be137e"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:246367cf9a4e",
+          "n_gold": 1,
+          "ranked_ids": [
+            "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+            "earnings_transcripts:prepared_remarks:12-15:d2e62d6d4b3f",
+            "earnings_transcripts:prepared_remarks:12-15:b8b738314b33",
+            "earnings_transcripts:prepared_remarks:12-15:f80b938f442c",
+            "earnings_transcripts:prepared_remarks:12-15:ff1a2dd06b64",
+            "earnings_transcripts:prepared_remarks:12-15:321ca83deacf",
+            "earnings_transcripts:prepared_remarks:12-15:1144fa29c1c9",
+            "earnings_transcripts:prepared_remarks:12-15:03b6142922c1",
+            "earnings_transcripts:prepared_remarks:12-15:fb76c1bfe95d",
+            "earnings_transcripts:prepared_remarks:14-17:25cef2b65b63"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:256439a9927e",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:0-3:b36b27eb9526",
+            "earnings_transcripts:prepared_remarks:0-3:e6e57b352df9",
+            "earnings_transcripts:prepared_remarks:0-3:ecfe52ba33ae",
+            "earnings_transcripts:prepared_remarks:0-3:502de0d9f328",
+            "earnings_transcripts:prepared_remarks:0-3:2767ceb33d31"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:2710e29ff068",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:62-65:2760b3585fdd",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:0-3:b4550bdb5c0c",
+            "earnings_transcripts:prepared_remarks:30-33:44da94d32372",
+            "earnings_transcripts:prepared_remarks:0-3:0b3b22ffa12d",
+            "earnings_transcripts:prepared_remarks:0-3:ac7644689c84",
+            "earnings_transcripts:prepared_remarks:0-3:18f2734ac042",
+            "earnings_transcripts:prepared_remarks:0-3:58132b5a475e"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:318f6c6faf30",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:0-3:b36b27eb9526",
+            "earnings_transcripts:prepared_remarks:0-3:e6e57b352df9",
+            "earnings_transcripts:prepared_remarks:0-3:ecfe52ba33ae",
+            "earnings_transcripts:prepared_remarks:0-3:502de0d9f328",
+            "earnings_transcripts:prepared_remarks:0-3:2767ceb33d31"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:35fda358bf10",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:78-81:59623e2861c1",
+            "earnings_transcripts:prepared_remarks:32-35:bde9f7618c80",
+            "earnings_transcripts:prepared_remarks:32-35:d74312327af4",
+            "earnings_transcripts:prepared_remarks:52-55:1e815b023b59",
+            "earnings_transcripts:prepared_remarks:10-13:e8ff2c01bbaf",
+            "earnings_transcripts:prepared_remarks:30-33:9963a8356895",
+            "earnings_transcripts:prepared_remarks:28-31:45e08e3dfaba",
+            "earnings_transcripts:prepared_remarks:10-13:17c1115c840a",
+            "earnings_transcripts:prepared_remarks:100-103:ef4f476e58b8",
+            "fiqa:unknown:8-11:54f408be137e"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:3722291f51a6",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:62-65:2760b3585fdd",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:0-3:b4550bdb5c0c",
+            "earnings_transcripts:prepared_remarks:30-33:44da94d32372",
+            "earnings_transcripts:prepared_remarks:0-3:0b3b22ffa12d",
+            "earnings_transcripts:prepared_remarks:0-3:ac7644689c84",
+            "earnings_transcripts:prepared_remarks:0-3:18f2734ac042",
+            "earnings_transcripts:prepared_remarks:0-3:58132b5a475e"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:37e090b25f49",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:0-3:b36b27eb9526",
+            "earnings_transcripts:prepared_remarks:0-3:e6e57b352df9",
+            "earnings_transcripts:prepared_remarks:0-3:ecfe52ba33ae",
+            "earnings_transcripts:prepared_remarks:0-3:502de0d9f328",
+            "earnings_transcripts:prepared_remarks:0-3:2767ceb33d31"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:3ca9a3665e10",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:78-81:59623e2861c1",
+            "earnings_transcripts:prepared_remarks:32-35:bde9f7618c80",
+            "earnings_transcripts:prepared_remarks:32-35:d74312327af4",
+            "earnings_transcripts:prepared_remarks:52-55:1e815b023b59",
+            "earnings_transcripts:prepared_remarks:10-13:e8ff2c01bbaf",
+            "earnings_transcripts:prepared_remarks:30-33:9963a8356895",
+            "earnings_transcripts:prepared_remarks:28-31:45e08e3dfaba",
+            "earnings_transcripts:prepared_remarks:10-13:17c1115c840a",
+            "earnings_transcripts:prepared_remarks:100-103:ef4f476e58b8",
+            "fiqa:unknown:8-11:54f408be137e"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:535d8859b10c",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:0-3:b36b27eb9526",
+            "earnings_transcripts:prepared_remarks:0-3:e6e57b352df9",
+            "earnings_transcripts:prepared_remarks:0-3:ecfe52ba33ae",
+            "earnings_transcripts:prepared_remarks:0-3:502de0d9f328",
+            "earnings_transcripts:prepared_remarks:0-3:2767ceb33d31"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:5ce38bdbcf00",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:62-65:2760b3585fdd",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:0-3:b4550bdb5c0c",
+            "earnings_transcripts:prepared_remarks:30-33:44da94d32372",
+            "earnings_transcripts:prepared_remarks:0-3:0b3b22ffa12d",
+            "earnings_transcripts:prepared_remarks:0-3:ac7644689c84",
+            "earnings_transcripts:prepared_remarks:0-3:18f2734ac042",
+            "earnings_transcripts:prepared_remarks:0-3:58132b5a475e"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:6949f5a1f18e",
+          "n_gold": 1,
+          "ranked_ids": [
+            "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+            "earnings_transcripts:prepared_remarks:4-7:65fd19a8d74b",
+            "earnings_transcripts:prepared_remarks:6-9:11b6094d0d89",
+            "earnings_transcripts:unknown:0-3:2fdd293d7b1f",
+            "earnings_transcripts:prepared_remarks:6-9:826ba7396196",
+            "earnings_transcripts:prepared_remarks:6-9:db7f4388d8cc",
+            "earnings_transcripts:prepared_remarks:4-7:8e5dc83a5f36",
+            "earnings_transcripts:prepared_remarks:8-11:380459cd7c0f",
+            "earnings_transcripts:prepared_remarks:28-31:4ff91bb2e5ca",
+            "earnings_transcripts:prepared_remarks:12-15:4ef804fbc160"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:6c075992edc3",
+          "n_gold": 1,
+          "ranked_ids": [
+            "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+            "earnings_transcripts:prepared_remarks:12-15:d2e62d6d4b3f",
+            "earnings_transcripts:prepared_remarks:12-15:b8b738314b33",
+            "earnings_transcripts:prepared_remarks:12-15:f80b938f442c",
+            "earnings_transcripts:prepared_remarks:12-15:ff1a2dd06b64",
+            "earnings_transcripts:prepared_remarks:12-15:321ca83deacf",
+            "earnings_transcripts:prepared_remarks:12-15:1144fa29c1c9",
+            "earnings_transcripts:prepared_remarks:12-15:03b6142922c1",
+            "earnings_transcripts:prepared_remarks:12-15:fb76c1bfe95d",
+            "earnings_transcripts:prepared_remarks:14-17:25cef2b65b63"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:70d07f7fe1be",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+            "earnings_transcripts:prepared_remarks:32-35:5e6694c4118b",
+            "earnings_transcripts:prepared_remarks:54-57:04afa549851b",
+            "earnings_transcripts:prepared_remarks:2-5:1bce0b96177e",
+            "earnings_transcripts:prepared_remarks:34-37:2a16497df4b7",
+            "earnings_transcripts:prepared_remarks:0-3:b4550bdb5c0c",
+            "earnings_transcripts:prepared_remarks:2-5:7730e7ae1507",
+            "earnings_transcripts:prepared_remarks:0-3:0b3b22ffa12d",
+            "earnings_transcripts:prepared_remarks:0-3:ac7644689c84",
+            "earnings_transcripts:prepared_remarks:0-3:18f2734ac042"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:7af1d54366d2",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+            "earnings_transcripts:prepared_remarks:32-35:5e6694c4118b",
+            "earnings_transcripts:prepared_remarks:54-57:04afa549851b",
+            "earnings_transcripts:prepared_remarks:2-5:1bce0b96177e",
+            "earnings_transcripts:prepared_remarks:34-37:2a16497df4b7",
+            "earnings_transcripts:prepared_remarks:0-3:b4550bdb5c0c",
+            "earnings_transcripts:prepared_remarks:2-5:7730e7ae1507",
+            "earnings_transcripts:prepared_remarks:0-3:0b3b22ffa12d",
+            "earnings_transcripts:prepared_remarks:0-3:ac7644689c84",
+            "earnings_transcripts:prepared_remarks:0-3:18f2734ac042"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:7fa150ff4c57",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:0-3:b36b27eb9526",
+            "earnings_transcripts:prepared_remarks:0-3:e6e57b352df9",
+            "earnings_transcripts:prepared_remarks:0-3:ecfe52ba33ae",
+            "earnings_transcripts:prepared_remarks:0-3:502de0d9f328",
+            "earnings_transcripts:prepared_remarks:0-3:2767ceb33d31"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:82a186012d11",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+            "earnings_transcripts:prepared_remarks:32-35:5e6694c4118b",
+            "earnings_transcripts:prepared_remarks:54-57:04afa549851b",
+            "earnings_transcripts:prepared_remarks:2-5:1bce0b96177e",
+            "earnings_transcripts:prepared_remarks:34-37:2a16497df4b7",
+            "earnings_transcripts:prepared_remarks:0-3:b4550bdb5c0c",
+            "earnings_transcripts:prepared_remarks:2-5:7730e7ae1507",
+            "earnings_transcripts:prepared_remarks:0-3:0b3b22ffa12d",
+            "earnings_transcripts:prepared_remarks:0-3:ac7644689c84",
+            "earnings_transcripts:prepared_remarks:0-3:18f2734ac042"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:82ca3b8a7079",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:0-3:b36b27eb9526",
+            "earnings_transcripts:prepared_remarks:0-3:e6e57b352df9",
+            "earnings_transcripts:prepared_remarks:0-3:ecfe52ba33ae",
+            "earnings_transcripts:prepared_remarks:0-3:502de0d9f328",
+            "earnings_transcripts:prepared_remarks:0-3:2767ceb33d31"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:86f76efad70b",
+          "n_gold": 1,
+          "ranked_ids": [
+            "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+            "earnings_transcripts:prepared_remarks:12-15:d2e62d6d4b3f",
+            "earnings_transcripts:prepared_remarks:12-15:b8b738314b33",
+            "earnings_transcripts:prepared_remarks:12-15:f80b938f442c",
+            "earnings_transcripts:prepared_remarks:12-15:ff1a2dd06b64",
+            "earnings_transcripts:prepared_remarks:12-15:321ca83deacf",
+            "earnings_transcripts:prepared_remarks:12-15:1144fa29c1c9",
+            "earnings_transcripts:prepared_remarks:12-15:03b6142922c1",
+            "earnings_transcripts:prepared_remarks:12-15:fb76c1bfe95d",
+            "earnings_transcripts:prepared_remarks:14-17:25cef2b65b63"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:88f5ecd8b009",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:0-3:b36b27eb9526",
+            "earnings_transcripts:prepared_remarks:0-3:e6e57b352df9",
+            "earnings_transcripts:prepared_remarks:0-3:ecfe52ba33ae",
+            "earnings_transcripts:prepared_remarks:0-3:502de0d9f328",
+            "earnings_transcripts:prepared_remarks:0-3:2767ceb33d31"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:8cabaf0f2568",
+          "n_gold": 1,
+          "ranked_ids": [
+            "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+            "earnings_transcripts:prepared_remarks:4-7:65fd19a8d74b",
+            "earnings_transcripts:prepared_remarks:6-9:11b6094d0d89",
+            "earnings_transcripts:unknown:0-3:2fdd293d7b1f",
+            "earnings_transcripts:prepared_remarks:6-9:826ba7396196",
+            "earnings_transcripts:prepared_remarks:6-9:db7f4388d8cc",
+            "earnings_transcripts:prepared_remarks:4-7:8e5dc83a5f36",
+            "earnings_transcripts:prepared_remarks:8-11:380459cd7c0f",
+            "earnings_transcripts:prepared_remarks:28-31:4ff91bb2e5ca",
+            "earnings_transcripts:prepared_remarks:12-15:4ef804fbc160"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:91316662a55c",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:78-81:59623e2861c1",
+            "earnings_transcripts:prepared_remarks:32-35:bde9f7618c80",
+            "earnings_transcripts:prepared_remarks:32-35:d74312327af4",
+            "earnings_transcripts:prepared_remarks:52-55:1e815b023b59",
+            "earnings_transcripts:prepared_remarks:10-13:e8ff2c01bbaf",
+            "earnings_transcripts:prepared_remarks:30-33:9963a8356895",
+            "earnings_transcripts:prepared_remarks:28-31:45e08e3dfaba",
+            "earnings_transcripts:prepared_remarks:10-13:17c1115c840a",
+            "earnings_transcripts:prepared_remarks:100-103:ef4f476e58b8",
+            "fiqa:unknown:8-11:54f408be137e"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:988c89c07732",
+          "n_gold": 1,
+          "ranked_ids": [
+            "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+            "earnings_transcripts:prepared_remarks:4-7:65fd19a8d74b",
+            "earnings_transcripts:prepared_remarks:6-9:11b6094d0d89",
+            "earnings_transcripts:unknown:0-3:2fdd293d7b1f",
+            "earnings_transcripts:prepared_remarks:6-9:826ba7396196",
+            "earnings_transcripts:prepared_remarks:6-9:db7f4388d8cc",
+            "earnings_transcripts:prepared_remarks:4-7:8e5dc83a5f36",
+            "earnings_transcripts:prepared_remarks:8-11:380459cd7c0f",
+            "earnings_transcripts:prepared_remarks:28-31:4ff91bb2e5ca",
+            "earnings_transcripts:prepared_remarks:12-15:4ef804fbc160"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:99856cb55bc9",
+          "n_gold": 1,
+          "ranked_ids": [
+            "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+            "earnings_transcripts:prepared_remarks:12-15:d2e62d6d4b3f",
+            "earnings_transcripts:prepared_remarks:12-15:b8b738314b33",
+            "earnings_transcripts:prepared_remarks:12-15:f80b938f442c",
+            "earnings_transcripts:prepared_remarks:12-15:ff1a2dd06b64",
+            "earnings_transcripts:prepared_remarks:12-15:321ca83deacf",
+            "earnings_transcripts:prepared_remarks:12-15:1144fa29c1c9",
+            "earnings_transcripts:prepared_remarks:12-15:03b6142922c1",
+            "earnings_transcripts:prepared_remarks:12-15:fb76c1bfe95d",
+            "earnings_transcripts:prepared_remarks:14-17:25cef2b65b63"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:99e239bd30c3",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:62-65:2760b3585fdd",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:0-3:b4550bdb5c0c",
+            "earnings_transcripts:prepared_remarks:30-33:44da94d32372",
+            "earnings_transcripts:prepared_remarks:0-3:0b3b22ffa12d",
+            "earnings_transcripts:prepared_remarks:0-3:ac7644689c84",
+            "earnings_transcripts:prepared_remarks:0-3:18f2734ac042",
+            "earnings_transcripts:prepared_remarks:0-3:58132b5a475e"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:a13091d05a4d",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:0-3:b36b27eb9526",
+            "earnings_transcripts:prepared_remarks:0-3:e6e57b352df9",
+            "earnings_transcripts:prepared_remarks:0-3:ecfe52ba33ae",
+            "earnings_transcripts:prepared_remarks:0-3:502de0d9f328",
+            "earnings_transcripts:prepared_remarks:0-3:2767ceb33d31"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:a4e9acfdcf93",
+          "n_gold": 1,
+          "ranked_ids": [
+            "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+            "earnings_transcripts:prepared_remarks:12-15:d2e62d6d4b3f",
+            "earnings_transcripts:prepared_remarks:12-15:b8b738314b33",
+            "earnings_transcripts:prepared_remarks:12-15:f80b938f442c",
+            "earnings_transcripts:prepared_remarks:12-15:ff1a2dd06b64",
+            "earnings_transcripts:prepared_remarks:12-15:321ca83deacf",
+            "earnings_transcripts:prepared_remarks:12-15:1144fa29c1c9",
+            "earnings_transcripts:prepared_remarks:12-15:03b6142922c1",
+            "earnings_transcripts:prepared_remarks:12-15:fb76c1bfe95d",
+            "earnings_transcripts:prepared_remarks:14-17:25cef2b65b63"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:ac7f750433d9",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:62-65:2760b3585fdd",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:0-3:b4550bdb5c0c",
+            "earnings_transcripts:prepared_remarks:30-33:44da94d32372",
+            "earnings_transcripts:prepared_remarks:0-3:0b3b22ffa12d",
+            "earnings_transcripts:prepared_remarks:0-3:ac7644689c84",
+            "earnings_transcripts:prepared_remarks:0-3:18f2734ac042",
+            "earnings_transcripts:prepared_remarks:0-3:58132b5a475e"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:b0099ff8982e",
+          "n_gold": 1,
+          "ranked_ids": [
+            "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+            "earnings_transcripts:prepared_remarks:12-15:d2e62d6d4b3f",
+            "earnings_transcripts:prepared_remarks:12-15:b8b738314b33",
+            "earnings_transcripts:prepared_remarks:12-15:f80b938f442c",
+            "earnings_transcripts:prepared_remarks:12-15:ff1a2dd06b64",
+            "earnings_transcripts:prepared_remarks:12-15:321ca83deacf",
+            "earnings_transcripts:prepared_remarks:12-15:1144fa29c1c9",
+            "earnings_transcripts:prepared_remarks:12-15:03b6142922c1",
+            "earnings_transcripts:prepared_remarks:12-15:fb76c1bfe95d",
+            "earnings_transcripts:prepared_remarks:14-17:25cef2b65b63"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:b04852251f1d",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:0-3:b36b27eb9526",
+            "earnings_transcripts:prepared_remarks:0-3:e6e57b352df9",
+            "earnings_transcripts:prepared_remarks:0-3:ecfe52ba33ae",
+            "earnings_transcripts:prepared_remarks:0-3:502de0d9f328",
+            "earnings_transcripts:prepared_remarks:0-3:2767ceb33d31"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:b78a721fe332",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:78-81:59623e2861c1",
+            "earnings_transcripts:prepared_remarks:32-35:bde9f7618c80",
+            "earnings_transcripts:prepared_remarks:32-35:d74312327af4",
+            "earnings_transcripts:prepared_remarks:52-55:1e815b023b59",
+            "earnings_transcripts:prepared_remarks:10-13:e8ff2c01bbaf",
+            "earnings_transcripts:prepared_remarks:30-33:9963a8356895",
+            "earnings_transcripts:prepared_remarks:28-31:45e08e3dfaba",
+            "earnings_transcripts:prepared_remarks:10-13:17c1115c840a",
+            "earnings_transcripts:prepared_remarks:100-103:ef4f476e58b8",
+            "fiqa:unknown:8-11:54f408be137e"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:b7ba886b6103",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:78-81:59623e2861c1",
+            "earnings_transcripts:prepared_remarks:32-35:bde9f7618c80",
+            "earnings_transcripts:prepared_remarks:32-35:d74312327af4",
+            "earnings_transcripts:prepared_remarks:52-55:1e815b023b59",
+            "earnings_transcripts:prepared_remarks:10-13:e8ff2c01bbaf",
+            "earnings_transcripts:prepared_remarks:30-33:9963a8356895",
+            "earnings_transcripts:prepared_remarks:28-31:45e08e3dfaba",
+            "earnings_transcripts:prepared_remarks:10-13:17c1115c840a",
+            "earnings_transcripts:prepared_remarks:100-103:ef4f476e58b8",
+            "fiqa:unknown:8-11:54f408be137e"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:bc137c56fcfa",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:0-3:b36b27eb9526",
+            "earnings_transcripts:prepared_remarks:0-3:e6e57b352df9",
+            "earnings_transcripts:prepared_remarks:0-3:ecfe52ba33ae",
+            "earnings_transcripts:prepared_remarks:0-3:502de0d9f328",
+            "earnings_transcripts:prepared_remarks:0-3:2767ceb33d31"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:c1526420f01e",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:78-81:59623e2861c1",
+            "earnings_transcripts:prepared_remarks:32-35:bde9f7618c80",
+            "earnings_transcripts:prepared_remarks:32-35:d74312327af4",
+            "earnings_transcripts:prepared_remarks:52-55:1e815b023b59",
+            "earnings_transcripts:prepared_remarks:10-13:e8ff2c01bbaf",
+            "earnings_transcripts:prepared_remarks:30-33:9963a8356895",
+            "earnings_transcripts:prepared_remarks:28-31:45e08e3dfaba",
+            "earnings_transcripts:prepared_remarks:10-13:17c1115c840a",
+            "earnings_transcripts:prepared_remarks:100-103:ef4f476e58b8",
+            "fiqa:unknown:8-11:54f408be137e"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:c76237d16f67",
+          "n_gold": 1,
+          "ranked_ids": [
+            "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+            "earnings_transcripts:prepared_remarks:12-15:d2e62d6d4b3f",
+            "earnings_transcripts:prepared_remarks:12-15:b8b738314b33",
+            "earnings_transcripts:prepared_remarks:12-15:f80b938f442c",
+            "earnings_transcripts:prepared_remarks:12-15:ff1a2dd06b64",
+            "earnings_transcripts:prepared_remarks:12-15:321ca83deacf",
+            "earnings_transcripts:prepared_remarks:12-15:1144fa29c1c9",
+            "earnings_transcripts:prepared_remarks:12-15:03b6142922c1",
+            "earnings_transcripts:prepared_remarks:12-15:fb76c1bfe95d",
+            "earnings_transcripts:prepared_remarks:14-17:25cef2b65b63"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:d5aa6d4fb147",
+          "n_gold": 1,
+          "ranked_ids": [
+            "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+            "earnings_transcripts:prepared_remarks:12-15:d2e62d6d4b3f",
+            "earnings_transcripts:prepared_remarks:12-15:b8b738314b33",
+            "earnings_transcripts:prepared_remarks:12-15:f80b938f442c",
+            "earnings_transcripts:prepared_remarks:12-15:ff1a2dd06b64",
+            "earnings_transcripts:prepared_remarks:12-15:321ca83deacf",
+            "earnings_transcripts:prepared_remarks:12-15:1144fa29c1c9",
+            "earnings_transcripts:prepared_remarks:12-15:03b6142922c1",
+            "earnings_transcripts:prepared_remarks:12-15:fb76c1bfe95d",
+            "earnings_transcripts:prepared_remarks:14-17:25cef2b65b63"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:d771100f83ea",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:0-3:b36b27eb9526",
+            "earnings_transcripts:prepared_remarks:0-3:e6e57b352df9",
+            "earnings_transcripts:prepared_remarks:0-3:ecfe52ba33ae",
+            "earnings_transcripts:prepared_remarks:0-3:502de0d9f328",
+            "earnings_transcripts:prepared_remarks:0-3:2767ceb33d31"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:e604089c9a9f",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:0-3:b36b27eb9526",
+            "earnings_transcripts:prepared_remarks:0-3:e6e57b352df9",
+            "earnings_transcripts:prepared_remarks:0-3:ecfe52ba33ae",
+            "earnings_transcripts:prepared_remarks:0-3:502de0d9f328",
+            "earnings_transcripts:prepared_remarks:0-3:2767ceb33d31"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:ee195e15064e",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:0-3:b36b27eb9526",
+            "earnings_transcripts:prepared_remarks:0-3:e6e57b352df9",
+            "earnings_transcripts:prepared_remarks:0-3:ecfe52ba33ae",
+            "earnings_transcripts:prepared_remarks:0-3:502de0d9f328",
+            "earnings_transcripts:prepared_remarks:0-3:2767ceb33d31"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:f4b715dd0421",
+          "n_gold": 1,
+          "ranked_ids": [
+            "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+            "earnings_transcripts:prepared_remarks:12-15:d2e62d6d4b3f",
+            "earnings_transcripts:prepared_remarks:12-15:b8b738314b33",
+            "earnings_transcripts:prepared_remarks:12-15:f80b938f442c",
+            "earnings_transcripts:prepared_remarks:12-15:ff1a2dd06b64",
+            "earnings_transcripts:prepared_remarks:12-15:321ca83deacf",
+            "earnings_transcripts:prepared_remarks:12-15:1144fa29c1c9",
+            "earnings_transcripts:prepared_remarks:12-15:03b6142922c1",
+            "earnings_transcripts:prepared_remarks:12-15:fb76c1bfe95d",
+            "earnings_transcripts:prepared_remarks:14-17:25cef2b65b63"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:faf6dd87c52a",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:0-3:b36b27eb9526",
+            "earnings_transcripts:prepared_remarks:0-3:e6e57b352df9",
+            "earnings_transcripts:prepared_remarks:0-3:ecfe52ba33ae",
+            "earnings_transcripts:prepared_remarks:0-3:502de0d9f328",
+            "earnings_transcripts:prepared_remarks:0-3:2767ceb33d31"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:ff017dec7dcc",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:0-3:b36b27eb9526",
+            "earnings_transcripts:prepared_remarks:0-3:e6e57b352df9",
+            "earnings_transcripts:prepared_remarks:0-3:ecfe52ba33ae",
+            "earnings_transcripts:prepared_remarks:0-3:502de0d9f328",
+            "earnings_transcripts:prepared_remarks:0-3:2767ceb33d31"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
           }
         }
       ]
     },
     "dense": {
       "backend": "dense:sentence-transformers",
-      "n_queries": 6,
+      "n_queries": 50,
       "k_values": [
         1,
         3,
@@ -184,155 +1452,1423 @@
         10
       ],
       "mean_recall": {
-        "@1": 0.333333,
-        "@3": 0.833333,
-        "@5": 1.0,
-        "@10": 1.0
+        "@1": 0.0,
+        "@3": 0.0,
+        "@5": 0.0,
+        "@10": 0.0
       },
       "mean_ndcg": {
-        "@1": 0.333333,
-        "@3": 0.605155,
-        "@5": 0.676935,
-        "@10": 0.676935
+        "@1": 0.0,
+        "@3": 0.0,
+        "@5": 0.0,
+        "@10": 0.0
       },
       "queries": [
         {
-          "query_id": "q:08c92e070731",
+          "query_id": "q:0753167abc7e",
           "n_gold": 1,
           "ranked_ids": [
-            "finance_alpaca:qa:0-2:33ff30950ed3",
-            "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29",
-            "fiqa:unknown:0-1:ad10d17281b6",
-            "earnings_transcripts:qa:0-1:7b087b296300"
-          ],
-          "recall": {
-            "@1": 0.0,
-            "@3": 1.0,
-            "@5": 1.0,
-            "@10": 1.0
-          },
-          "ndcg": {
-            "@1": 0.0,
-            "@3": 0.5,
-            "@5": 0.5,
-            "@10": 0.5
-          }
-        },
-        {
-          "query_id": "q:3f46e8f7b162",
-          "n_gold": 1,
-          "ranked_ids": [
-            "finance_alpaca:qa:0-2:33ff30950ed3",
-            "fiqa:unknown:0-1:ad10d17281b6",
-            "earnings_transcripts:qa:0-1:7b087b296300",
-            "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29"
-          ],
-          "recall": {
-            "@1": 1.0,
-            "@3": 1.0,
-            "@5": 1.0,
-            "@10": 1.0
-          },
-          "ndcg": {
-            "@1": 1.0,
-            "@3": 1.0,
-            "@5": 1.0,
-            "@10": 1.0
-          }
-        },
-        {
-          "query_id": "q:58be2f3785d8",
-          "n_gold": 1,
-          "ranked_ids": [
-            "finance_alpaca:qa:0-2:33ff30950ed3",
-            "fiqa:unknown:0-1:ad10d17281b6",
-            "earnings_transcripts:qa:0-1:7b087b296300",
-            "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29"
-          ],
-          "recall": {
-            "@1": 0.0,
-            "@3": 1.0,
-            "@5": 1.0,
-            "@10": 1.0
-          },
-          "ndcg": {
-            "@1": 0.0,
-            "@3": 0.5,
-            "@5": 0.5,
-            "@10": 0.5
-          }
-        },
-        {
-          "query_id": "q:921d1d4388a7",
-          "n_gold": 1,
-          "ranked_ids": [
-            "finance_alpaca:qa:0-2:33ff30950ed3",
-            "fiqa:unknown:0-1:ad10d17281b6",
-            "earnings_transcripts:qa:0-1:7b087b296300",
-            "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29"
+            "earnings_transcripts:prepared_remarks:10-13:7becbd0fd078",
+            "earnings_transcripts:prepared_remarks:8-11:92576dc38997",
+            "earnings_transcripts:prepared_remarks:10-13:011f807f061d",
+            "earnings_transcripts:prepared_remarks:10-13:88ef865edc5c",
+            "earnings_transcripts:prepared_remarks:10-13:2bbf4ede06e7",
+            "earnings_transcripts:prepared_remarks:10-13:1adf798efed5",
+            "earnings_transcripts:prepared_remarks:10-13:e2f0795ac053",
+            "earnings_transcripts:prepared_remarks:10-13:45f152d90e09",
+            "earnings_transcripts:prepared_remarks:4-7:d862693aebb4",
+            "earnings_transcripts:prepared_remarks:6-9:5ce893f7f296"
           ],
           "recall": {
             "@1": 0.0,
             "@3": 0.0,
-            "@5": 1.0,
-            "@10": 1.0
+            "@5": 0.0,
+            "@10": 0.0
           },
           "ndcg": {
             "@1": 0.0,
             "@3": 0.0,
-            "@5": 0.430677,
-            "@10": 0.430677
+            "@5": 0.0,
+            "@10": 0.0
           }
         },
         {
-          "query_id": "q:a20d45cef5fe",
+          "query_id": "q:0b7c330af216",
           "n_gold": 1,
           "ranked_ids": [
-            "finance_alpaca:qa:0-2:33ff30950ed3",
-            "earnings_transcripts:qa:0-1:7b087b296300",
-            "fiqa:unknown:0-1:ad10d17281b6",
-            "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29"
+            "earnings_transcripts:prepared_remarks:10-13:7becbd0fd078",
+            "earnings_transcripts:prepared_remarks:8-11:92576dc38997",
+            "earnings_transcripts:prepared_remarks:10-13:011f807f061d",
+            "earnings_transcripts:prepared_remarks:10-13:88ef865edc5c",
+            "earnings_transcripts:prepared_remarks:10-13:2bbf4ede06e7",
+            "earnings_transcripts:prepared_remarks:10-13:1adf798efed5",
+            "earnings_transcripts:prepared_remarks:10-13:e2f0795ac053",
+            "earnings_transcripts:prepared_remarks:10-13:45f152d90e09",
+            "earnings_transcripts:prepared_remarks:4-7:d862693aebb4",
+            "earnings_transcripts:prepared_remarks:6-9:5ce893f7f296"
           ],
           "recall": {
             "@1": 0.0,
-            "@3": 1.0,
-            "@5": 1.0,
-            "@10": 1.0
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
           },
           "ndcg": {
             "@1": 0.0,
-            "@3": 0.63093,
-            "@5": 0.63093,
-            "@10": 0.63093
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
           }
         },
         {
-          "query_id": "q:da53e5db452e",
+          "query_id": "q:0eb8709e9332",
           "n_gold": 1,
           "ranked_ids": [
-            "fiqa:unknown:0-1:ad10d17281b6",
-            "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29",
-            "finance_alpaca:qa:0-2:33ff30950ed3",
-            "earnings_transcripts:qa:0-1:7b087b296300"
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca",
+            "earnings_transcripts:prepared_remarks:12-15:cff0a8d8f545",
+            "earnings_transcripts:prepared_remarks:8-11:669bdf76f97e",
+            "earnings_transcripts:prepared_remarks:8-11:84ccfa14db6c",
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:10-13:fb552a4de356"
           ],
           "recall": {
-            "@1": 1.0,
-            "@3": 1.0,
-            "@5": 1.0,
-            "@10": 1.0
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
           },
           "ndcg": {
-            "@1": 1.0,
-            "@3": 1.0,
-            "@5": 1.0,
-            "@10": 1.0
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:117dbaf015b5",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:28-31:511aba56e8b9",
+            "earnings_transcripts:prepared_remarks:4-7:8d1c24664d24",
+            "earnings_transcripts:prepared_remarks:4-7:b6187345a40f",
+            "earnings_transcripts:prepared_remarks:4-7:01409f01cfe2",
+            "earnings_transcripts:prepared_remarks:4-7:f502e8305af2",
+            "earnings_transcripts:prepared_remarks:4-7:6e9bc69496ec",
+            "earnings_transcripts:prepared_remarks:4-7:5ffe08d74ff1",
+            "earnings_transcripts:prepared_remarks:4-7:f016e6cab072",
+            "earnings_transcripts:prepared_remarks:4-7:e60428c623d7",
+            "earnings_transcripts:prepared_remarks:4-7:d862693aebb4"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:146c23f1746a",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:28-31:511aba56e8b9",
+            "earnings_transcripts:prepared_remarks:4-7:8d1c24664d24",
+            "earnings_transcripts:prepared_remarks:4-7:b6187345a40f",
+            "earnings_transcripts:prepared_remarks:4-7:01409f01cfe2",
+            "earnings_transcripts:prepared_remarks:4-7:f502e8305af2",
+            "earnings_transcripts:prepared_remarks:4-7:6e9bc69496ec",
+            "earnings_transcripts:prepared_remarks:4-7:5ffe08d74ff1",
+            "earnings_transcripts:prepared_remarks:4-7:f016e6cab072",
+            "earnings_transcripts:prepared_remarks:4-7:e60428c623d7",
+            "earnings_transcripts:prepared_remarks:4-7:d862693aebb4"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:15004437a249",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:28-31:511aba56e8b9",
+            "earnings_transcripts:prepared_remarks:4-7:8d1c24664d24",
+            "earnings_transcripts:prepared_remarks:4-7:b6187345a40f",
+            "earnings_transcripts:prepared_remarks:4-7:01409f01cfe2",
+            "earnings_transcripts:prepared_remarks:4-7:f502e8305af2",
+            "earnings_transcripts:prepared_remarks:4-7:6e9bc69496ec",
+            "earnings_transcripts:prepared_remarks:4-7:5ffe08d74ff1",
+            "earnings_transcripts:prepared_remarks:4-7:f016e6cab072",
+            "earnings_transcripts:prepared_remarks:4-7:e60428c623d7",
+            "earnings_transcripts:prepared_remarks:4-7:d862693aebb4"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:18afa10894ae",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+            "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+            "earnings_transcripts:prepared_remarks:8-11:d6f3441e81a6",
+            "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+            "earnings_transcripts:prepared_remarks:8-11:c639bec11f5f",
+            "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+            "earnings_transcripts:prepared_remarks:14-17:f7a25b0c2862",
+            "earnings_transcripts:prepared_remarks:10-13:93e70569f2fb",
+            "earnings_transcripts:prepared_remarks:10-13:9ce8ba08d98d",
+            "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:1a169c664de0",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca",
+            "earnings_transcripts:prepared_remarks:12-15:cff0a8d8f545",
+            "earnings_transcripts:prepared_remarks:8-11:669bdf76f97e",
+            "earnings_transcripts:prepared_remarks:8-11:84ccfa14db6c",
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:10-13:fb552a4de356"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:1e18d50c13dd",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:10-13:deda65deabdb",
+            "earnings_transcripts:prepared_remarks:4-7:65fd19a8d74b",
+            "earnings_transcripts:prepared_remarks:8-11:a172f641f8d7",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:cbe54bb5dbb3",
+            "earnings_transcripts:prepared_remarks:20-23:bd7b61dfccdc",
+            "earnings_transcripts:prepared_remarks:10-13:3e888520d4bd",
+            "earnings_transcripts:prepared_remarks:10-13:e8bff21839c8",
+            "earnings_transcripts:prepared_remarks:8-11:84ccfa14db6c"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:246367cf9a4e",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+            "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+            "earnings_transcripts:prepared_remarks:8-11:d6f3441e81a6",
+            "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+            "earnings_transcripts:prepared_remarks:8-11:c639bec11f5f",
+            "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+            "earnings_transcripts:prepared_remarks:14-17:f7a25b0c2862",
+            "earnings_transcripts:prepared_remarks:10-13:93e70569f2fb",
+            "earnings_transcripts:prepared_remarks:10-13:9ce8ba08d98d",
+            "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:256439a9927e",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca",
+            "earnings_transcripts:prepared_remarks:12-15:cff0a8d8f545",
+            "earnings_transcripts:prepared_remarks:8-11:669bdf76f97e",
+            "earnings_transcripts:prepared_remarks:8-11:84ccfa14db6c",
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:10-13:fb552a4de356"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:2710e29ff068",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:28-31:511aba56e8b9",
+            "earnings_transcripts:prepared_remarks:4-7:8d1c24664d24",
+            "earnings_transcripts:prepared_remarks:4-7:b6187345a40f",
+            "earnings_transcripts:prepared_remarks:4-7:01409f01cfe2",
+            "earnings_transcripts:prepared_remarks:4-7:f502e8305af2",
+            "earnings_transcripts:prepared_remarks:4-7:6e9bc69496ec",
+            "earnings_transcripts:prepared_remarks:4-7:5ffe08d74ff1",
+            "earnings_transcripts:prepared_remarks:4-7:f016e6cab072",
+            "earnings_transcripts:prepared_remarks:4-7:e60428c623d7",
+            "earnings_transcripts:prepared_remarks:4-7:d862693aebb4"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:318f6c6faf30",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca",
+            "earnings_transcripts:prepared_remarks:12-15:cff0a8d8f545",
+            "earnings_transcripts:prepared_remarks:8-11:669bdf76f97e",
+            "earnings_transcripts:prepared_remarks:8-11:84ccfa14db6c",
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:10-13:fb552a4de356"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:35fda358bf10",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:10-13:deda65deabdb",
+            "earnings_transcripts:prepared_remarks:4-7:65fd19a8d74b",
+            "earnings_transcripts:prepared_remarks:8-11:a172f641f8d7",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:cbe54bb5dbb3",
+            "earnings_transcripts:prepared_remarks:20-23:bd7b61dfccdc",
+            "earnings_transcripts:prepared_remarks:10-13:3e888520d4bd",
+            "earnings_transcripts:prepared_remarks:10-13:e8bff21839c8",
+            "earnings_transcripts:prepared_remarks:8-11:84ccfa14db6c"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:3722291f51a6",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:28-31:511aba56e8b9",
+            "earnings_transcripts:prepared_remarks:4-7:8d1c24664d24",
+            "earnings_transcripts:prepared_remarks:4-7:b6187345a40f",
+            "earnings_transcripts:prepared_remarks:4-7:01409f01cfe2",
+            "earnings_transcripts:prepared_remarks:4-7:f502e8305af2",
+            "earnings_transcripts:prepared_remarks:4-7:6e9bc69496ec",
+            "earnings_transcripts:prepared_remarks:4-7:5ffe08d74ff1",
+            "earnings_transcripts:prepared_remarks:4-7:f016e6cab072",
+            "earnings_transcripts:prepared_remarks:4-7:e60428c623d7",
+            "earnings_transcripts:prepared_remarks:4-7:d862693aebb4"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:37e090b25f49",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca",
+            "earnings_transcripts:prepared_remarks:12-15:cff0a8d8f545",
+            "earnings_transcripts:prepared_remarks:8-11:669bdf76f97e",
+            "earnings_transcripts:prepared_remarks:8-11:84ccfa14db6c",
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:10-13:fb552a4de356"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:3ca9a3665e10",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:10-13:deda65deabdb",
+            "earnings_transcripts:prepared_remarks:4-7:65fd19a8d74b",
+            "earnings_transcripts:prepared_remarks:8-11:a172f641f8d7",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:cbe54bb5dbb3",
+            "earnings_transcripts:prepared_remarks:20-23:bd7b61dfccdc",
+            "earnings_transcripts:prepared_remarks:10-13:3e888520d4bd",
+            "earnings_transcripts:prepared_remarks:10-13:e8bff21839c8",
+            "earnings_transcripts:prepared_remarks:8-11:84ccfa14db6c"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:535d8859b10c",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca",
+            "earnings_transcripts:prepared_remarks:12-15:cff0a8d8f545",
+            "earnings_transcripts:prepared_remarks:8-11:669bdf76f97e",
+            "earnings_transcripts:prepared_remarks:8-11:84ccfa14db6c",
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:10-13:fb552a4de356"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:5ce38bdbcf00",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:28-31:511aba56e8b9",
+            "earnings_transcripts:prepared_remarks:4-7:8d1c24664d24",
+            "earnings_transcripts:prepared_remarks:4-7:b6187345a40f",
+            "earnings_transcripts:prepared_remarks:4-7:01409f01cfe2",
+            "earnings_transcripts:prepared_remarks:4-7:f502e8305af2",
+            "earnings_transcripts:prepared_remarks:4-7:6e9bc69496ec",
+            "earnings_transcripts:prepared_remarks:4-7:5ffe08d74ff1",
+            "earnings_transcripts:prepared_remarks:4-7:f016e6cab072",
+            "earnings_transcripts:prepared_remarks:4-7:e60428c623d7",
+            "earnings_transcripts:prepared_remarks:4-7:d862693aebb4"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:6949f5a1f18e",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:12-15:87c0286ba01a",
+            "earnings_transcripts:prepared_remarks:10-13:e06ad409e995",
+            "earnings_transcripts:prepared_remarks:10-13:e62ab4795a1b",
+            "earnings_transcripts:prepared_remarks:8-11:923ae02240dc",
+            "earnings_transcripts:prepared_remarks:12-15:f869af859726",
+            "earnings_transcripts:prepared_remarks:6-9:e60a3eeadaee",
+            "earnings_transcripts:prepared_remarks:8-11:f0b4febd5613",
+            "earnings_transcripts:prepared_remarks:12-15:32f1a42bdeb9",
+            "earnings_transcripts:prepared_remarks:8-11:18739dd674aa",
+            "earnings_transcripts:prepared_remarks:4-7:add8bfa93035"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:6c075992edc3",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+            "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+            "earnings_transcripts:prepared_remarks:8-11:d6f3441e81a6",
+            "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+            "earnings_transcripts:prepared_remarks:8-11:c639bec11f5f",
+            "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+            "earnings_transcripts:prepared_remarks:14-17:f7a25b0c2862",
+            "earnings_transcripts:prepared_remarks:10-13:93e70569f2fb",
+            "earnings_transcripts:prepared_remarks:10-13:9ce8ba08d98d",
+            "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:70d07f7fe1be",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:7becbd0fd078",
+            "earnings_transcripts:prepared_remarks:8-11:92576dc38997",
+            "earnings_transcripts:prepared_remarks:10-13:011f807f061d",
+            "earnings_transcripts:prepared_remarks:10-13:88ef865edc5c",
+            "earnings_transcripts:prepared_remarks:10-13:2bbf4ede06e7",
+            "earnings_transcripts:prepared_remarks:10-13:1adf798efed5",
+            "earnings_transcripts:prepared_remarks:10-13:e2f0795ac053",
+            "earnings_transcripts:prepared_remarks:10-13:45f152d90e09",
+            "earnings_transcripts:prepared_remarks:4-7:d862693aebb4",
+            "earnings_transcripts:prepared_remarks:6-9:5ce893f7f296"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:7af1d54366d2",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:7becbd0fd078",
+            "earnings_transcripts:prepared_remarks:8-11:92576dc38997",
+            "earnings_transcripts:prepared_remarks:10-13:011f807f061d",
+            "earnings_transcripts:prepared_remarks:10-13:88ef865edc5c",
+            "earnings_transcripts:prepared_remarks:10-13:2bbf4ede06e7",
+            "earnings_transcripts:prepared_remarks:10-13:1adf798efed5",
+            "earnings_transcripts:prepared_remarks:10-13:e2f0795ac053",
+            "earnings_transcripts:prepared_remarks:10-13:45f152d90e09",
+            "earnings_transcripts:prepared_remarks:4-7:d862693aebb4",
+            "earnings_transcripts:prepared_remarks:6-9:5ce893f7f296"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:7fa150ff4c57",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca",
+            "earnings_transcripts:prepared_remarks:12-15:cff0a8d8f545",
+            "earnings_transcripts:prepared_remarks:8-11:669bdf76f97e",
+            "earnings_transcripts:prepared_remarks:8-11:84ccfa14db6c",
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:10-13:fb552a4de356"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:82a186012d11",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:7becbd0fd078",
+            "earnings_transcripts:prepared_remarks:8-11:92576dc38997",
+            "earnings_transcripts:prepared_remarks:10-13:011f807f061d",
+            "earnings_transcripts:prepared_remarks:10-13:88ef865edc5c",
+            "earnings_transcripts:prepared_remarks:10-13:2bbf4ede06e7",
+            "earnings_transcripts:prepared_remarks:10-13:1adf798efed5",
+            "earnings_transcripts:prepared_remarks:10-13:e2f0795ac053",
+            "earnings_transcripts:prepared_remarks:10-13:45f152d90e09",
+            "earnings_transcripts:prepared_remarks:4-7:d862693aebb4",
+            "earnings_transcripts:prepared_remarks:6-9:5ce893f7f296"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:82ca3b8a7079",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca",
+            "earnings_transcripts:prepared_remarks:12-15:cff0a8d8f545",
+            "earnings_transcripts:prepared_remarks:8-11:669bdf76f97e",
+            "earnings_transcripts:prepared_remarks:8-11:84ccfa14db6c",
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:10-13:fb552a4de356"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:86f76efad70b",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+            "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+            "earnings_transcripts:prepared_remarks:8-11:d6f3441e81a6",
+            "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+            "earnings_transcripts:prepared_remarks:8-11:c639bec11f5f",
+            "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+            "earnings_transcripts:prepared_remarks:14-17:f7a25b0c2862",
+            "earnings_transcripts:prepared_remarks:10-13:93e70569f2fb",
+            "earnings_transcripts:prepared_remarks:10-13:9ce8ba08d98d",
+            "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:88f5ecd8b009",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca",
+            "earnings_transcripts:prepared_remarks:12-15:cff0a8d8f545",
+            "earnings_transcripts:prepared_remarks:8-11:669bdf76f97e",
+            "earnings_transcripts:prepared_remarks:8-11:84ccfa14db6c",
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:10-13:fb552a4de356"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:8cabaf0f2568",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:12-15:87c0286ba01a",
+            "earnings_transcripts:prepared_remarks:10-13:e06ad409e995",
+            "earnings_transcripts:prepared_remarks:10-13:e62ab4795a1b",
+            "earnings_transcripts:prepared_remarks:8-11:923ae02240dc",
+            "earnings_transcripts:prepared_remarks:12-15:f869af859726",
+            "earnings_transcripts:prepared_remarks:6-9:e60a3eeadaee",
+            "earnings_transcripts:prepared_remarks:8-11:f0b4febd5613",
+            "earnings_transcripts:prepared_remarks:12-15:32f1a42bdeb9",
+            "earnings_transcripts:prepared_remarks:8-11:18739dd674aa",
+            "earnings_transcripts:prepared_remarks:4-7:add8bfa93035"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:91316662a55c",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:10-13:deda65deabdb",
+            "earnings_transcripts:prepared_remarks:4-7:65fd19a8d74b",
+            "earnings_transcripts:prepared_remarks:8-11:a172f641f8d7",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:cbe54bb5dbb3",
+            "earnings_transcripts:prepared_remarks:20-23:bd7b61dfccdc",
+            "earnings_transcripts:prepared_remarks:10-13:3e888520d4bd",
+            "earnings_transcripts:prepared_remarks:10-13:e8bff21839c8",
+            "earnings_transcripts:prepared_remarks:8-11:84ccfa14db6c"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:988c89c07732",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:12-15:87c0286ba01a",
+            "earnings_transcripts:prepared_remarks:10-13:e06ad409e995",
+            "earnings_transcripts:prepared_remarks:10-13:e62ab4795a1b",
+            "earnings_transcripts:prepared_remarks:8-11:923ae02240dc",
+            "earnings_transcripts:prepared_remarks:12-15:f869af859726",
+            "earnings_transcripts:prepared_remarks:6-9:e60a3eeadaee",
+            "earnings_transcripts:prepared_remarks:8-11:f0b4febd5613",
+            "earnings_transcripts:prepared_remarks:12-15:32f1a42bdeb9",
+            "earnings_transcripts:prepared_remarks:8-11:18739dd674aa",
+            "earnings_transcripts:prepared_remarks:4-7:add8bfa93035"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:99856cb55bc9",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+            "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+            "earnings_transcripts:prepared_remarks:8-11:d6f3441e81a6",
+            "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+            "earnings_transcripts:prepared_remarks:8-11:c639bec11f5f",
+            "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+            "earnings_transcripts:prepared_remarks:14-17:f7a25b0c2862",
+            "earnings_transcripts:prepared_remarks:10-13:93e70569f2fb",
+            "earnings_transcripts:prepared_remarks:10-13:9ce8ba08d98d",
+            "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:99e239bd30c3",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:28-31:511aba56e8b9",
+            "earnings_transcripts:prepared_remarks:4-7:8d1c24664d24",
+            "earnings_transcripts:prepared_remarks:4-7:b6187345a40f",
+            "earnings_transcripts:prepared_remarks:4-7:01409f01cfe2",
+            "earnings_transcripts:prepared_remarks:4-7:f502e8305af2",
+            "earnings_transcripts:prepared_remarks:4-7:6e9bc69496ec",
+            "earnings_transcripts:prepared_remarks:4-7:5ffe08d74ff1",
+            "earnings_transcripts:prepared_remarks:4-7:f016e6cab072",
+            "earnings_transcripts:prepared_remarks:4-7:e60428c623d7",
+            "earnings_transcripts:prepared_remarks:4-7:d862693aebb4"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:a13091d05a4d",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca",
+            "earnings_transcripts:prepared_remarks:12-15:cff0a8d8f545",
+            "earnings_transcripts:prepared_remarks:8-11:669bdf76f97e",
+            "earnings_transcripts:prepared_remarks:8-11:84ccfa14db6c",
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:10-13:fb552a4de356"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:a4e9acfdcf93",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+            "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+            "earnings_transcripts:prepared_remarks:8-11:d6f3441e81a6",
+            "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+            "earnings_transcripts:prepared_remarks:8-11:c639bec11f5f",
+            "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+            "earnings_transcripts:prepared_remarks:14-17:f7a25b0c2862",
+            "earnings_transcripts:prepared_remarks:10-13:93e70569f2fb",
+            "earnings_transcripts:prepared_remarks:10-13:9ce8ba08d98d",
+            "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:ac7f750433d9",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:28-31:511aba56e8b9",
+            "earnings_transcripts:prepared_remarks:4-7:8d1c24664d24",
+            "earnings_transcripts:prepared_remarks:4-7:b6187345a40f",
+            "earnings_transcripts:prepared_remarks:4-7:01409f01cfe2",
+            "earnings_transcripts:prepared_remarks:4-7:f502e8305af2",
+            "earnings_transcripts:prepared_remarks:4-7:6e9bc69496ec",
+            "earnings_transcripts:prepared_remarks:4-7:5ffe08d74ff1",
+            "earnings_transcripts:prepared_remarks:4-7:f016e6cab072",
+            "earnings_transcripts:prepared_remarks:4-7:e60428c623d7",
+            "earnings_transcripts:prepared_remarks:4-7:d862693aebb4"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:b0099ff8982e",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+            "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+            "earnings_transcripts:prepared_remarks:8-11:d6f3441e81a6",
+            "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+            "earnings_transcripts:prepared_remarks:8-11:c639bec11f5f",
+            "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+            "earnings_transcripts:prepared_remarks:14-17:f7a25b0c2862",
+            "earnings_transcripts:prepared_remarks:10-13:93e70569f2fb",
+            "earnings_transcripts:prepared_remarks:10-13:9ce8ba08d98d",
+            "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:b04852251f1d",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca",
+            "earnings_transcripts:prepared_remarks:12-15:cff0a8d8f545",
+            "earnings_transcripts:prepared_remarks:8-11:669bdf76f97e",
+            "earnings_transcripts:prepared_remarks:8-11:84ccfa14db6c",
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:10-13:fb552a4de356"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:b78a721fe332",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:10-13:deda65deabdb",
+            "earnings_transcripts:prepared_remarks:4-7:65fd19a8d74b",
+            "earnings_transcripts:prepared_remarks:8-11:a172f641f8d7",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:cbe54bb5dbb3",
+            "earnings_transcripts:prepared_remarks:20-23:bd7b61dfccdc",
+            "earnings_transcripts:prepared_remarks:10-13:3e888520d4bd",
+            "earnings_transcripts:prepared_remarks:10-13:e8bff21839c8",
+            "earnings_transcripts:prepared_remarks:8-11:84ccfa14db6c"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:b7ba886b6103",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:10-13:deda65deabdb",
+            "earnings_transcripts:prepared_remarks:4-7:65fd19a8d74b",
+            "earnings_transcripts:prepared_remarks:8-11:a172f641f8d7",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:cbe54bb5dbb3",
+            "earnings_transcripts:prepared_remarks:20-23:bd7b61dfccdc",
+            "earnings_transcripts:prepared_remarks:10-13:3e888520d4bd",
+            "earnings_transcripts:prepared_remarks:10-13:e8bff21839c8",
+            "earnings_transcripts:prepared_remarks:8-11:84ccfa14db6c"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:bc137c56fcfa",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca",
+            "earnings_transcripts:prepared_remarks:12-15:cff0a8d8f545",
+            "earnings_transcripts:prepared_remarks:8-11:669bdf76f97e",
+            "earnings_transcripts:prepared_remarks:8-11:84ccfa14db6c",
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:10-13:fb552a4de356"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:c1526420f01e",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:10-13:deda65deabdb",
+            "earnings_transcripts:prepared_remarks:4-7:65fd19a8d74b",
+            "earnings_transcripts:prepared_remarks:8-11:a172f641f8d7",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:cbe54bb5dbb3",
+            "earnings_transcripts:prepared_remarks:20-23:bd7b61dfccdc",
+            "earnings_transcripts:prepared_remarks:10-13:3e888520d4bd",
+            "earnings_transcripts:prepared_remarks:10-13:e8bff21839c8",
+            "earnings_transcripts:prepared_remarks:8-11:84ccfa14db6c"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:c76237d16f67",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+            "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+            "earnings_transcripts:prepared_remarks:8-11:d6f3441e81a6",
+            "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+            "earnings_transcripts:prepared_remarks:8-11:c639bec11f5f",
+            "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+            "earnings_transcripts:prepared_remarks:14-17:f7a25b0c2862",
+            "earnings_transcripts:prepared_remarks:10-13:93e70569f2fb",
+            "earnings_transcripts:prepared_remarks:10-13:9ce8ba08d98d",
+            "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:d5aa6d4fb147",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+            "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+            "earnings_transcripts:prepared_remarks:8-11:d6f3441e81a6",
+            "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+            "earnings_transcripts:prepared_remarks:8-11:c639bec11f5f",
+            "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+            "earnings_transcripts:prepared_remarks:14-17:f7a25b0c2862",
+            "earnings_transcripts:prepared_remarks:10-13:93e70569f2fb",
+            "earnings_transcripts:prepared_remarks:10-13:9ce8ba08d98d",
+            "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:d771100f83ea",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca",
+            "earnings_transcripts:prepared_remarks:12-15:cff0a8d8f545",
+            "earnings_transcripts:prepared_remarks:8-11:669bdf76f97e",
+            "earnings_transcripts:prepared_remarks:8-11:84ccfa14db6c",
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:10-13:fb552a4de356"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:e604089c9a9f",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca",
+            "earnings_transcripts:prepared_remarks:12-15:cff0a8d8f545",
+            "earnings_transcripts:prepared_remarks:8-11:669bdf76f97e",
+            "earnings_transcripts:prepared_remarks:8-11:84ccfa14db6c",
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:10-13:fb552a4de356"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:ee195e15064e",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca",
+            "earnings_transcripts:prepared_remarks:12-15:cff0a8d8f545",
+            "earnings_transcripts:prepared_remarks:8-11:669bdf76f97e",
+            "earnings_transcripts:prepared_remarks:8-11:84ccfa14db6c",
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:10-13:fb552a4de356"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:f4b715dd0421",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+            "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+            "earnings_transcripts:prepared_remarks:8-11:d6f3441e81a6",
+            "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+            "earnings_transcripts:prepared_remarks:8-11:c639bec11f5f",
+            "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+            "earnings_transcripts:prepared_remarks:14-17:f7a25b0c2862",
+            "earnings_transcripts:prepared_remarks:10-13:93e70569f2fb",
+            "earnings_transcripts:prepared_remarks:10-13:9ce8ba08d98d",
+            "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:faf6dd87c52a",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca",
+            "earnings_transcripts:prepared_remarks:12-15:cff0a8d8f545",
+            "earnings_transcripts:prepared_remarks:8-11:669bdf76f97e",
+            "earnings_transcripts:prepared_remarks:8-11:84ccfa14db6c",
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:10-13:fb552a4de356"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:ff017dec7dcc",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca",
+            "earnings_transcripts:prepared_remarks:12-15:cff0a8d8f545",
+            "earnings_transcripts:prepared_remarks:8-11:669bdf76f97e",
+            "earnings_transcripts:prepared_remarks:8-11:84ccfa14db6c",
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:10-13:fb552a4de356"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
           }
         }
       ]
     },
     "hybrid": {
       "backend": "hybrid-rrf",
-      "n_queries": 6,
+      "n_queries": 50,
       "k_values": [
         1,
         3,
@@ -340,148 +2876,1416 @@
         10
       ],
       "mean_recall": {
-        "@1": 0.333333,
-        "@3": 0.833333,
-        "@5": 1.0,
-        "@10": 1.0
+        "@1": 0.0,
+        "@3": 0.0,
+        "@5": 0.0,
+        "@10": 0.0
       },
       "mean_ndcg": {
-        "@1": 0.333333,
-        "@3": 0.605155,
-        "@5": 0.676935,
-        "@10": 0.676935
+        "@1": 0.0,
+        "@3": 0.0,
+        "@5": 0.0,
+        "@10": 0.0
       },
       "queries": [
         {
-          "query_id": "q:08c92e070731",
+          "query_id": "q:0753167abc7e",
           "n_gold": 1,
           "ranked_ids": [
-            "finance_alpaca:qa:0-2:33ff30950ed3",
-            "fiqa:unknown:0-1:ad10d17281b6",
-            "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29",
-            "earnings_transcripts:qa:0-1:7b087b296300"
-          ],
-          "recall": {
-            "@1": 0.0,
-            "@3": 1.0,
-            "@5": 1.0,
-            "@10": 1.0
-          },
-          "ndcg": {
-            "@1": 0.0,
-            "@3": 0.63093,
-            "@5": 0.63093,
-            "@10": 0.63093
-          }
-        },
-        {
-          "query_id": "q:3f46e8f7b162",
-          "n_gold": 1,
-          "ranked_ids": [
-            "finance_alpaca:qa:0-2:33ff30950ed3",
-            "fiqa:unknown:0-1:ad10d17281b6",
-            "earnings_transcripts:qa:0-1:7b087b296300",
-            "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29"
-          ],
-          "recall": {
-            "@1": 1.0,
-            "@3": 1.0,
-            "@5": 1.0,
-            "@10": 1.0
-          },
-          "ndcg": {
-            "@1": 1.0,
-            "@3": 1.0,
-            "@5": 1.0,
-            "@10": 1.0
-          }
-        },
-        {
-          "query_id": "q:58be2f3785d8",
-          "n_gold": 1,
-          "ranked_ids": [
-            "finance_alpaca:qa:0-2:33ff30950ed3",
-            "fiqa:unknown:0-1:ad10d17281b6",
-            "earnings_transcripts:qa:0-1:7b087b296300",
-            "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29"
-          ],
-          "recall": {
-            "@1": 0.0,
-            "@3": 1.0,
-            "@5": 1.0,
-            "@10": 1.0
-          },
-          "ndcg": {
-            "@1": 0.0,
-            "@3": 0.5,
-            "@5": 0.5,
-            "@10": 0.5
-          }
-        },
-        {
-          "query_id": "q:921d1d4388a7",
-          "n_gold": 1,
-          "ranked_ids": [
-            "finance_alpaca:qa:0-2:33ff30950ed3",
-            "fiqa:unknown:0-1:ad10d17281b6",
-            "earnings_transcripts:qa:0-1:7b087b296300",
-            "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29"
+            "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+            "earnings_transcripts:prepared_remarks:10-13:7becbd0fd078",
+            "earnings_transcripts:prepared_remarks:32-35:5e6694c4118b",
+            "earnings_transcripts:prepared_remarks:8-11:92576dc38997",
+            "earnings_transcripts:prepared_remarks:10-13:011f807f061d",
+            "earnings_transcripts:prepared_remarks:54-57:04afa549851b",
+            "earnings_transcripts:prepared_remarks:10-13:88ef865edc5c",
+            "earnings_transcripts:prepared_remarks:2-5:1bce0b96177e",
+            "earnings_transcripts:prepared_remarks:10-13:2bbf4ede06e7",
+            "earnings_transcripts:prepared_remarks:34-37:2a16497df4b7"
           ],
           "recall": {
             "@1": 0.0,
             "@3": 0.0,
-            "@5": 1.0,
-            "@10": 1.0
+            "@5": 0.0,
+            "@10": 0.0
           },
           "ndcg": {
             "@1": 0.0,
             "@3": 0.0,
-            "@5": 0.430677,
-            "@10": 0.430677
+            "@5": 0.0,
+            "@10": 0.0
           }
         },
         {
-          "query_id": "q:a20d45cef5fe",
+          "query_id": "q:0b7c330af216",
           "n_gold": 1,
           "ranked_ids": [
-            "finance_alpaca:qa:0-2:33ff30950ed3",
-            "fiqa:unknown:0-1:ad10d17281b6",
-            "earnings_transcripts:qa:0-1:7b087b296300",
-            "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29"
+            "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+            "earnings_transcripts:prepared_remarks:10-13:7becbd0fd078",
+            "earnings_transcripts:prepared_remarks:32-35:5e6694c4118b",
+            "earnings_transcripts:prepared_remarks:8-11:92576dc38997",
+            "earnings_transcripts:prepared_remarks:10-13:011f807f061d",
+            "earnings_transcripts:prepared_remarks:54-57:04afa549851b",
+            "earnings_transcripts:prepared_remarks:10-13:88ef865edc5c",
+            "earnings_transcripts:prepared_remarks:2-5:1bce0b96177e",
+            "earnings_transcripts:prepared_remarks:10-13:2bbf4ede06e7",
+            "earnings_transcripts:prepared_remarks:34-37:2a16497df4b7"
           ],
           "recall": {
             "@1": 0.0,
-            "@3": 1.0,
-            "@5": 1.0,
-            "@10": 1.0
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
           },
           "ndcg": {
             "@1": 0.0,
-            "@3": 0.5,
-            "@5": 0.5,
-            "@10": 0.5
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
           }
         },
         {
-          "query_id": "q:da53e5db452e",
+          "query_id": "q:0eb8709e9332",
           "n_gold": 1,
           "ranked_ids": [
-            "fiqa:unknown:0-1:ad10d17281b6",
-            "finance_alpaca:qa:0-2:33ff30950ed3",
-            "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29",
-            "earnings_transcripts:qa:0-1:7b087b296300"
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca"
           ],
           "recall": {
-            "@1": 1.0,
-            "@3": 1.0,
-            "@5": 1.0,
-            "@10": 1.0
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
           },
           "ndcg": {
-            "@1": 1.0,
-            "@3": 1.0,
-            "@5": 1.0,
-            "@10": 1.0
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:117dbaf015b5",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+            "earnings_transcripts:prepared_remarks:28-31:511aba56e8b9",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:4-7:8d1c24664d24",
+            "earnings_transcripts:prepared_remarks:4-7:b6187345a40f",
+            "earnings_transcripts:prepared_remarks:62-65:2760b3585fdd",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:4-7:01409f01cfe2",
+            "earnings_transcripts:prepared_remarks:0-3:b4550bdb5c0c",
+            "earnings_transcripts:prepared_remarks:4-7:f502e8305af2"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:146c23f1746a",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+            "earnings_transcripts:prepared_remarks:28-31:511aba56e8b9",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:4-7:8d1c24664d24",
+            "earnings_transcripts:prepared_remarks:4-7:b6187345a40f",
+            "earnings_transcripts:prepared_remarks:62-65:2760b3585fdd",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:4-7:01409f01cfe2",
+            "earnings_transcripts:prepared_remarks:0-3:b4550bdb5c0c",
+            "earnings_transcripts:prepared_remarks:4-7:f502e8305af2"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:15004437a249",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+            "earnings_transcripts:prepared_remarks:28-31:511aba56e8b9",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:4-7:8d1c24664d24",
+            "earnings_transcripts:prepared_remarks:4-7:b6187345a40f",
+            "earnings_transcripts:prepared_remarks:62-65:2760b3585fdd",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:4-7:01409f01cfe2",
+            "earnings_transcripts:prepared_remarks:0-3:b4550bdb5c0c",
+            "earnings_transcripts:prepared_remarks:4-7:f502e8305af2"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:18afa10894ae",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+            "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+            "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+            "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+            "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5",
+            "earnings_transcripts:prepared_remarks:8-11:62465c5e380d",
+            "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+            "earnings_transcripts:prepared_remarks:12-15:d2e62d6d4b3f",
+            "earnings_transcripts:prepared_remarks:12-15:b8b738314b33",
+            "earnings_transcripts:prepared_remarks:8-11:d6f3441e81a6"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:1a169c664de0",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:1e18d50c13dd",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:78-81:59623e2861c1",
+            "earnings_transcripts:prepared_remarks:10-13:deda65deabdb",
+            "earnings_transcripts:prepared_remarks:32-35:bde9f7618c80",
+            "earnings_transcripts:prepared_remarks:32-35:d74312327af4",
+            "earnings_transcripts:prepared_remarks:4-7:65fd19a8d74b",
+            "earnings_transcripts:prepared_remarks:52-55:1e815b023b59",
+            "earnings_transcripts:prepared_remarks:8-11:a172f641f8d7",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:e8ff2c01bbaf"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:246367cf9a4e",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+            "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+            "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+            "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+            "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5",
+            "earnings_transcripts:prepared_remarks:8-11:62465c5e380d",
+            "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+            "earnings_transcripts:prepared_remarks:12-15:d2e62d6d4b3f",
+            "earnings_transcripts:prepared_remarks:12-15:b8b738314b33",
+            "earnings_transcripts:prepared_remarks:8-11:d6f3441e81a6"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:256439a9927e",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:2710e29ff068",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+            "earnings_transcripts:prepared_remarks:28-31:511aba56e8b9",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:4-7:8d1c24664d24",
+            "earnings_transcripts:prepared_remarks:4-7:b6187345a40f",
+            "earnings_transcripts:prepared_remarks:62-65:2760b3585fdd",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:4-7:01409f01cfe2",
+            "earnings_transcripts:prepared_remarks:0-3:b4550bdb5c0c",
+            "earnings_transcripts:prepared_remarks:4-7:f502e8305af2"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:318f6c6faf30",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:35fda358bf10",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:78-81:59623e2861c1",
+            "earnings_transcripts:prepared_remarks:10-13:deda65deabdb",
+            "earnings_transcripts:prepared_remarks:32-35:bde9f7618c80",
+            "earnings_transcripts:prepared_remarks:32-35:d74312327af4",
+            "earnings_transcripts:prepared_remarks:4-7:65fd19a8d74b",
+            "earnings_transcripts:prepared_remarks:52-55:1e815b023b59",
+            "earnings_transcripts:prepared_remarks:8-11:a172f641f8d7",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:e8ff2c01bbaf"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:3722291f51a6",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+            "earnings_transcripts:prepared_remarks:28-31:511aba56e8b9",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:4-7:8d1c24664d24",
+            "earnings_transcripts:prepared_remarks:4-7:b6187345a40f",
+            "earnings_transcripts:prepared_remarks:62-65:2760b3585fdd",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:4-7:01409f01cfe2",
+            "earnings_transcripts:prepared_remarks:0-3:b4550bdb5c0c",
+            "earnings_transcripts:prepared_remarks:4-7:f502e8305af2"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:37e090b25f49",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:3ca9a3665e10",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:78-81:59623e2861c1",
+            "earnings_transcripts:prepared_remarks:10-13:deda65deabdb",
+            "earnings_transcripts:prepared_remarks:32-35:bde9f7618c80",
+            "earnings_transcripts:prepared_remarks:32-35:d74312327af4",
+            "earnings_transcripts:prepared_remarks:4-7:65fd19a8d74b",
+            "earnings_transcripts:prepared_remarks:52-55:1e815b023b59",
+            "earnings_transcripts:prepared_remarks:8-11:a172f641f8d7",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:e8ff2c01bbaf"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:535d8859b10c",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:5ce38bdbcf00",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+            "earnings_transcripts:prepared_remarks:28-31:511aba56e8b9",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:4-7:8d1c24664d24",
+            "earnings_transcripts:prepared_remarks:4-7:b6187345a40f",
+            "earnings_transcripts:prepared_remarks:62-65:2760b3585fdd",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:4-7:01409f01cfe2",
+            "earnings_transcripts:prepared_remarks:0-3:b4550bdb5c0c",
+            "earnings_transcripts:prepared_remarks:4-7:f502e8305af2"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:6949f5a1f18e",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:12-15:87c0286ba01a",
+            "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+            "earnings_transcripts:prepared_remarks:10-13:e06ad409e995",
+            "earnings_transcripts:prepared_remarks:4-7:65fd19a8d74b",
+            "earnings_transcripts:prepared_remarks:10-13:e62ab4795a1b",
+            "earnings_transcripts:prepared_remarks:6-9:11b6094d0d89",
+            "earnings_transcripts:prepared_remarks:8-11:923ae02240dc",
+            "earnings_transcripts:unknown:0-3:2fdd293d7b1f",
+            "earnings_transcripts:prepared_remarks:12-15:f869af859726",
+            "earnings_transcripts:prepared_remarks:6-9:826ba7396196"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:6c075992edc3",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+            "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+            "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+            "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+            "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5",
+            "earnings_transcripts:prepared_remarks:8-11:62465c5e380d",
+            "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+            "earnings_transcripts:prepared_remarks:12-15:d2e62d6d4b3f",
+            "earnings_transcripts:prepared_remarks:12-15:b8b738314b33",
+            "earnings_transcripts:prepared_remarks:8-11:d6f3441e81a6"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:70d07f7fe1be",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+            "earnings_transcripts:prepared_remarks:10-13:7becbd0fd078",
+            "earnings_transcripts:prepared_remarks:32-35:5e6694c4118b",
+            "earnings_transcripts:prepared_remarks:8-11:92576dc38997",
+            "earnings_transcripts:prepared_remarks:10-13:011f807f061d",
+            "earnings_transcripts:prepared_remarks:54-57:04afa549851b",
+            "earnings_transcripts:prepared_remarks:10-13:88ef865edc5c",
+            "earnings_transcripts:prepared_remarks:2-5:1bce0b96177e",
+            "earnings_transcripts:prepared_remarks:10-13:2bbf4ede06e7",
+            "earnings_transcripts:prepared_remarks:34-37:2a16497df4b7"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:7af1d54366d2",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+            "earnings_transcripts:prepared_remarks:10-13:7becbd0fd078",
+            "earnings_transcripts:prepared_remarks:32-35:5e6694c4118b",
+            "earnings_transcripts:prepared_remarks:8-11:92576dc38997",
+            "earnings_transcripts:prepared_remarks:10-13:011f807f061d",
+            "earnings_transcripts:prepared_remarks:54-57:04afa549851b",
+            "earnings_transcripts:prepared_remarks:10-13:88ef865edc5c",
+            "earnings_transcripts:prepared_remarks:2-5:1bce0b96177e",
+            "earnings_transcripts:prepared_remarks:10-13:2bbf4ede06e7",
+            "earnings_transcripts:prepared_remarks:34-37:2a16497df4b7"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:7fa150ff4c57",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:82a186012d11",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+            "earnings_transcripts:prepared_remarks:10-13:7becbd0fd078",
+            "earnings_transcripts:prepared_remarks:32-35:5e6694c4118b",
+            "earnings_transcripts:prepared_remarks:8-11:92576dc38997",
+            "earnings_transcripts:prepared_remarks:10-13:011f807f061d",
+            "earnings_transcripts:prepared_remarks:54-57:04afa549851b",
+            "earnings_transcripts:prepared_remarks:10-13:88ef865edc5c",
+            "earnings_transcripts:prepared_remarks:2-5:1bce0b96177e",
+            "earnings_transcripts:prepared_remarks:10-13:2bbf4ede06e7",
+            "earnings_transcripts:prepared_remarks:34-37:2a16497df4b7"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:82ca3b8a7079",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:86f76efad70b",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+            "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+            "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+            "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+            "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5",
+            "earnings_transcripts:prepared_remarks:8-11:62465c5e380d",
+            "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+            "earnings_transcripts:prepared_remarks:12-15:d2e62d6d4b3f",
+            "earnings_transcripts:prepared_remarks:12-15:b8b738314b33",
+            "earnings_transcripts:prepared_remarks:8-11:d6f3441e81a6"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:88f5ecd8b009",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:8cabaf0f2568",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:12-15:87c0286ba01a",
+            "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+            "earnings_transcripts:prepared_remarks:10-13:e06ad409e995",
+            "earnings_transcripts:prepared_remarks:4-7:65fd19a8d74b",
+            "earnings_transcripts:prepared_remarks:10-13:e62ab4795a1b",
+            "earnings_transcripts:prepared_remarks:6-9:11b6094d0d89",
+            "earnings_transcripts:prepared_remarks:8-11:923ae02240dc",
+            "earnings_transcripts:unknown:0-3:2fdd293d7b1f",
+            "earnings_transcripts:prepared_remarks:12-15:f869af859726",
+            "earnings_transcripts:prepared_remarks:6-9:826ba7396196"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:91316662a55c",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:78-81:59623e2861c1",
+            "earnings_transcripts:prepared_remarks:10-13:deda65deabdb",
+            "earnings_transcripts:prepared_remarks:32-35:bde9f7618c80",
+            "earnings_transcripts:prepared_remarks:32-35:d74312327af4",
+            "earnings_transcripts:prepared_remarks:4-7:65fd19a8d74b",
+            "earnings_transcripts:prepared_remarks:52-55:1e815b023b59",
+            "earnings_transcripts:prepared_remarks:8-11:a172f641f8d7",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:e8ff2c01bbaf"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:988c89c07732",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:12-15:87c0286ba01a",
+            "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+            "earnings_transcripts:prepared_remarks:10-13:e06ad409e995",
+            "earnings_transcripts:prepared_remarks:4-7:65fd19a8d74b",
+            "earnings_transcripts:prepared_remarks:10-13:e62ab4795a1b",
+            "earnings_transcripts:prepared_remarks:6-9:11b6094d0d89",
+            "earnings_transcripts:prepared_remarks:8-11:923ae02240dc",
+            "earnings_transcripts:unknown:0-3:2fdd293d7b1f",
+            "earnings_transcripts:prepared_remarks:12-15:f869af859726",
+            "earnings_transcripts:prepared_remarks:6-9:826ba7396196"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:99856cb55bc9",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+            "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+            "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+            "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+            "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5",
+            "earnings_transcripts:prepared_remarks:8-11:62465c5e380d",
+            "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+            "earnings_transcripts:prepared_remarks:12-15:d2e62d6d4b3f",
+            "earnings_transcripts:prepared_remarks:12-15:b8b738314b33",
+            "earnings_transcripts:prepared_remarks:8-11:d6f3441e81a6"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:99e239bd30c3",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+            "earnings_transcripts:prepared_remarks:28-31:511aba56e8b9",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:4-7:8d1c24664d24",
+            "earnings_transcripts:prepared_remarks:4-7:b6187345a40f",
+            "earnings_transcripts:prepared_remarks:62-65:2760b3585fdd",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:4-7:01409f01cfe2",
+            "earnings_transcripts:prepared_remarks:0-3:b4550bdb5c0c",
+            "earnings_transcripts:prepared_remarks:4-7:f502e8305af2"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:a13091d05a4d",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:a4e9acfdcf93",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+            "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+            "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+            "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+            "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5",
+            "earnings_transcripts:prepared_remarks:8-11:62465c5e380d",
+            "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+            "earnings_transcripts:prepared_remarks:12-15:d2e62d6d4b3f",
+            "earnings_transcripts:prepared_remarks:12-15:b8b738314b33",
+            "earnings_transcripts:prepared_remarks:8-11:d6f3441e81a6"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:ac7f750433d9",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+            "earnings_transcripts:prepared_remarks:28-31:511aba56e8b9",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:4-7:8d1c24664d24",
+            "earnings_transcripts:prepared_remarks:4-7:b6187345a40f",
+            "earnings_transcripts:prepared_remarks:62-65:2760b3585fdd",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:4-7:01409f01cfe2",
+            "earnings_transcripts:prepared_remarks:0-3:b4550bdb5c0c",
+            "earnings_transcripts:prepared_remarks:4-7:f502e8305af2"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:b0099ff8982e",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+            "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+            "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+            "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+            "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5",
+            "earnings_transcripts:prepared_remarks:8-11:62465c5e380d",
+            "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+            "earnings_transcripts:prepared_remarks:12-15:d2e62d6d4b3f",
+            "earnings_transcripts:prepared_remarks:12-15:b8b738314b33",
+            "earnings_transcripts:prepared_remarks:8-11:d6f3441e81a6"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:b04852251f1d",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:b78a721fe332",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:78-81:59623e2861c1",
+            "earnings_transcripts:prepared_remarks:10-13:deda65deabdb",
+            "earnings_transcripts:prepared_remarks:32-35:bde9f7618c80",
+            "earnings_transcripts:prepared_remarks:32-35:d74312327af4",
+            "earnings_transcripts:prepared_remarks:4-7:65fd19a8d74b",
+            "earnings_transcripts:prepared_remarks:52-55:1e815b023b59",
+            "earnings_transcripts:prepared_remarks:8-11:a172f641f8d7",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:e8ff2c01bbaf"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:b7ba886b6103",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:78-81:59623e2861c1",
+            "earnings_transcripts:prepared_remarks:10-13:deda65deabdb",
+            "earnings_transcripts:prepared_remarks:32-35:bde9f7618c80",
+            "earnings_transcripts:prepared_remarks:32-35:d74312327af4",
+            "earnings_transcripts:prepared_remarks:4-7:65fd19a8d74b",
+            "earnings_transcripts:prepared_remarks:52-55:1e815b023b59",
+            "earnings_transcripts:prepared_remarks:8-11:a172f641f8d7",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:e8ff2c01bbaf"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:bc137c56fcfa",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:c1526420f01e",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+            "earnings_transcripts:prepared_remarks:78-81:59623e2861c1",
+            "earnings_transcripts:prepared_remarks:10-13:deda65deabdb",
+            "earnings_transcripts:prepared_remarks:32-35:bde9f7618c80",
+            "earnings_transcripts:prepared_remarks:32-35:d74312327af4",
+            "earnings_transcripts:prepared_remarks:4-7:65fd19a8d74b",
+            "earnings_transcripts:prepared_remarks:52-55:1e815b023b59",
+            "earnings_transcripts:prepared_remarks:8-11:a172f641f8d7",
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:prepared_remarks:10-13:e8ff2c01bbaf"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:c76237d16f67",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+            "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+            "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+            "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+            "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5",
+            "earnings_transcripts:prepared_remarks:8-11:62465c5e380d",
+            "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+            "earnings_transcripts:prepared_remarks:12-15:d2e62d6d4b3f",
+            "earnings_transcripts:prepared_remarks:12-15:b8b738314b33",
+            "earnings_transcripts:prepared_remarks:8-11:d6f3441e81a6"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:d5aa6d4fb147",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+            "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+            "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+            "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+            "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5",
+            "earnings_transcripts:prepared_remarks:8-11:62465c5e380d",
+            "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+            "earnings_transcripts:prepared_remarks:12-15:d2e62d6d4b3f",
+            "earnings_transcripts:prepared_remarks:12-15:b8b738314b33",
+            "earnings_transcripts:prepared_remarks:8-11:d6f3441e81a6"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:d771100f83ea",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:e604089c9a9f",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:ee195e15064e",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:f4b715dd0421",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+            "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+            "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+            "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+            "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5",
+            "earnings_transcripts:prepared_remarks:8-11:62465c5e380d",
+            "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+            "earnings_transcripts:prepared_remarks:12-15:d2e62d6d4b3f",
+            "earnings_transcripts:prepared_remarks:12-15:b8b738314b33",
+            "earnings_transcripts:prepared_remarks:8-11:d6f3441e81a6"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:faf6dd87c52a",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          }
+        },
+        {
+          "query_id": "q:ff017dec7dcc",
+          "n_gold": 1,
+          "ranked_ids": [
+            "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+            "earnings_transcripts:qa:8-11:7e372054179d",
+            "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+            "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+            "earnings_transcripts:prepared_remarks:12-15:ef74be69571c",
+            "earnings_transcripts:qa:6-9:b1d55ec2c68a",
+            "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+            "earnings_transcripts:prepared_remarks:6-9:b5a9d9ed6feb",
+            "earnings_transcripts:prepared_remarks:0-3:a3e67c92756d",
+            "earnings_transcripts:prepared_remarks:8-11:f4ef867f4cca"
+          ],
+          "recall": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
+          },
+          "ndcg": {
+            "@1": 0.0,
+            "@3": 0.0,
+            "@5": 0.0,
+            "@10": 0.0
           }
         }
       ]

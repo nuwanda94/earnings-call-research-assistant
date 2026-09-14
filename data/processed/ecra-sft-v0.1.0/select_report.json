@@ -1,0 +1,26 @@
+{
+  "dataset_version": "ecra-sft-v0.1.0",
+  "n_in": 52574,
+  "n_selected": 2627,
+  "n_train": 2127,
+  "n_val": 240,
+  "n_test": 260,
+  "by_source": {
+    "earnings_transcripts": 950,
+    "finance_alpaca": 693,
+    "fiqa": 984
+  },
+  "by_task": {
+    "qa": 2026,
+    "summary": 601
+  },
+  "by_split": {
+    "train": 2127,
+    "val": 240,
+    "test": 260
+  },
+  "dropped_caps": 46154,
+  "dropped_diversity": 3793,
+  "seed": 94,
+  "created_utc": "2026-09-14T07:40:16Z"
+}

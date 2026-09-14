@@ -1,7 +1,7 @@
 {
-  "created_utc": "2026-09-14T06:32:44Z",
+  "created_utc": "2026-09-14T08:35:34Z",
   "eval_set": "/kaggle/working/earnings-call-research-assistant/evals/rag_eval_set.jsonl",
-  "n_queries": 6,
+  "n_queries": 50,
   "top_k": 5,
   "rrf_k": 60,
   "max_context_chars": 3500,
@@ -9,368 +9,3188 @@
   "bm25_dir": "/kaggle/working/earnings-call-research-assistant/data/rag/indices/bm25",
   "dense_dir": "/kaggle/working/earnings-call-research-assistant/data/rag/indices/dense",
   "dense_backend": "sentence-transformers",
-  "n_index_docs": 4,
+  "n_index_docs": 19990,
   "corpus_version": "v0.1.0",
   "dry_run": false,
   "adapter_dir": "outputs/adapters/llama32-3b-ecra-sft",
   "note": "Dry-run placeholders score near zero by design. Fill generations with --run on Kaggle before quoting grounded_answer_accuracy.",
   "aggregate": {
     "base": {
-      "citation_hit_rate": 0.4861,
-      "mean_token_f1_vs_context": 0.357233,
-      "mean_token_f1_vs_gold": 0.3206,
-      "grounded_answer_accuracy": 0.666667
+      "citation_hit_rate": 0.593362,
+      "mean_token_f1_vs_context": 0.317982,
+      "mean_token_f1_vs_gold": 0.147176,
+      "grounded_answer_accuracy": 0.58
     },
     "adapter": {
-      "citation_hit_rate": 0.56945,
-      "mean_token_f1_vs_context": 0.250017,
-      "mean_token_f1_vs_gold": 0.48525,
+      "citation_hit_rate": 0.875964,
+      "mean_token_f1_vs_context": 0.566374,
+      "mean_token_f1_vs_gold": 0.320794,
       "grounded_answer_accuracy": 1.0
     }
   },
   "items": [
     {
-      "query_id": "q:08c92e070731",
-      "query": "Write a short research note grounded only in this earnings-call excerpt.",
+      "query_id": "q:0753167abc7e",
+      "query": "What did management report in this prepared remarks excerpt?",
       "gold_chunk_ids": [
-        "fiqa:unknown:0-1:ad10d17281b6"
+        "earnings_transcripts:prepared_remarks:58-61:7e7c25770151"
       ],
       "retrieved_ids": [
-        "finance_alpaca:qa:0-2:33ff30950ed3",
-        "fiqa:unknown:0-1:ad10d17281b6",
-        "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29",
-        "earnings_transcripts:qa:0-1:7b087b296300"
+        "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+        "earnings_transcripts:prepared_remarks:10-13:7becbd0fd078",
+        "earnings_transcripts:prepared_remarks:32-35:5e6694c4118b",
+        "earnings_transcripts:prepared_remarks:8-11:92576dc38997",
+        "earnings_transcripts:prepared_remarks:10-13:011f807f061d"
       ],
-      "packed_chars": 1012,
-      "gold_answer": "Research note from the earnings-call excerpt (grounded):\n- A beat means reported EPS or revenue exceeded the consensus estimate; a miss means results came in below that estimate.\n\nCitations: fiqa:unknown:0-1:ad10d17281b6#s1. No figures beyond these source sentences.",
+      "packed_chars": 2839,
+      "gold_answer": "From the prepared remarks excerpt, the supported facts are:\n- We also continue to see significant improvement in the same sectors that were hardest hit by the shutdowns in the second quarter of 2020.\n- So finally, if you look in the lower left chart, you'll see that industrial sales decreased by 6.1% in the quarter compared to 2020.\n\nCitations: earnings_transcripts:prepared_remarks:58-61:7e7c25770151#s0; earnings_transcripts:prepared_remarks:58-61:7e7c25770151#s2. No figures beyond these source sentences.",
       "base": {
-        "output": "Based on the provided excerpts, here is a short research note:\n\nApple's first quarter fiscal 2024 results exceeded expectations, with an all-time revenue record of $119.6 billion, up 2 percent year over year. The revenue growth was driven by iPhone and Services. Notably, Azure growth was reported at 30 percent, with AI services contributing several points. This suggests a strong performance in the company's cloud computing segment.",
+        "output": "The information is not in the context. The excerpt does not mention what management reported in the prepared remarks.",
         "scores": {
           "citation": {
             "n_needles": 12,
-            "n_hits": 3,
+            "n_hits": 6,
             "hits": [
-              "0",
-              "1",
-              "a"
+              "are",
+              "in",
+              "no",
+              "prepared",
+              "remarks",
+              "the"
             ],
-            "rate": 0.25
+            "rate": 0.5
           },
-          "token_f1_vs_context": 0.5062,
-          "token_f1_vs_gold": 0.1875,
+          "token_f1_vs_context": 0.0847,
+          "token_f1_vs_gold": 0.1429,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Excerpts from the prepared remarks:\n- Please turn to slide 2. Some of our comments and materials may constitute forward-looking statements that reflect management's current views and estimates of future economic circumstances, industry conditions, company performance, and financial results. These statements and materials are based on many assumptions and factors that are subject to risk and uncertainties. ADM has provided additional information in its reports on filed with the SEC concerning assumptions and factors that could cause actual results to differ materially from those in this presentation.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:011f807f061d:2-5:0e8f6f6f6f6f#s2. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 11,
+            "hits": [
+              "are",
+              "earnings",
+              "from",
+              "in",
+              "no",
+              "of",
+              "prepared",
+              "remarks",
+              "that",
+              "the",
+              "these"
+            ],
+            "rate": 0.9167
+          },
+          "token_f1_vs_context": 0.5625,
+          "token_f1_vs_gold": 0.2774,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:0b7c330af216",
+      "query": "What did management report in this prepared remarks excerpt?",
+      "gold_chunk_ids": [
+        "earnings_transcripts:prepared_remarks:2-5:83451bdbdfa0"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+        "earnings_transcripts:prepared_remarks:10-13:7becbd0fd078",
+        "earnings_transcripts:prepared_remarks:32-35:5e6694c4118b",
+        "earnings_transcripts:prepared_remarks:8-11:92576dc38997",
+        "earnings_transcripts:prepared_remarks:10-13:011f807f061d"
+      ],
+      "packed_chars": 2839,
+      "gold_answer": "From the prepared remarks excerpt, the supported facts are:\n- I would like to inform you that this conference is being recorded. After the prepared remarks, we will conduct a question-and-answer session. Instructions will be given at that time. I will now turn the call over to Mr.\n\nCitations: earnings_transcripts:prepared_remarks:2-5:83451bdbdfa0#s2. No figures beyond these source sentences.",
+      "base": {
+        "output": "The information is not in the context. The excerpt does not mention what management reported in the prepared remarks.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 5,
+            "hits": [
+              "a",
+              "are",
+              "at",
+              "is",
+              "no"
+            ],
+            "rate": 0.4167
+          },
+          "token_f1_vs_context": 0.0847,
+          "token_f1_vs_gold": 0.1515,
           "grounded_hit": 0.0
         }
       },
       "adapter": {
-        "output": "Research note from the earnings-call excerpt (fiqa:qa:0-1:ad10d17281b6 | fiqa):\n- A beat means reported EPS or revenue exceeded the consensus estimate; a miss means results came in below that estimate.\n\nCitations: earnings_transcripts:qa:0-1:ad10d17281b6 | fiqa; earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29 | earnings_transcripts; earnings_transcripts:qa:0-1:7b087b296300 | earnings_transcripts. No figures beyond these source excerpts.",
+        "output": "Excerpts from the prepared remarks:\n- Please turn to slide 2. Some of our comments and materials may constitute forward-looking statements that reflect management's current views and estimates of future economic circumstances, industry conditions, company performance, and financial results. These statements and materials are based on many assumptions and factors that are subject to risk and uncertainties. ADM has provided additional information in its reports on filed with the SEC concerning assumptions and factors that could cause actual results to differ materially from those in this presentation.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:011f807f061d:2-5:0e8f6f6f6f6f#s2. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 10,
+            "hits": [
+              "2",
+              "a",
+              "and",
+              "are",
+              "at",
+              "be",
+              "earnings",
+              "from",
+              "is",
+              "no"
+            ],
+            "rate": 0.8333
+          },
+          "token_f1_vs_context": 0.5625,
+          "token_f1_vs_gold": 0.3308,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:0eb8709e9332",
+      "query": "Write a short research note grounded only in this earnings-call excerpt.",
+      "gold_chunk_ids": [
+        "earnings_transcripts:unknown:38-41:3fc4c34b06f1"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+        "earnings_transcripts:qa:8-11:7e372054179d",
+        "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+        "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+        "earnings_transcripts:prepared_remarks:12-15:ef74be69571c"
+      ],
+      "packed_chars": 2787,
+      "gold_answer": "Research note from the earnings-call excerpt (grounded):\n- Revenue for the quarter was $6.4 billion, up 15% from a year ago, another strong quarter of double digit growth.\n- The new iPad Air with M3 combines powerful performance and exceptional portability, whether you're taking it across the street or around the world.\n\nCitations: earnings_transcripts:unknown:38-41:3fc4c34b06f1#s1; earnings_transcripts:unknown:38-41:3fc4c34b06f1#s3. No figures beyond these source sentences.",
+      "base": {
+        "output": "Research Note: Earnings Call Excerpts Analysis\n\nBased on the provided excerpts, the following key points can be identified:\n\n1. Administrative details: The call contains time-sensitive data accurate only as of the date of the live broadcast, and redistribution is prohibited.\n2. Earnings materials availability: The earnings materials are available on the SEC's website and the company's Investor Relations website at investors.adp.com.\n3. Non-GAAP financial measures: The company will reference non-GAAP financial measures, which exclude the impact of certain items, and provide a description and reconciliation in the earnings release.\n4. Forward-looking statements: The call will contain forward-looking statements that refer to future events and involve some risk.\n\nNo specific financial metrics, such as earnings guidance or revenue, are mentioned in the excerpts. Therefore, no concrete conclusions can be drawn about the company's financial performance.\n\nRecommendation: Further research is required to understand the company's financial performance and to analyze the non-GAAP financial measures mentioned in the excerpts.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 10,
+            "hits": [
+              "a",
+              "and",
+              "call",
+              "earnings",
+              "for",
+              "note",
+              "of",
+              "research",
+              "revenue",
+              "the"
+            ],
+            "rate": 0.8333
+          },
+          "token_f1_vs_context": 0.5092,
+          "token_f1_vs_gold": 0.1509,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Research note from the earnings-call excerpt (prepared_remarks:10-13:5b7fd8f55d75 | earnings_transcripts):\n- And Michael will wrap up our prepared remarks with a discussion of key financial matters, including our earnings guidance. Then we will open the call for questions. Before we begin, let me cover a few administrative details. This call contains time-sensitive data that is accurate only as of the date of today's live broadcast and redistribution of this broadcast is prohibited.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75:0-3:0e8f6f6f6f6f#s0. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 10,
+            "hits": [
+              "a",
+              "and",
+              "call",
+              "earnings",
+              "for",
+              "note",
+              "of",
+              "research",
+              "the",
+              "these"
+            ],
+            "rate": 0.8333
+          },
+          "token_f1_vs_context": 0.4896,
+          "token_f1_vs_gold": 0.3256,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:117dbaf015b5",
+      "query": "Write a short research note grounded only in this prepared remarks excerpt.",
+      "gold_chunk_ids": [
+        "earnings_transcripts:prepared_remarks:60-63:22aa30943188"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+        "earnings_transcripts:prepared_remarks:28-31:511aba56e8b9",
+        "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+        "earnings_transcripts:prepared_remarks:4-7:8d1c24664d24",
+        "earnings_transcripts:prepared_remarks:4-7:b6187345a40f"
+      ],
+      "packed_chars": 1870,
+      "gold_answer": "Research note from the prepared remarks excerpt (grounded):\n- With the fourth quarter's declaration, 2022 marks the 40th consecutive year of dividend increases.\n- In addition, we have taken proactive steps in recent years to defend cash flows and deployable capital against the weakening yen.\n\nCitations: earnings_transcripts:prepared_remarks:60-63:22aa30943188#s2; earnings_transcripts:prepared_remarks:60-63:22aa30943188#s0. No figures beyond these source sentences.",
+      "base": {
+        "output": "Research Note:\n\nAssurant's Third Quarter 2021 conference call and webcast, as well as Aflac Incorporated's Third Quarter 2024 Earnings Call, highlight the company's approach to managing through uncertain conditions. According to Assurant's prepared remarks, the company's approach is \"thoughtful and deliberate\" and focused on the long term, with a commitment to \"delivering with excellence in the things we can\" (Excerpt 2).\n\nA similar sentiment is expressed by Quentin McMillan in Aflac Incorporated's prepared remarks, stating that the company's forward-looking statements are subject to risks and uncertainties, but are based on management's current expectations (Excerpts 4-7). AIG's filings with the SEC provide additional context on the factors that could impact actual results or events.\n\nWhile the prepared remarks do not provide specific financial guidance or metrics, they suggest that Assurant and Aflac Incorporated are committed to a thoughtful and deliberate approach to managing through uncertain conditions.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 9,
+            "hits": [
+              "and",
+              "earnings",
+              "in",
+              "note",
+              "prepared",
+              "quarter",
+              "remarks",
+              "s",
+              "the"
+            ],
+            "rate": 0.75
+          },
+          "token_f1_vs_context": 0.5415,
+          "token_f1_vs_gold": 0.1905,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Research note from the prepared remarks excerpt (grounded):\n- Operator: Welcome to Assurant's Third Quarter 2021 conference call and webcast. At this time, all participants have been placed in a listen-only mode. And the floor will be opened for questions. Following management prepared remarks.\n\nCitations: earnings_transcripts:prepared_remarks:0-3:15a1030808db#s0. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 11,
+            "hits": [
+              "and",
+              "earnings",
+              "have",
+              "in",
+              "note",
+              "prepared",
+              "quarter",
+              "remarks",
+              "s",
+              "the",
+              "these"
+            ],
+            "rate": 0.9167
+          },
+          "token_f1_vs_context": 0.4526,
+          "token_f1_vs_gold": 0.4444,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:146c23f1746a",
+      "query": "Write a short research note grounded only in this prepared remarks excerpt.",
+      "gold_chunk_ids": [
+        "earnings_transcripts:prepared_remarks:46-49:9bc3fc335a4d"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+        "earnings_transcripts:prepared_remarks:28-31:511aba56e8b9",
+        "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+        "earnings_transcripts:prepared_remarks:4-7:8d1c24664d24",
+        "earnings_transcripts:prepared_remarks:4-7:b6187345a40f"
+      ],
+      "packed_chars": 1870,
+      "gold_answer": "Research note from the prepared remarks excerpt (grounded):\n- In our view, insurance and reinsurance carriers continue to behave rationally.\n\nCitations: earnings_transcripts:prepared_remarks:46-49:9bc3fc335a4d#s2. No figures beyond these source sentences.",
+      "base": {
+        "output": "Research Note:\n\nAssurant's Third Quarter 2021 conference call and webcast, as well as Aflac Incorporated's Third Quarter 2024 Earnings Call, highlight the company's approach to managing through uncertain conditions. According to Assurant's prepared remarks, the company's approach is \"thoughtful and deliberate\" and focused on the long term, with a commitment to \"delivering with excellence in the things we can\" (Excerpt 2).\n\nA similar sentiment is expressed by Quentin McMillan in Aflac Incorporated's prepared remarks, stating that the company's forward-looking statements are subject to risks and uncertainties, but are based on management's current expectations (Excerpts 4-7). AIG's filings with the SEC provide additional context on the factors that could impact actual results or events.\n\nWhile the prepared remarks do not provide specific financial guidance or metrics, they suggest that Assurant and Aflac Incorporated are committed to a thoughtful and deliberate approach to managing through uncertain conditions.",
+        "scores": {
+          "citation": {
+            "n_needles": 11,
+            "n_hits": 8,
+            "hits": [
+              "and",
+              "earnings",
+              "in",
+              "note",
+              "prepared",
+              "remarks",
+              "the",
+              "to"
+            ],
+            "rate": 0.7273
+          },
+          "token_f1_vs_context": 0.5415,
+          "token_f1_vs_gold": 0.16,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Research note from the prepared remarks excerpt (grounded):\n- Operator: Welcome to Assurant's Third Quarter 2021 conference call and webcast. At this time, all participants have been placed in a listen-only mode. And the floor will be opened for questions. Following management prepared remarks.\n\nCitations: earnings_transcripts:prepared_remarks:0-3:15a1030808db#s0. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 11,
+            "n_hits": 11,
+            "hits": [
+              "and",
+              "earnings",
+              "in",
+              "note",
+              "our",
+              "prepared",
+              "remarks",
+              "the",
+              "these",
+              "to",
+              "transcripts"
+            ],
+            "rate": 1.0
+          },
+          "token_f1_vs_context": 0.4526,
+          "token_f1_vs_gold": 0.4651,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:15004437a249",
+      "query": "Write a short research note grounded only in this prepared remarks excerpt.",
+      "gold_chunk_ids": [
+        "earnings_transcripts:prepared_remarks:28-31:f567bda3d3f0"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+        "earnings_transcripts:prepared_remarks:28-31:511aba56e8b9",
+        "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+        "earnings_transcripts:prepared_remarks:4-7:8d1c24664d24",
+        "earnings_transcripts:prepared_remarks:4-7:b6187345a40f"
+      ],
+      "packed_chars": 1870,
+      "gold_answer": "Research note from the prepared remarks excerpt (grounded):\n- While we did expect our Q1 revenue growth to be above our prior full-year guidance range, this result was still above our initial forecast and underscores the strong position, we are in as we emerge from the pandemic.\n- Our ES new business bookings results for very strong, representing another record Q1 bookings amount.\n\nCitations: earnings_transcripts:prepared_remarks:28-31:f567bda3d3f0#s0; earnings_transcripts:prepared_remarks:28-31:f567bda3d3f0#s2. No figures beyond these source sentences.",
+      "base": {
+        "output": "Research Note:\n\nAssurant's Third Quarter 2021 conference call and webcast, as well as Aflac Incorporated's Third Quarter 2024 Earnings Call, highlight the company's approach to managing through uncertain conditions. According to Assurant's prepared remarks, the company's approach is \"thoughtful and deliberate\" and focused on the long term, with a commitment to \"delivering with excellence in the things we can\" (Excerpt 2).\n\nA similar sentiment is expressed by Quentin McMillan in Aflac Incorporated's prepared remarks, stating that the company's forward-looking statements are subject to risks and uncertainties, but are based on management's current expectations (Excerpts 4-7). AIG's filings with the SEC provide additional context on the factors that could impact actual results or events.\n\nWhile the prepared remarks do not provide specific financial guidance or metrics, they suggest that Assurant and Aflac Incorporated are committed to a thoughtful and deliberate approach to managing through uncertain conditions.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 9,
+            "hits": [
+              "and",
+              "are",
+              "be",
+              "earnings",
+              "for",
+              "in",
+              "note",
+              "prepared",
+              "remarks"
+            ],
+            "rate": 0.75
+          },
+          "token_f1_vs_context": 0.5415,
+          "token_f1_vs_gold": 0.2038,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Research note from the prepared remarks excerpt (grounded):\n- Operator: Welcome to Assurant's Third Quarter 2021 conference call and webcast. At this time, all participants have been placed in a listen-only mode. And the floor will be opened for questions. Following management prepared remarks.\n\nCitations: earnings_transcripts:prepared_remarks:0-3:15a1030808db#s0. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 10,
+            "hits": [
+              "and",
+              "are",
+              "be",
+              "earnings",
+              "for",
+              "in",
+              "note",
+              "our",
+              "prepared",
+              "remarks"
+            ],
+            "rate": 0.8333
+          },
+          "token_f1_vs_context": 0.4526,
+          "token_f1_vs_gold": 0.4068,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:18afa10894ae",
+      "query": "Which quantitative results are stated in the earnings-call passage?",
+      "gold_chunk_ids": [
+        "finance_alpaca:unknown:26-29:329d7a5b3525"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+        "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+        "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+        "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+        "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5"
+      ],
+      "packed_chars": 3088,
+      "gold_answer": "From the earnings-call excerpt, the supported facts are:\n- It's possible for the Fed to unwind QE3, while still keeping the \"interest rate\", i.e. the federal funds rate, near zero. although this is considered unlikely.\n- This was the goal of the Operation Twist program in 2011 (and in the 1960's).\n\nCitations: finance_alpaca:unknown:26-29:329d7a5b3525#s0; finance_alpaca:unknown:26-29:329d7a5b3525#s2. No figures beyond these source sentences.",
+      "base": {
+        "output": "The information is not in the context. The passage does not mention any quantitative results.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 5,
+            "hits": [
+              "for",
+              "in",
+              "is",
+              "s",
+              "the"
+            ],
+            "rate": 0.4167
+          },
+          "token_f1_vs_context": 0.0899,
+          "token_f1_vs_gold": 0.087,
+          "grounded_hit": 0.0
+        }
+      },
+      "adapter": {
+        "output": "From the earnings-call excerpt, the supported facts are:\n- Earlier this morning, we released our results for the quarter. Our earnings materials are available on the SEC's website and our Investor Relations website at investors.adp.com where you will also find the investor presentation that accompanies today's call.\n- During our call, we will reference non-GAAP financial measures, which we believe to be useful to investors and that exclude the impact of certain items.\n- A description of these items along with a reconciliation of non-GAAP measures to the most comparable GAAP measures can be found in our earnings release.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8f6e5f6f6a#s3; earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8f6e5f6f6a#s1; earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8f6e5f6f6a#s2. No figures beyond these source sentences.",
         "scores": {
           "citation": {
             "n_needles": 12,
             "n_hits": 12,
             "hits": [
-              "0",
-              "1",
-              "a",
-              "ad10d17281b6",
-              "beat",
-              "below",
+              "and",
+              "are",
               "call",
-              "came",
-              "consensus",
               "earnings",
-              "eps",
-              "estimate"
+              "for",
+              "in",
+              "is",
+              "of",
+              "s",
+              "the",
+              "these",
+              "this"
             ],
             "rate": 1.0
           },
-          "token_f1_vs_context": 0.4196,
-          "token_f1_vs_gold": 0.8571,
+          "token_f1_vs_context": 0.8519,
+          "token_f1_vs_gold": 0.3239,
           "grounded_hit": 1.0
         }
       }
     },
     {
-      "query_id": "q:3f46e8f7b162",
-      "query": "Which quantitative results are stated in the Q&A passage?",
+      "query_id": "q:1a169c664de0",
+      "query": "Write a short research note grounded only in this earnings-call excerpt.",
       "gold_chunk_ids": [
-        "finance_alpaca:qa:0-2:33ff30950ed3"
+        "finance_alpaca:unknown:2-5:7a75b308387f"
       ],
       "retrieved_ids": [
-        "finance_alpaca:qa:0-2:33ff30950ed3",
-        "fiqa:unknown:0-1:ad10d17281b6",
-        "earnings_transcripts:qa:0-1:7b087b296300",
-        "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29"
+        "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+        "earnings_transcripts:qa:8-11:7e372054179d",
+        "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+        "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+        "earnings_transcripts:prepared_remarks:12-15:ef74be69571c"
       ],
-      "packed_chars": 1012,
-      "gold_answer": "From the Q&A excerpt, the supported facts are:\n- Prepared remarks are a scripted management overview of results and outlook.\n\nCitations: finance_alpaca:qa:0-2:33ff30950ed3#s1. No figures beyond these source sentences.",
+      "packed_chars": 2787,
+      "gold_answer": "Research note from the earnings-call excerpt (grounded):\n- Depending on how much they make now and are considering saving, delaying 5-10 years can easily leave 6-7 figures on the table.\n\nCitations: finance_alpaca:unknown:2-5:7a75b308387f#s0. No figures beyond these source sentences.",
       "base": {
-        "output": "The quantitative results stated in the Q&A passage are:\n\n- 30 percent (Azure growth excluding the impact of the extra calendar day)\n- 28 percent (Azure growth constant currency)",
+        "output": "Research Note: Earnings Call Excerpts Analysis\n\nBased on the provided excerpts, the following key points can be identified:\n\n1. Administrative details: The call contains time-sensitive data accurate only as of the date of the live broadcast, and redistribution is prohibited.\n2. Earnings materials availability: The earnings materials are available on the SEC's website and the company's Investor Relations website at investors.adp.com.\n3. Non-GAAP financial measures: The company will reference non-GAAP financial measures, which exclude the impact of certain items, and provide a description and reconciliation in the earnings release.\n4. Forward-looking statements: The call will contain forward-looking statements that refer to future events and involve some risk.\n\nNo specific financial metrics, such as earnings guidance or revenue, are mentioned in the excerpts. Therefore, no concrete conclusions can be drawn about the company's financial performance.\n\nRecommendation: Further research is required to understand the company's financial performance and to analyze the non-GAAP financial measures mentioned in the excerpts.",
+        "scores": {
+          "citation": {
+            "n_needles": 11,
+            "n_hits": 9,
+            "hits": [
+              "and",
+              "are",
+              "call",
+              "can",
+              "earnings",
+              "note",
+              "on",
+              "research",
+              "the"
+            ],
+            "rate": 0.8182
+          },
+          "token_f1_vs_context": 0.5092,
+          "token_f1_vs_gold": 0.156,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Research note from the earnings-call excerpt (prepared_remarks:10-13:5b7fd8f55d75 | earnings_transcripts):\n- And Michael will wrap up our prepared remarks with a discussion of key financial matters, including our earnings guidance. Then we will open the call for questions. Before we begin, let me cover a few administrative details. This call contains time-sensitive data that is accurate only as of the date of today's live broadcast and redistribution of this broadcast is prohibited.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75:0-3:0e8f6f6f6f6f#s0. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 11,
+            "n_hits": 10,
+            "hits": [
+              "10",
+              "and",
+              "are",
+              "call",
+              "earnings",
+              "note",
+              "on",
+              "research",
+              "the",
+              "these"
+            ],
+            "rate": 0.9091
+          },
+          "token_f1_vs_context": 0.4896,
+          "token_f1_vs_gold": 0.3063,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:1e18d50c13dd",
+      "query": "What did management report in this earnings-call excerpt?",
+      "gold_chunk_ids": [
+        "fiqa:unknown:2-5:de9d18469fe4"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+        "earnings_transcripts:prepared_remarks:78-81:59623e2861c1",
+        "earnings_transcripts:prepared_remarks:10-13:deda65deabdb",
+        "earnings_transcripts:prepared_remarks:32-35:bde9f7618c80",
+        "earnings_transcripts:prepared_remarks:32-35:d74312327af4"
+      ],
+      "packed_chars": 3028,
+      "gold_answer": "From the earnings-call excerpt, the supported facts are:\n- If you're looking at day-trading, where you're probably going to be in a highly-leveraged position for minutes or hours, the automated traders are probably going to kill you. But, if you have a handful (less than a dozen) equities, and spend about an hour or so every week conduct\n\nCitations: fiqa:unknown:2-5:de9d18469fe4#s2. No figures beyond these source sentences.",
+      "base": {
+        "output": "Management reported that the impact of the Russia-Ukraine situation will not be material to AIG, and that they have multiple reinsurance programs available in the event of losses.",
         "scores": {
           "citation": {
             "n_needles": 12,
             "n_hits": 5,
             "hits": [
-              "0",
-              "2",
               "a",
-              "are",
-              "of"
+              "an",
+              "and",
+              "at",
+              "be"
             ],
             "rate": 0.4167
           },
-          "token_f1_vs_context": 0.304,
-          "token_f1_vs_gold": 0.2264,
+          "token_f1_vs_context": 0.1935,
+          "token_f1_vs_gold": 0.1395,
           "grounded_hit": 0.0
         }
       },
       "adapter": {
-        "output": "Citations: earnings_transcripts:qa:0-1:7b087b296300; earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29.\n\nCitations beyondqa:0-1:7b087b296300 and prepared_remarks:0-1:cfc1e8fabf29 are unverified beyond this source.",
+        "output": "From the earnings-call excerpt, the supported facts are:\n- Participating today are Carlos Rodriguez, our President and Chief Executive Officer; and Kathleen Winters, our Chief Financial Officer. Earlier this morning, we released our results for the quarter. Our earnings materials are available on the SEC's website and on our Investor Relations website at investors.adp.com, where you will also find the investor presentation that accompanies today's call as well as our quarterly history of revenue and pretax earnings by reportable segment. During our call today, we will reference non-GAAP financial measures which we believe to be useful to investors and that exclude the impact of certain items.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62:3-6:0f8f6e5f6f6a#s3. No figures beyond these source sentences.",
         "scores": {
           "citation": {
             "n_needles": 12,
-            "n_hits": 5,
+            "n_hits": 10,
             "hits": [
-              "0",
-              "2",
               "a",
+              "an",
               "and",
-              "are"
+              "are",
+              "at",
+              "be",
+              "call",
+              "day",
+              "earnings",
+              "for"
             ],
-            "rate": 0.4167
+            "rate": 0.8333
           },
-          "token_f1_vs_context": 0.1833,
-          "token_f1_vs_gold": 0.375,
+          "token_f1_vs_context": 0.4856,
+          "token_f1_vs_gold": 0.2914,
           "grounded_hit": 1.0
         }
       }
     },
     {
-      "query_id": "q:58be2f3785d8",
-      "query": "Which quantitative results are stated in the Q&A passage?",
+      "query_id": "q:246367cf9a4e",
+      "query": "Which quantitative results are stated in the earnings-call passage?",
       "gold_chunk_ids": [
-        "earnings_transcripts:qa:0-1:7b087b296300"
+        "finance_alpaca:unknown:6-9:d09cd436e93f"
       ],
       "retrieved_ids": [
-        "finance_alpaca:qa:0-2:33ff30950ed3",
-        "fiqa:unknown:0-1:ad10d17281b6",
-        "earnings_transcripts:qa:0-1:7b087b296300",
-        "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29"
+        "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+        "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+        "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+        "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+        "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5"
       ],
-      "packed_chars": 1012,
-      "gold_answer": "From the Q&A excerpt, the supported facts are:\n- Azure grew 30 percent, and 28 percent constant currency, with AI services contributing several points.\n\nCitations: earnings_transcripts:qa:0-1:7b087b296300#s1. No figures beyond these source sentences.",
+      "packed_chars": 3088,
+      "gold_answer": "From the earnings-call excerpt, the supported facts are:\n- The transfer is immediate. But it couldn't be done online, last time I checked. For transfers where you don't know the recipients bank account, you can pay online with Interac E-Transfers, offered by most Canadian banks. It's basically e-mailing money.\n\nCitations: finance_alpaca:unknown:6-9:d09cd436e93f#s6. No figures beyond these source sentences.",
       "base": {
-        "output": "The quantitative results stated in the Q&A passage are:\n\n- 30 percent (Azure growth excluding the impact of the extra calendar day)\n- 28 percent (Azure growth constant currency)",
+        "output": "The information is not in the context. The passage does not mention any quantitative results.",
         "scores": {
           "citation": {
             "n_needles": 12,
-            "n_hits": 7,
+            "n_hits": 4,
             "hits": [
-              "0",
-              "28",
-              "30",
-              "a",
-              "are",
-              "azure",
-              "constant"
+              "for",
+              "is",
+              "s",
+              "the"
             ],
-            "rate": 0.5833
+            "rate": 0.3333
           },
-          "token_f1_vs_context": 0.304,
-          "token_f1_vs_gold": 0.3448,
+          "token_f1_vs_context": 0.0899,
+          "token_f1_vs_gold": 0.0563,
+          "grounded_hit": 0.0
+        }
+      },
+      "adapter": {
+        "output": "From the earnings-call excerpt, the supported facts are:\n- Earlier this morning, we released our results for the quarter. Our earnings materials are available on the SEC's website and our Investor Relations website at investors.adp.com where you will also find the investor presentation that accompanies today's call.\n- During our call, we will reference non-GAAP financial measures, which we believe to be useful to investors and that exclude the impact of certain items.\n- A description of these items along with a reconciliation of non-GAAP measures to the most comparable GAAP measures can be found in our earnings release.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8f6e5f6f6a#s3; earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8f6e5f6f6a#s1; earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8f6e5f6f6a#s2. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 12,
+            "hits": [
+              "are",
+              "be",
+              "call",
+              "can",
+              "earnings",
+              "for",
+              "is",
+              "most",
+              "s",
+              "the",
+              "these",
+              "where"
+            ],
+            "rate": 1.0
+          },
+          "token_f1_vs_context": 0.8519,
+          "token_f1_vs_gold": 0.3194,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:256439a9927e",
+      "query": "Write a short research note grounded only in this earnings-call excerpt.",
+      "gold_chunk_ids": [
+        "finance_alpaca:unknown:8-11:df4368287b3a"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+        "earnings_transcripts:qa:8-11:7e372054179d",
+        "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+        "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+        "earnings_transcripts:prepared_remarks:12-15:ef74be69571c"
+      ],
+      "packed_chars": 2787,
+      "gold_answer": "Research note from the earnings-call excerpt (grounded):\n- Statements such as \"90% lose money\" are hyperbole meant to separate you from your money.\n- The question of lagging the market is another story - I have no data to support my observation, but I'd imagine that well over 90% lag the broad market.\n\nCitations: finance_alpaca:unknown:8-11:df4368287b3a#s1; finance_alpaca:unknown:8-11:df4368287b3a#s3. No figures beyond these source sentences.",
+      "base": {
+        "output": "Research Note: Earnings Call Excerpts Analysis\n\nBased on the provided excerpts, the following key points can be identified:\n\n1. Administrative details: The call contains time-sensitive data accurate only as of the date of the live broadcast, and redistribution is prohibited.\n2. Earnings materials availability: The earnings materials are available on the SEC's website and the company's Investor Relations website at investors.adp.com.\n3. Non-GAAP financial measures: The company will reference non-GAAP financial measures, which exclude the impact of certain items, and provide a description and reconciliation in the earnings release.\n4. Forward-looking statements: The call will contain forward-looking statements that refer to future events and involve some risk.\n\nNo specific financial metrics, such as earnings guidance or revenue, are mentioned in the excerpts. Therefore, no concrete conclusions can be drawn about the company's financial performance.\n\nRecommendation: Further research is required to understand the company's financial performance and to analyze the non-GAAP financial measures mentioned in the excerpts.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 9,
+            "hits": [
+              "are",
+              "as",
+              "call",
+              "data",
+              "earnings",
+              "is",
+              "note",
+              "of",
+              "research"
+            ],
+            "rate": 0.75
+          },
+          "token_f1_vs_context": 0.5092,
+          "token_f1_vs_gold": 0.1923,
           "grounded_hit": 1.0
         }
       },
       "adapter": {
-        "output": "Citations: earnings_transcripts:qa:0-1:7b087b296300; earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29.\n\nCitations beyondqa:0-1:7b087b296300 and prepared_remarks:0-1:cfc1e8fabf29 are unverified beyond this source.",
+        "output": "Research note from the earnings-call excerpt (prepared_remarks:10-13:5b7fd8f55d75 | earnings_transcripts):\n- And Michael will wrap up our prepared remarks with a discussion of key financial matters, including our earnings guidance. Then we will open the call for questions. Before we begin, let me cover a few administrative details. This call contains time-sensitive data that is accurate only as of the date of today's live broadcast and redistribution of this broadcast is prohibited.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75:0-3:0e8f6f6f6f6f#s0. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 11,
+            "hits": [
+              "8",
+              "are",
+              "as",
+              "call",
+              "data",
+              "earnings",
+              "is",
+              "note",
+              "of",
+              "question",
+              "research"
+            ],
+            "rate": 0.9167
+          },
+          "token_f1_vs_context": 0.4896,
+          "token_f1_vs_gold": 0.3016,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:2710e29ff068",
+      "query": "Write a short research note grounded only in this prepared remarks excerpt.",
+      "gold_chunk_ids": [
+        "earnings_transcripts:prepared_remarks:108-111:ca553c2cf0f2"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+        "earnings_transcripts:prepared_remarks:28-31:511aba56e8b9",
+        "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+        "earnings_transcripts:prepared_remarks:4-7:8d1c24664d24",
+        "earnings_transcripts:prepared_remarks:4-7:b6187345a40f"
+      ],
+      "packed_chars": 1870,
+      "gold_answer": "Research note from the prepared remarks excerpt (grounded):\n- In fact, here in October, we have already caught up more than half of what had slipped from earlier quarters.\n- So, the quarterly lumpiness that we have been highlighting throughout the year is starting to swing the other way here in October.\n\nCitations: earnings_transcripts:prepared_remarks:108-111:ca553c2cf0f2#s2; earnings_transcripts:prepared_remarks:108-111:ca553c2cf0f2#s3. No figures beyond these source sentences.",
+      "base": {
+        "output": "Research Note:\n\nAssurant's Third Quarter 2021 conference call and webcast, as well as Aflac Incorporated's Third Quarter 2024 Earnings Call, highlight the company's approach to managing through uncertain conditions. According to Assurant's prepared remarks, the company's approach is \"thoughtful and deliberate\" and focused on the long term, with a commitment to \"delivering with excellence in the things we can\" (Excerpt 2).\n\nA similar sentiment is expressed by Quentin McMillan in Aflac Incorporated's prepared remarks, stating that the company's forward-looking statements are subject to risks and uncertainties, but are based on management's current expectations (Excerpts 4-7). AIG's filings with the SEC provide additional context on the factors that could impact actual results or events.\n\nWhile the prepared remarks do not provide specific financial guidance or metrics, they suggest that Assurant and Aflac Incorporated are committed to a thoughtful and deliberate approach to managing through uncertain conditions.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 8,
+            "hits": [
+              "earnings",
+              "in",
+              "is",
+              "note",
+              "prepared",
+              "remarks",
+              "that",
+              "the"
+            ],
+            "rate": 0.6667
+          },
+          "token_f1_vs_context": 0.5415,
+          "token_f1_vs_gold": 0.1633,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Research note from the prepared remarks excerpt (grounded):\n- Operator: Welcome to Assurant's Third Quarter 2021 conference call and webcast. At this time, all participants have been placed in a listen-only mode. And the floor will be opened for questions. Following management prepared remarks.\n\nCitations: earnings_transcripts:prepared_remarks:0-3:15a1030808db#s0. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 10,
+            "hits": [
+              "been",
+              "earnings",
+              "have",
+              "in",
+              "is",
+              "note",
+              "prepared",
+              "remarks",
+              "the",
+              "these"
+            ],
+            "rate": 0.8333
+          },
+          "token_f1_vs_context": 0.4526,
+          "token_f1_vs_gold": 0.3889,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:318f6c6faf30",
+      "query": "Write a short research note grounded only in this earnings-call excerpt.",
+      "gold_chunk_ids": [
+        "finance_alpaca:unknown:8-11:86b86ccbf0dc"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+        "earnings_transcripts:qa:8-11:7e372054179d",
+        "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+        "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+        "earnings_transcripts:prepared_remarks:12-15:ef74be69571c"
+      ],
+      "packed_chars": 2787,
+      "gold_answer": "Research note from the earnings-call excerpt (grounded):\n- The trend has not broken yet but it is a warning sign that it could be ending soon. If the price makes a higher low next followed by a higher high, then the trend continues and you just need to keep an eye on things. If, however, the price makes a lower low after the lower high t\n\nCitations: finance_alpaca:unknown:8-11:86b86ccbf0dc#s8. No figures beyond these source sentences.",
+      "base": {
+        "output": "Research Note: Earnings Call Excerpts Analysis\n\nBased on the provided excerpts, the following key points can be identified:\n\n1. Administrative details: The call contains time-sensitive data accurate only as of the date of the live broadcast, and redistribution is prohibited.\n2. Earnings materials availability: The earnings materials are available on the SEC's website and the company's Investor Relations website at investors.adp.com.\n3. Non-GAAP financial measures: The company will reference non-GAAP financial measures, which exclude the impact of certain items, and provide a description and reconciliation in the earnings release.\n4. Forward-looking statements: The call will contain forward-looking statements that refer to future events and involve some risk.\n\nNo specific financial metrics, such as earnings guidance or revenue, are mentioned in the excerpts. Therefore, no concrete conclusions can be drawn about the company's financial performance.\n\nRecommendation: Further research is required to understand the company's financial performance and to analyze the non-GAAP financial measures mentioned in the excerpts.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 8,
+            "hits": [
+              "a",
+              "an",
+              "and",
+              "be",
+              "call",
+              "earnings",
+              "is",
+              "note"
+            ],
+            "rate": 0.6667
+          },
+          "token_f1_vs_context": 0.5092,
+          "token_f1_vs_gold": 0.1605,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Research note from the earnings-call excerpt (prepared_remarks:10-13:5b7fd8f55d75 | earnings_transcripts):\n- And Michael will wrap up our prepared remarks with a discussion of key financial matters, including our earnings guidance. Then we will open the call for questions. Before we begin, let me cover a few administrative details. This call contains time-sensitive data that is accurate only as of the date of today's live broadcast and redistribution of this broadcast is prohibited.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75:0-3:0e8f6f6f6f6f#s0. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 9,
+            "hits": [
+              "8",
+              "a",
+              "an",
+              "and",
+              "be",
+              "call",
+              "earnings",
+              "is",
+              "note"
+            ],
+            "rate": 0.75
+          },
+          "token_f1_vs_context": 0.4896,
+          "token_f1_vs_gold": 0.2879,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:35fda358bf10",
+      "query": "What did management report in this earnings-call excerpt?",
+      "gold_chunk_ids": [
+        "fiqa:unknown:0-3:023b805b0f04"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+        "earnings_transcripts:prepared_remarks:78-81:59623e2861c1",
+        "earnings_transcripts:prepared_remarks:10-13:deda65deabdb",
+        "earnings_transcripts:prepared_remarks:32-35:bde9f7618c80",
+        "earnings_transcripts:prepared_remarks:32-35:d74312327af4"
+      ],
+      "packed_chars": 3028,
+      "gold_answer": "From the earnings-call excerpt, the supported facts are:\n- Should I replace bonds in a passive investment strategy The fact that some asset (in this case corporate bonds) has positive correlation with some other asset (equity) doesn't mean buying both isn't a good idea. Unless they are perfectly correlated, the best risk/reward portfolio\n\nCitations: fiqa:unknown:0-3:023b805b0f04#s0. No figures beyond these source sentences.",
+      "base": {
+        "output": "Management reported that the impact of the Russia-Ukraine situation will not be material to AIG, and that they have multiple reinsurance programs available in the event of losses.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 5,
+            "hits": [
+              "a",
+              "i",
+              "in",
+              "that",
+              "the"
+            ],
+            "rate": 0.4167
+          },
+          "token_f1_vs_context": 0.1935,
+          "token_f1_vs_gold": 0.0952,
+          "grounded_hit": 0.0
+        }
+      },
+      "adapter": {
+        "output": "From the earnings-call excerpt, the supported facts are:\n- Participating today are Carlos Rodriguez, our President and Chief Executive Officer; and Kathleen Winters, our Chief Financial Officer. Earlier this morning, we released our results for the quarter. Our earnings materials are available on the SEC's website and on our Investor Relations website at investors.adp.com, where you will also find the investor presentation that accompanies today's call as well as our quarterly history of revenue and pretax earnings by reportable segment. During our call today, we will reference non-GAAP financial measures which we believe to be useful to investors and that exclude the impact of certain items.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62:3-6:0f6f8f6f6f6f#s3. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 9,
+            "hits": [
+              "a",
+              "are",
+              "call",
+              "earnings",
+              "from",
+              "i",
+              "in",
+              "that",
+              "the"
+            ],
+            "rate": 0.75
+          },
+          "token_f1_vs_context": 0.4856,
+          "token_f1_vs_gold": 0.2416,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:3722291f51a6",
+      "query": "Write a short research note grounded only in this prepared remarks excerpt.",
+      "gold_chunk_ids": [
+        "earnings_transcripts:prepared_remarks:26-29:855532150d49"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+        "earnings_transcripts:prepared_remarks:28-31:511aba56e8b9",
+        "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+        "earnings_transcripts:prepared_remarks:4-7:8d1c24664d24",
+        "earnings_transcripts:prepared_remarks:4-7:b6187345a40f"
+      ],
+      "packed_chars": 1870,
+      "gold_answer": "Research note from the prepared remarks excerpt (grounded):\n- Specifically, the IRA extends the production tax credit, or PTC, and the investment tax credit, or ITC, for 10 years and provides additional tax credits for energy communities such as low-income areas or places where coal mining or thermal generation previously took place.\n- We are very well positioned to capitalize on this demand and growth through our market leadership in renewables, particularly in the C&I segment due to our strong customer relationship, our ownership interest influence and our extensive and growing pipeline.\n- We anticipate that the benefits of the IRA will result in a meaningful step-up in demand across the U.S., but particularly from C&I customers looking to reach their decarbonization goals.\n\nCitations: earnings_transcripts:prepared_remarks:26-29:855532150d49#s2; earnings_transcripts:prepared_remarks:26-29:855532150d49#s1; earnings_transcripts:prepared_remarks:26-29:855532150d49#s3. No figures beyond these source sentences.",
+      "base": {
+        "output": "Research Note:\n\nAssurant's Third Quarter 2021 conference call and webcast, as well as Aflac Incorporated's Third Quarter 2024 Earnings Call, highlight the company's approach to managing through uncertain conditions. According to Assurant's prepared remarks, the company's approach is \"thoughtful and deliberate\" and focused on the long term, with a commitment to \"delivering with excellence in the things we can\" (Excerpt 2).\n\nA similar sentiment is expressed by Quentin McMillan in Aflac Incorporated's prepared remarks, stating that the company's forward-looking statements are subject to risks and uncertainties, but are based on management's current expectations (Excerpts 4-7). AIG's filings with the SEC provide additional context on the factors that could impact actual results or events.\n\nWhile the prepared remarks do not provide specific financial guidance or metrics, they suggest that Assurant and Aflac Incorporated are committed to a thoughtful and deliberate approach to managing through uncertain conditions.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 11,
+            "hits": [
+              "a",
+              "and",
+              "are",
+              "but",
+              "earnings",
+              "for",
+              "in",
+              "looking",
+              "note",
+              "on",
+              "or"
+            ],
+            "rate": 0.9167
+          },
+          "token_f1_vs_context": 0.5415,
+          "token_f1_vs_gold": 0.23,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Research note from the prepared remarks excerpt (grounded):\n- Operator: Welcome to Assurant's Third Quarter 2021 conference call and webcast. At this time, all participants have been placed in a listen-only mode. And the floor will be opened for questions. Following management prepared remarks.\n\nCitations: earnings_transcripts:prepared_remarks:0-3:15a1030808db#s0. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 9,
+            "hits": [
+              "a",
+              "and",
+              "are",
+              "earnings",
+              "for",
+              "in",
+              "note",
+              "on",
+              "or"
+            ],
+            "rate": 0.75
+          },
+          "token_f1_vs_context": 0.4526,
+          "token_f1_vs_gold": 0.3106,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:37e090b25f49",
+      "query": "Write a short research note grounded only in this earnings-call excerpt.",
+      "gold_chunk_ids": [
+        "fiqa:unknown:2-4:8f7ba616408b"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+        "earnings_transcripts:qa:8-11:7e372054179d",
+        "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+        "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+        "earnings_transcripts:prepared_remarks:12-15:ef74be69571c"
+      ],
+      "packed_chars": 2787,
+      "gold_answer": "Research note from the earnings-call excerpt (grounded):\n- In practical terms liquidity and brokerage costs usually make trading on the \"home\" exchange more worthwhile as any limit orders etc will be filled at a better price as you will more easily find a counterparty to your trade. Obviously that will only be an issue where your quantit\n\nCitations: fiqa:unknown:2-4:8f7ba616408b#s2. No figures beyond these source sentences.",
+      "base": {
+        "output": "Research Note: Earnings Call Excerpts Analysis\n\nBased on the provided excerpts, the following key points can be identified:\n\n1. Administrative details: The call contains time-sensitive data accurate only as of the date of the live broadcast, and redistribution is prohibited.\n2. Earnings materials availability: The earnings materials are available on the SEC's website and the company's Investor Relations website at investors.adp.com.\n3. Non-GAAP financial measures: The company will reference non-GAAP financial measures, which exclude the impact of certain items, and provide a description and reconciliation in the earnings release.\n4. Forward-looking statements: The call will contain forward-looking statements that refer to future events and involve some risk.\n\nNo specific financial metrics, such as earnings guidance or revenue, are mentioned in the excerpts. Therefore, no concrete conclusions can be drawn about the company's financial performance.\n\nRecommendation: Further research is required to understand the company's financial performance and to analyze the non-GAAP financial measures mentioned in the excerpts.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 11,
+            "hits": [
+              "a",
+              "an",
+              "and",
+              "as",
+              "at",
+              "be",
+              "call",
+              "earnings",
+              "in",
+              "note",
+              "on"
+            ],
+            "rate": 0.9167
+          },
+          "token_f1_vs_context": 0.5092,
+          "token_f1_vs_gold": 0.236,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Research note from the earnings-call excerpt (prepared_remarks:10-13:5b7fd8f55d75 | earnings_transcripts):\n- And Michael will wrap up our prepared remarks with a discussion of key financial matters, including our earnings guidance. Then we will open the call for questions. Before we begin, let me cover a few administrative details. This call contains time-sensitive data that is accurate only as of the date of today's live broadcast and redistribution of this broadcast is prohibited.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75:0-3:0e8f6f6f6f6f#s0. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 11,
+            "hits": [
+              "a",
+              "an",
+              "and",
+              "as",
+              "at",
+              "be",
+              "call",
+              "earnings",
+              "in",
+              "note",
+              "on"
+            ],
+            "rate": 0.9167
+          },
+          "token_f1_vs_context": 0.4896,
+          "token_f1_vs_gold": 0.3053,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:3ca9a3665e10",
+      "query": "What did management report in this earnings-call excerpt?",
+      "gold_chunk_ids": [
+        "finance_alpaca:unknown:0-3:75bc45624ba8"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+        "earnings_transcripts:prepared_remarks:78-81:59623e2861c1",
+        "earnings_transcripts:prepared_remarks:10-13:deda65deabdb",
+        "earnings_transcripts:prepared_remarks:32-35:bde9f7618c80",
+        "earnings_transcripts:prepared_remarks:32-35:d74312327af4"
+      ],
+      "packed_chars": 3028,
+      "gold_answer": "From the earnings-call excerpt, the supported facts are:\n- Why do interest rates increase or decrease? My answer is specific to the US because you mentioned the Federal Reserve, but a similar system is in place in most countries. Do interest rates increase based on what the market is doing, or do they solely increase based on what the Fe\n\nCitations: finance_alpaca:unknown:0-3:75bc45624ba8#s0. No figures beyond these source sentences.",
+      "base": {
+        "output": "Management reported that the impact of the Russia-Ukraine situation will not be material to AIG, and that they have multiple reinsurance programs available in the event of losses.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 2,
+            "hits": [
+              "a",
+              "in"
+            ],
+            "rate": 0.1667
+          },
+          "token_f1_vs_context": 0.1935,
+          "token_f1_vs_gold": 0.0988,
+          "grounded_hit": 0.0
+        }
+      },
+      "adapter": {
+        "output": "From the earnings-call excerpt, the supported facts are:\n- Participating today are Carlos Rodriguez, our President and Chief Executive Officer; and Kathleen Winters, our Chief Financial Officer. Earlier this morning, we released our results for the quarter. Our earnings materials are available on the SEC's website and on our Investor Relations website at investors.adp.com, where you will also find the investor presentation that accompanies today's call as well as our quarterly history of revenue and pretax earnings by reportable segment. During our call today, we will reference non-GAAP financial measures which we believe to be useful to investors and that exclude the impact of certain items.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62:3-6:0f8f6e5f6f6a#s3. No figures beyond these source sentences.",
         "scores": {
           "citation": {
             "n_needles": 12,
             "n_hits": 7,
             "hits": [
-              "0",
-              "1",
-              "30",
-              "7b087b296300",
               "a",
-              "and",
-              "are"
+              "are",
+              "call",
+              "earnings",
+              "from",
+              "in",
+              "is"
             ],
             "rate": 0.5833
           },
-          "token_f1_vs_context": 0.1833,
+          "token_f1_vs_context": 0.4856,
+          "token_f1_vs_gold": 0.2603,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:535d8859b10c",
+      "query": "Write a short research note grounded only in this earnings-call excerpt.",
+      "gold_chunk_ids": [
+        "finance_alpaca:unknown:2-5:2ff21d0bd54d"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+        "earnings_transcripts:qa:8-11:7e372054179d",
+        "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+        "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+        "earnings_transcripts:prepared_remarks:12-15:ef74be69571c"
+      ],
+      "packed_chars": 2787,
+      "gold_answer": "Research note from the earnings-call excerpt (grounded):\n- After discussing with many in the real estate world, I counted the average and learned that most averaged about 6 - 8% on real estate after taxes.\n\nCitations: finance_alpaca:unknown:2-5:2ff21d0bd54d#s0. No figures beyond these source sentences.",
+      "base": {
+        "output": "Research Note: Earnings Call Excerpts Analysis\n\nBased on the provided excerpts, the following key points can be identified:\n\n1. Administrative details: The call contains time-sensitive data accurate only as of the date of the live broadcast, and redistribution is prohibited.\n2. Earnings materials availability: The earnings materials are available on the SEC's website and the company's Investor Relations website at investors.adp.com.\n3. Non-GAAP financial measures: The company will reference non-GAAP financial measures, which exclude the impact of certain items, and provide a description and reconciliation in the earnings release.\n4. Forward-looking statements: The call will contain forward-looking statements that refer to future events and involve some risk.\n\nNo specific financial metrics, such as earnings guidance or revenue, are mentioned in the excerpts. Therefore, no concrete conclusions can be drawn about the company's financial performance.\n\nRecommendation: Further research is required to understand the company's financial performance and to analyze the non-GAAP financial measures mentioned in the excerpts.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 9,
+            "hits": [
+              "and",
+              "call",
+              "earnings",
+              "in",
+              "note",
+              "on",
+              "research",
+              "that",
+              "the"
+            ],
+            "rate": 0.75
+          },
+          "token_f1_vs_context": 0.5092,
+          "token_f1_vs_gold": 0.169,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Research note from the earnings-call excerpt (prepared_remarks:10-13:5b7fd8f55d75 | earnings_transcripts):\n- And Michael will wrap up our prepared remarks with a discussion of key financial matters, including our earnings guidance. Then we will open the call for questions. Before we begin, let me cover a few administrative details. This call contains time-sensitive data that is accurate only as of the date of today's live broadcast and redistribution of this broadcast is prohibited.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75:0-3:0e8f6f6f6f6f#s0. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 10,
+            "hits": [
+              "and",
+              "call",
+              "earnings",
+              "in",
+              "note",
+              "on",
+              "research",
+              "that",
+              "the",
+              "these"
+            ],
+            "rate": 0.8333
+          },
+          "token_f1_vs_context": 0.4896,
+          "token_f1_vs_gold": 0.3214,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:5ce38bdbcf00",
+      "query": "Write a short research note grounded only in this prepared remarks excerpt.",
+      "gold_chunk_ids": [
+        "earnings_transcripts:prepared_remarks:62-65:dc57564b3d87"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+        "earnings_transcripts:prepared_remarks:28-31:511aba56e8b9",
+        "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+        "earnings_transcripts:prepared_remarks:4-7:8d1c24664d24",
+        "earnings_transcripts:prepared_remarks:4-7:b6187345a40f"
+      ],
+      "packed_chars": 1870,
+      "gold_answer": "Research note from the prepared remarks excerpt (grounded):\n- Ag Services results were lower than the strong third quarter of 2022.\n- Please turn to Slide 5.\n\nCitations: earnings_transcripts:prepared_remarks:62-65:dc57564b3d87#s3; earnings_transcripts:prepared_remarks:62-65:dc57564b3d87#s1. No figures beyond these source sentences.",
+      "base": {
+        "output": "Research Note:\n\nAssurant's Third Quarter 2021 conference call and webcast, as well as Aflac Incorporated's Third Quarter 2024 Earnings Call, highlight the company's approach to managing through uncertain conditions. According to Assurant's prepared remarks, the company's approach is \"thoughtful and deliberate\" and focused on the long term, with a commitment to \"delivering with excellence in the things we can\" (Excerpt 2).\n\nA similar sentiment is expressed by Quentin McMillan in Aflac Incorporated's prepared remarks, stating that the company's forward-looking statements are subject to risks and uncertainties, but are based on management's current expectations (Excerpts 4-7). AIG's filings with the SEC provide additional context on the factors that could impact actual results or events.\n\nWhile the prepared remarks do not provide specific financial guidance or metrics, they suggest that Assurant and Aflac Incorporated are committed to a thoughtful and deliberate approach to managing through uncertain conditions.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 9,
+            "hits": [
+              "earnings",
+              "note",
+              "prepared",
+              "quarter",
+              "remarks",
+              "results",
+              "the",
+              "third",
+              "to"
+            ],
+            "rate": 0.75
+          },
+          "token_f1_vs_context": 0.5415,
+          "token_f1_vs_gold": 0.1679,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Research note from the prepared remarks excerpt (grounded):\n- Operator: Welcome to Assurant's Third Quarter 2021 conference call and webcast. At this time, all participants have been placed in a listen-only mode. And the floor will be opened for questions. Following management prepared remarks.\n\nCitations: earnings_transcripts:prepared_remarks:0-3:15a1030808db#s0. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 9,
+            "hits": [
+              "earnings",
+              "note",
+              "prepared",
+              "quarter",
+              "remarks",
+              "the",
+              "these",
+              "third",
+              "to"
+            ],
+            "rate": 0.75
+          },
+          "token_f1_vs_context": 0.4526,
+          "token_f1_vs_gold": 0.4348,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:6949f5a1f18e",
+      "query": "Which quantitative results are stated in the prepared remarks passage?",
+      "gold_chunk_ids": [
+        "earnings_transcripts:prepared_remarks:38-41:ae5fdfd1b976"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:12-15:87c0286ba01a",
+        "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+        "earnings_transcripts:prepared_remarks:10-13:e06ad409e995",
+        "earnings_transcripts:prepared_remarks:4-7:65fd19a8d74b",
+        "earnings_transcripts:prepared_remarks:10-13:e62ab4795a1b"
+      ],
+      "packed_chars": 2965,
+      "gold_answer": "From the prepared remarks excerpt, the supported facts are:\n- As you can see on Slide 6, we anticipate completing 1.8 gigawatts of new renewables globally this year, 4.6 gigawatts next year for a total of 6.4 gigawatts by the end of 2023.\n\nCitations: earnings_transcripts:prepared_remarks:38-41:ae5fdfd1b976#s1. No figures beyond these source sentences.",
+      "base": {
+        "output": "There are no quantitative results stated in the prepared remarks passage.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 5,
+            "hits": [
+              "a",
+              "are",
+              "as",
+              "no",
+              "prepared"
+            ],
+            "rate": 0.4167
+          },
+          "token_f1_vs_context": 0.0779,
+          "token_f1_vs_gold": 0.1695,
+          "grounded_hit": 0.0
+        }
+      },
+      "adapter": {
+        "output": "From the prepared remarks excerpt, the supported facts are:\n- By now, you should have a copy of the press release, which crossed the wire approximately one hour ago. We've also posted PDFs of our prepared remarks and financial results on Adobe's Investor Relations website. Before we get started I want to emphasize that some of the information discussed in this call, including our financial targets and product plans, is based on information as of today, March 23, and contains forward-looking statements that involve risk, uncertainty and assumptions. Actual results may differ materially from those set forth in these statements.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:e62ab4795a1b:2-5:7c4e593ff0f7#s2. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 11,
+            "hits": [
+              "a",
+              "are",
+              "as",
+              "by",
+              "earnings",
+              "for",
+              "from",
+              "no",
+              "of",
+              "on",
+              "prepared"
+            ],
+            "rate": 0.9167
+          },
+          "token_f1_vs_context": 0.5333,
+          "token_f1_vs_gold": 0.3497,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:6c075992edc3",
+      "query": "Which quantitative results are stated in the earnings-call passage?",
+      "gold_chunk_ids": [
+        "finance_alpaca:unknown:42-45:5f210a9e319a"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+        "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+        "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+        "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+        "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5"
+      ],
+      "packed_chars": 3088,
+      "gold_answer": "From the earnings-call excerpt, the supported facts are:\n- It fell in value? Houses are probably cheap. Houses increasing in price rapidly? A REIT is probably growing by leaps and bounds.\n\nCitations: finance_alpaca:unknown:42-45:5f210a9e319a#s42. No figures beyond these source sentences.",
+      "base": {
+        "output": "The information is not in the context. The passage does not mention any quantitative results.",
+        "scores": {
+          "citation": {
+            "n_needles": 9,
+            "n_hits": 4,
+            "hits": [
+              "a",
+              "in",
+              "is",
+              "the"
+            ],
+            "rate": 0.4444
+          },
+          "token_f1_vs_context": 0.0899,
+          "token_f1_vs_gold": 0.1154,
+          "grounded_hit": 0.0
+        }
+      },
+      "adapter": {
+        "output": "From the earnings-call excerpt, the supported facts are:\n- Earlier this morning, we released our results for the quarter. Our earnings materials are available on the SEC's website and our Investor Relations website at investors.adp.com where you will also find the investor presentation that accompanies today's call.\n- During our call, we will reference non-GAAP financial measures, which we believe to be useful to investors and that exclude the impact of certain items.\n- A description of these items along with a reconciliation of non-GAAP measures to the most comparable GAAP measures can be found in our earnings release.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8f6e5f6f6a#s3; earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8f6e5f6f6a#s1; earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8f6e5f6f6a#s2. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 9,
+            "n_hits": 9,
+            "hits": [
+              "a",
+              "and",
+              "are",
+              "call",
+              "earnings",
+              "in",
+              "is",
+              "the",
+              "these"
+            ],
+            "rate": 1.0
+          },
+          "token_f1_vs_context": 0.8519,
+          "token_f1_vs_gold": 0.288,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:70d07f7fe1be",
+      "query": "What did management report in this prepared remarks excerpt?",
+      "gold_chunk_ids": [
+        "earnings_transcripts:prepared_remarks:36-39:997fbed7770d"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+        "earnings_transcripts:prepared_remarks:10-13:7becbd0fd078",
+        "earnings_transcripts:prepared_remarks:32-35:5e6694c4118b",
+        "earnings_transcripts:prepared_remarks:8-11:92576dc38997",
+        "earnings_transcripts:prepared_remarks:10-13:011f807f061d"
+      ],
+      "packed_chars": 2839,
+      "gold_answer": "From the prepared remarks excerpt, the supported facts are:\n- Acquisitions from the fourth quarter of last year contributed four percentage points of growth.\n- The revenue upside versus our guidance was largely driven by deals with up-front revenue recognition, including those with the federal government or that include certain products like Vault and VRED.\n- Some of these transactions were targeted for the fourth quarter and closed early.\n- Overall, we’re very pleased with our strong execution in the quarter.\n\nCitations: earnings_transcripts:prepared_remarks:36-39:997fbed7770d#s0; earnings_transcripts:prepared_remarks:36-39:997fbed7770d#s1; earnings_transcripts:prepared_remarks:36-39:997fbed7770d#s2; earnings_transcripts:prepared_remarks:36-39:997fbed7770d#s3. No figures beyond these source sentences.",
+      "base": {
+        "output": "The information is not in the context. The excerpt does not mention what management reported in the prepared remarks.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 6,
+            "hits": [
+              "are",
+              "for",
+              "in",
+              "no",
+              "or",
+              "prepared"
+            ],
+            "rate": 0.5
+          },
+          "token_f1_vs_context": 0.0847,
+          "token_f1_vs_gold": 0.1099,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "From the prepared remarks excerpt, the supported facts are:\n- Please turn to slide 2. Some of our comments and materials may constitute forward-looking statements that reflect management's current views and estimates of future economic circumstances, industry conditions, company performance, and financial results. These statements and materials are based on many assumptions and factors that are subject to risk and uncertainties. ADM has provided additional information in its reports on filed with the SEC concerning assumptions and factors that could cause actual results to differ materially from those in this presentation.\n\nCitations: earnings_transcripts:prepared_remarks:0-3:15a1030808db:10-13:7becbd0fd078#s10. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 11,
+            "hits": [
+              "and",
+              "are",
+              "earnings",
+              "for",
+              "from",
+              "in",
+              "no",
+              "of",
+              "or",
+              "our",
+              "prepared"
+            ],
+            "rate": 0.9167
+          },
+          "token_f1_vs_context": 0.5792,
+          "token_f1_vs_gold": 0.3106,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:7af1d54366d2",
+      "query": "What did management report in this prepared remarks excerpt?",
+      "gold_chunk_ids": [
+        "earnings_transcripts:prepared_remarks:2-5:f33992b0e0f5"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+        "earnings_transcripts:prepared_remarks:10-13:7becbd0fd078",
+        "earnings_transcripts:prepared_remarks:32-35:5e6694c4118b",
+        "earnings_transcripts:prepared_remarks:8-11:92576dc38997",
+        "earnings_transcripts:prepared_remarks:10-13:011f807f061d"
+      ],
+      "packed_chars": 2839,
+      "gold_answer": "From the prepared remarks excerpt, the supported facts are:\n- At this time, for opening remarks and introductions, I'd like to turn the call over to Tejas Gala, Director, Investor Relations and Corporate Finance. Please go ahead. Tejas Gala: Thank you. Good afternoon and thank you for joining us.\n\nCitations: earnings_transcripts:prepared_remarks:2-5:f33992b0e0f5#s2. No figures beyond these source sentences.",
+      "base": {
+        "output": "The information is not in the context. The excerpt does not mention what management reported in the prepared remarks.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 6,
+            "hits": [
+              "are",
+              "at",
+              "for",
+              "no",
+              "prepared",
+              "remarks"
+            ],
+            "rate": 0.5
+          },
+          "token_f1_vs_context": 0.0847,
+          "token_f1_vs_gold": 0.1231,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Excerpts from the prepared remarks:\n- Please turn to slide 2. Some of our comments and materials may constitute forward-looking statements that reflect management's current views and estimates of future economic circumstances, industry conditions, company performance, and financial results. These statements and materials are based on many assumptions and factors that are subject to risk and uncertainties. ADM has provided additional information in its reports on filed with the SEC concerning assumptions and factors that could cause actual results to differ materially from those in this presentation.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:011f807f061d:2-5:0e8f6f6f6f6f#s2. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 11,
+            "hits": [
+              "2",
+              "and",
+              "are",
+              "at",
+              "earnings",
+              "for",
+              "from",
+              "no",
+              "please",
+              "prepared",
+              "remarks"
+            ],
+            "rate": 0.9167
+          },
+          "token_f1_vs_context": 0.5625,
+          "token_f1_vs_gold": 0.3333,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:7fa150ff4c57",
+      "query": "Write a short research note grounded only in this earnings-call excerpt.",
+      "gold_chunk_ids": [
+        "finance_alpaca:unknown:16-19:f5e32698ab3a"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+        "earnings_transcripts:qa:8-11:7e372054179d",
+        "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+        "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+        "earnings_transcripts:prepared_remarks:12-15:ef74be69571c"
+      ],
+      "packed_chars": 2787,
+      "gold_answer": "Research note from the earnings-call excerpt (grounded):\n- If you have stop losses employed and the trend reverses on the index, this would be a good time to tighten your stop losses on individual shares. You can then buy back into the market when you determine that the downtrend is broken and prices start to show higher highs and higher\n\nCitations: finance_alpaca:unknown:16-19:f5e32698ab3a#s16. No figures beyond these source sentences.",
+      "base": {
+        "output": "Research Note: Earnings Call Excerpts Analysis\n\nBased on the provided excerpts, the following key points can be identified:\n\n1. Administrative details: The call contains time-sensitive data accurate only as of the date of the live broadcast, and redistribution is prohibited.\n2. Earnings materials availability: The earnings materials are available on the SEC's website and the company's Investor Relations website at investors.adp.com.\n3. Non-GAAP financial measures: The company will reference non-GAAP financial measures, which exclude the impact of certain items, and provide a description and reconciliation in the earnings release.\n4. Forward-looking statements: The call will contain forward-looking statements that refer to future events and involve some risk.\n\nNo specific financial metrics, such as earnings guidance or revenue, are mentioned in the excerpts. Therefore, no concrete conclusions can be drawn about the company's financial performance.\n\nRecommendation: Further research is required to understand the company's financial performance and to analyze the non-GAAP financial measures mentioned in the excerpts.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 11,
+            "hits": [
+              "a",
+              "and",
+              "be",
+              "call",
+              "can",
+              "earnings",
+              "is",
+              "note",
+              "on",
+              "research",
+              "that"
+            ],
+            "rate": 0.9167
+          },
+          "token_f1_vs_context": 0.5092,
+          "token_f1_vs_gold": 0.1875,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Research note from the earnings-call excerpt (prepared_remarks:10-13:5b7fd8f55d75 | earnings_transcripts):\n- And Michael will wrap up our prepared remarks with a discussion of key financial matters, including our earnings guidance. Then we will open the call for questions. Before we begin, let me cover a few administrative details. This call contains time-sensitive data that is accurate only as of the date of today's live broadcast and redistribution of this broadcast is prohibited.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75:0-3:0e8f6f6f6f6f#s0. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 10,
+            "hits": [
+              "a",
+              "and",
+              "be",
+              "call",
+              "earnings",
+              "is",
+              "note",
+              "on",
+              "research",
+              "that"
+            ],
+            "rate": 0.8333
+          },
+          "token_f1_vs_context": 0.4896,
+          "token_f1_vs_gold": 0.3231,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:82a186012d11",
+      "query": "What did management report in this prepared remarks excerpt?",
+      "gold_chunk_ids": [
+        "earnings_transcripts:prepared_remarks:46-49:8f5e7720bf56"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+        "earnings_transcripts:prepared_remarks:10-13:7becbd0fd078",
+        "earnings_transcripts:prepared_remarks:32-35:5e6694c4118b",
+        "earnings_transcripts:prepared_remarks:8-11:92576dc38997",
+        "earnings_transcripts:prepared_remarks:10-13:011f807f061d"
+      ],
+      "packed_chars": 2839,
+      "gold_answer": "From the prepared remarks excerpt, the supported facts are:\n- At the same time, capacity is constrained in certain lines and carriers are pushing for tighter terms and conditions.\n\nCitations: earnings_transcripts:prepared_remarks:46-49:8f5e7720bf56#s0. No figures beyond these source sentences.",
+      "base": {
+        "output": "The information is not in the context. The excerpt does not mention what management reported in the prepared remarks.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 8,
+            "hits": [
+              "are",
+              "at",
+              "for",
+              "in",
+              "is",
+              "no",
+              "prepared",
+              "remarks"
+            ],
+            "rate": 0.6667
+          },
+          "token_f1_vs_context": 0.0847,
+          "token_f1_vs_gold": 0.2353,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Excerpts from the prepared remarks:\n- Please turn to slide 2. Some of our comments and materials may constitute forward-looking statements that reflect management's current views and estimates of future economic circumstances, industry conditions, company performance, and financial results. These statements and materials are based on many assumptions and factors that are subject to risk and uncertainties. ADM has provided additional information in its reports on filed with the SEC concerning assumptions and factors that could cause actual results to differ materially from those in this presentation.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:011f807f061d:2-5:0e8f6f6f6f6f#s2. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 12,
+            "hits": [
+              "and",
+              "are",
+              "at",
+              "conditions",
+              "earnings",
+              "for",
+              "from",
+              "in",
+              "is",
+              "no",
+              "prepared",
+              "remarks"
+            ],
+            "rate": 1.0
+          },
+          "token_f1_vs_context": 0.5625,
+          "token_f1_vs_gold": 0.2881,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:82ca3b8a7079",
+      "query": "Write a short research note grounded only in this earnings-call excerpt.",
+      "gold_chunk_ids": [
+        "finance_alpaca:unknown:6-9:e87e3af8ba7d"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+        "earnings_transcripts:qa:8-11:7e372054179d",
+        "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+        "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+        "earnings_transcripts:prepared_remarks:12-15:ef74be69571c"
+      ],
+      "packed_chars": 2787,
+      "gold_answer": "Research note from the earnings-call excerpt (grounded):\n- It's not uncommon in some areas to have 100 year old houses (or 300+ year old houses in some countries) that were built well in the first place and have been well maintained in the interim.\n\nCitations: finance_alpaca:unknown:6-9:e87e3af8ba7d#s1. No figures beyond these source sentences.",
+      "base": {
+        "output": "Research Note: Earnings Call Excerpts Analysis\n\nBased on the provided excerpts, the following key points can be identified:\n\n1. Administrative details: The call contains time-sensitive data accurate only as of the date of the live broadcast, and redistribution is prohibited.\n2. Earnings materials availability: The earnings materials are available on the SEC's website and the company's Investor Relations website at investors.adp.com.\n3. Non-GAAP financial measures: The company will reference non-GAAP financial measures, which exclude the impact of certain items, and provide a description and reconciliation in the earnings release.\n4. Forward-looking statements: The call will contain forward-looking statements that refer to future events and involve some risk.\n\nNo specific financial metrics, such as earnings guidance or revenue, are mentioned in the excerpts. Therefore, no concrete conclusions can be drawn about the company's financial performance.\n\nRecommendation: Further research is required to understand the company's financial performance and to analyze the non-GAAP financial measures mentioned in the excerpts.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 11,
+            "hits": [
+              "and",
+              "call",
+              "earnings",
+              "in",
+              "note",
+              "research",
+              "s",
+              "some",
+              "that",
+              "the",
+              "to"
+            ],
+            "rate": 0.9167
+          },
+          "token_f1_vs_context": 0.5092,
+          "token_f1_vs_gold": 0.1769,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Research note from the earnings-call excerpt (prepared_remarks:10-13:5b7fd8f55d75 | earnings_transcripts):\n- And Michael will wrap up our prepared remarks with a discussion of key financial matters, including our earnings guidance. Then we will open the call for questions. Before we begin, let me cover a few administrative details. This call contains time-sensitive data that is accurate only as of the date of today's live broadcast and redistribution of this broadcast is prohibited.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75:0-3:0e8f6f6f6f6f#s0. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 11,
+            "hits": [
+              "and",
+              "call",
+              "earnings",
+              "in",
+              "note",
+              "research",
+              "s",
+              "that",
+              "the",
+              "these",
+              "to"
+            ],
+            "rate": 0.9167
+          },
+          "token_f1_vs_context": 0.4896,
+          "token_f1_vs_gold": 0.2906,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:86f76efad70b",
+      "query": "Which quantitative results are stated in the earnings-call passage?",
+      "gold_chunk_ids": [
+        "fiqa:unknown:8-11:9edd02eb911d"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+        "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+        "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+        "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+        "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5"
+      ],
+      "packed_chars": 3088,
+      "gold_answer": "From the earnings-call excerpt, the supported facts are:\n- A market order is an order to buy or sell a stock at the current market price. A limit order is an order to buy or sell a security at a specific price. In the US, when you place a trade with any broker, you can either place a limit order or a market order. A market order just fil\n\nCitations: fiqa:unknown:8-11:9edd02eb911d#s8. No figures beyond these source sentences.",
+      "base": {
+        "output": "The information is not in the context. The passage does not mention any quantitative results.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 5,
+            "hits": [
+              "a",
+              "at",
+              "in",
+              "is",
+              "the"
+            ],
+            "rate": 0.4167
+          },
+          "token_f1_vs_context": 0.0899,
+          "token_f1_vs_gold": 0.129,
+          "grounded_hit": 0.0
+        }
+      },
+      "adapter": {
+        "output": "From the earnings-call excerpt, the supported facts are:\n- Earlier this morning, we released our results for the quarter. Our earnings materials are available on the SEC's website and our Investor Relations website at investors.adp.com where you will also find the investor presentation that accompanies today's call.\n- During our call, we will reference non-GAAP financial measures, which we believe to be useful to investors and that exclude the impact of certain items.\n- A description of these items along with a reconciliation of non-GAAP measures to the most comparable GAAP measures can be found in our earnings release.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8e8f6f6f6a#s3; earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8e8f6f6f6a#s1; earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8e8f6f6f6a#s2. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 12,
+            "hits": [
+              "a",
+              "are",
+              "at",
+              "call",
+              "can",
+              "earnings",
+              "in",
+              "is",
+              "the",
+              "these",
+              "to",
+              "with"
+            ],
+            "rate": 1.0
+          },
+          "token_f1_vs_context": 0.8519,
+          "token_f1_vs_gold": 0.3259,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:88f5ecd8b009",
+      "query": "Write a short research note grounded only in this earnings-call excerpt.",
+      "gold_chunk_ids": [
+        "fiqa:unknown:4-7:cce69d54e583"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+        "earnings_transcripts:qa:8-11:7e372054179d",
+        "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+        "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+        "earnings_transcripts:prepared_remarks:12-15:ef74be69571c"
+      ],
+      "packed_chars": 2787,
+      "gold_answer": "Research note from the earnings-call excerpt (grounded):\n- I believe it was Warren Buffett who stated his opinion on gold - paraphrased such: \"You pay people to dig it out of the ground, you pay people to purify it and pour into forms, you pay people to verify the number of nine's purity in it, you pay people to build a secure building to store it in, and you pay people to stand around and guard it.\n\nCitations: fiqa:unknown:4-7:cce69d54e583#s2. No figures beyond these source sentences.",
+      "base": {
+        "output": "Research Note: Earnings Call Excerpts Analysis\n\nBased on the provided excerpts, the following key points can be identified:\n\n1. Administrative details: The call contains time-sensitive data accurate only as of the date of the live broadcast, and redistribution is prohibited.\n2. Earnings materials availability: The earnings materials are available on the SEC's website and the company's Investor Relations website at investors.adp.com.\n3. Non-GAAP financial measures: The company will reference non-GAAP financial measures, which exclude the impact of certain items, and provide a description and reconciliation in the earnings release.\n4. Forward-looking statements: The call will contain forward-looking statements that refer to future events and involve some risk.\n\nNo specific financial metrics, such as earnings guidance or revenue, are mentioned in the excerpts. Therefore, no concrete conclusions can be drawn about the company's financial performance.\n\nRecommendation: Further research is required to understand the company's financial performance and to analyze the non-GAAP financial measures mentioned in the excerpts.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 11,
+            "hits": [
+              "a",
+              "and",
+              "call",
+              "earnings",
+              "in",
+              "note",
+              "of",
+              "on",
+              "research",
+              "s",
+              "the"
+            ],
+            "rate": 0.9167
+          },
+          "token_f1_vs_context": 0.5092,
+          "token_f1_vs_gold": 0.1863,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Research note from the earnings-call excerpt (prepared_remarks:10-13:5b7fd8f55d75 | earnings_transcripts):\n- And Michael will wrap up our prepared remarks with a discussion of key financial matters, including our earnings guidance. Then we will open the call for questions. Before we begin, let me cover a few administrative details. This call contains time-sensitive data that is accurate only as of the date of today's live broadcast and redistribution of this broadcast is prohibited.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75:0-3:0e8f6f6f6f6f#s0. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 11,
+            "hits": [
+              "a",
+              "and",
+              "call",
+              "earnings",
+              "in",
+              "note",
+              "of",
+              "on",
+              "research",
+              "s",
+              "the"
+            ],
+            "rate": 0.9167
+          },
+          "token_f1_vs_context": 0.4896,
+          "token_f1_vs_gold": 0.2748,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:8cabaf0f2568",
+      "query": "Which quantitative results are stated in the prepared remarks passage?",
+      "gold_chunk_ids": [
+        "earnings_transcripts:prepared_remarks:70-73:7b7abaa7ae0c"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:12-15:87c0286ba01a",
+        "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+        "earnings_transcripts:prepared_remarks:10-13:e06ad409e995",
+        "earnings_transcripts:prepared_remarks:4-7:65fd19a8d74b",
+        "earnings_transcripts:prepared_remarks:10-13:e62ab4795a1b"
+      ],
+      "packed_chars": 2965,
+      "gold_answer": "From the prepared remarks excerpt, the supported facts are:\n- Despite the overall U.S. auto market showing signs of slowing, our net written premiums remained strong even against the record second quarter of 2021, as additional dealerships and strong attachment rates are offsetting the market headwinds.\n- In the second quarter, the number of global mobile devices service increased by $1.1 million or approximately 18% to $7.2 million.\n- Within Connected Living, revenue was down slightly due to lower revenue in mobile, mainly from premium declines from runoff programs and unfavorable foreign exchange.\n- This was partially offset by growth in subscribers in North America and higher mobile fee income driven by global mobile devices serviced.\n\nCitations: earnings_transcripts:prepared_remarks:70-73:7b7abaa7ae0c#s0; earnings_transcripts:prepared_remarks:70-73:7b7abaa7ae0c#s3; earnings_transcripts:prepared_remarks:70-73:7b7abaa7ae0c#s1; earnings_transcripts:prepared_remarks:70-73:7b7abaa7ae0c#s2. No figures beyond these source sentences.",
+      "base": {
+        "output": "There are no quantitative results stated in the prepared remarks passage.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 3,
+            "hits": [
+              "are",
+              "as",
+              "in"
+            ],
+            "rate": 0.25
+          },
+          "token_f1_vs_context": 0.0779,
+          "token_f1_vs_gold": 0.1101,
+          "grounded_hit": 0.0
+        }
+      },
+      "adapter": {
+        "output": "From the prepared remarks excerpt, the supported facts are:\n- By now, you should have a copy of the press release, which crossed the wire approximately one hour ago. We've also posted PDFs of our prepared remarks and financial results on Adobe's Investor Relations website. Before we get started I want to emphasize that some of the information discussed in this call, including our financial targets and product plans, is based on information as of today, March 23, and contains forward-looking statements that involve risk, uncertainty and assumptions. Actual results may differ materially from those set forth in these statements.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:e62ab4795a1b:2-5:7c4e593ff0f7#s2. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 8,
+            "hits": [
+              "and",
+              "approximately",
+              "are",
+              "as",
+              "by",
+              "earnings",
+              "from",
+              "in"
+            ],
+            "rate": 0.6667
+          },
+          "token_f1_vs_context": 0.5333,
+          "token_f1_vs_gold": 0.2902,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:91316662a55c",
+      "query": "What did management report in this earnings-call excerpt?",
+      "gold_chunk_ids": [
+        "fiqa:unknown:0-2:a746d077e82f"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+        "earnings_transcripts:prepared_remarks:78-81:59623e2861c1",
+        "earnings_transcripts:prepared_remarks:10-13:deda65deabdb",
+        "earnings_transcripts:prepared_remarks:32-35:bde9f7618c80",
+        "earnings_transcripts:prepared_remarks:32-35:d74312327af4"
+      ],
+      "packed_chars": 3028,
+      "gold_answer": "From the earnings-call excerpt, the supported facts are:\n- Inherited Stock Since you reference SS, I surmise you are in the US. Stock you inherit gets a stepped up basis when it's inherited. (so long as it was not contained within a tax deffered retirement account.) When you sell, the new basis is taken from that day you inherited it. It\n\nCitations: fiqa:unknown:0-2:a746d077e82f#s0. No figures beyond these source sentences.",
+      "base": {
+        "output": "Management reported that the impact of the Russia-Ukraine situation will not be material to AIG, and that they have multiple reinsurance programs available in the event of losses.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 5,
+            "hits": [
+              "a",
+              "i",
+              "in",
+              "it",
+              "not"
+            ],
+            "rate": 0.4167
+          },
+          "token_f1_vs_context": 0.1935,
+          "token_f1_vs_gold": 0.0976,
+          "grounded_hit": 0.0
+        }
+      },
+      "adapter": {
+        "output": "From the earnings-call excerpt, the supported facts are:\n- Participating today are Carlos Rodriguez, our President and Chief Executive Officer; and Kathleen Winters, our Chief Financial Officer. Earlier this morning, we released our results for the quarter. Our earnings materials are available on the SEC's website and on our Investor Relations website at investors.adp.com, where you will also find the investor presentation that accompanies today's call as well as our quarterly history of revenue and pretax earnings by reportable segment. During our call today, we will reference non-GAAP financial measures which we believe to be useful to investors and that exclude the impact of certain items.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62:3-6:0f8f6e5f6f6a#s3. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 11,
+            "hits": [
+              "a",
+              "are",
+              "as",
+              "call",
+              "day",
+              "earnings",
+              "from",
+              "i",
+              "in",
+              "is",
+              "it"
+            ],
+            "rate": 0.9167
+          },
+          "token_f1_vs_context": 0.4856,
+          "token_f1_vs_gold": 0.2721,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:988c89c07732",
+      "query": "Which quantitative results are stated in the prepared remarks passage?",
+      "gold_chunk_ids": [
+        "earnings_transcripts:prepared_remarks:10-13:68534201b379"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:12-15:87c0286ba01a",
+        "finance_alpaca:unknown:0-3:7c4e593ff0f7",
+        "earnings_transcripts:prepared_remarks:10-13:e06ad409e995",
+        "earnings_transcripts:prepared_remarks:4-7:65fd19a8d74b",
+        "earnings_transcripts:prepared_remarks:10-13:e62ab4795a1b"
+      ],
+      "packed_chars": 2965,
+      "gold_answer": "From the prepared remarks excerpt, the supported facts are:\n- We encourage you to look at our Annual Report on Form 10-K for some of the various risk factors that could materially impact our results.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:68534201b379#s3. No figures beyond these source sentences.",
+      "base": {
+        "output": "There are no quantitative results stated in the prepared remarks passage.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 2,
+            "hits": [
+              "are",
+              "no"
+            ],
+            "rate": 0.1667
+          },
+          "token_f1_vs_context": 0.0779,
+          "token_f1_vs_gold": 0.2182,
+          "grounded_hit": 0.0
+        }
+      },
+      "adapter": {
+        "output": "From the prepared remarks excerpt, the supported facts are:\n- By now, you should have a copy of the press release, which crossed the wire approximately one hour ago. We've also posted PDFs of our prepared remarks and financial results on Adobe's Investor Relations website. Before we get started I want to emphasize that some of the information discussed in this call, including our financial targets and product plans, is based on information as of today, March 23, and contains forward-looking statements that involve risk, uncertainty and assumptions. Actual results may differ materially from those set forth in these statements.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:e62ab4795a1b:2-5:7c4e593ff0f7#s2. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 10,
+            "hits": [
+              "10",
+              "13",
+              "are",
+              "earnings",
+              "for",
+              "from",
+              "materially",
+              "no",
+              "of",
+              "on"
+            ],
+            "rate": 0.8333
+          },
+          "token_f1_vs_context": 0.5333,
+          "token_f1_vs_gold": 0.4317,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:99856cb55bc9",
+      "query": "Which quantitative results are stated in the earnings-call passage?",
+      "gold_chunk_ids": [
+        "finance_alpaca:unknown:2-4:ac9b3851db77"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+        "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+        "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+        "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+        "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5"
+      ],
+      "packed_chars": 3088,
+      "gold_answer": "From the earnings-call excerpt, the supported facts are:\n- If you put an order in between the current bid/ask, people running that type of strategy will usually pick it off, viewing it as a discount to the orders that they already have on the bid/ask. Often these people are trading by computer, so your limit order may get hit so quickly \n\nCitations: finance_alpaca:unknown:2-4:ac9b3851db77#s2. No figures beyond these source sentences.",
+      "base": {
+        "output": "The information is not in the context. The passage does not mention any quantitative results.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 4,
+            "hits": [
+              "a",
+              "in",
+              "on",
+              "the"
+            ],
+            "rate": 0.3333
+          },
+          "token_f1_vs_context": 0.0899,
+          "token_f1_vs_gold": 0.0526,
+          "grounded_hit": 0.0
+        }
+      },
+      "adapter": {
+        "output": "From the earnings-call excerpt, the supported facts are:\n- Earlier this morning, we released our results for the quarter. Our earnings materials are available on the SEC's website and our Investor Relations website at investors.adp.com where you will also find the investor presentation that accompanies today's call.\n- During our call, we will reference non-GAAP financial measures, which we believe to be useful to investors and that exclude the impact of certain items.\n- A description of these items along with a reconciliation of non-GAAP measures to the most comparable GAAP measures can be found in our earnings release.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8f6e5f6f6a#s3; earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8f6e5f6f6a#s1; earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8f6e5f6f6a#s2. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 12,
+            "hits": [
+              "a",
+              "are",
+              "call",
+              "earnings",
+              "in",
+              "of",
+              "on",
+              "that",
+              "the",
+              "these",
+              "to",
+              "will"
+            ],
+            "rate": 1.0
+          },
+          "token_f1_vs_context": 0.8519,
+          "token_f1_vs_gold": 0.3221,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:99e239bd30c3",
+      "query": "Write a short research note grounded only in this prepared remarks excerpt.",
+      "gold_chunk_ids": [
+        "earnings_transcripts:prepared_remarks:36-39:2736bf49f0c6"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+        "earnings_transcripts:prepared_remarks:28-31:511aba56e8b9",
+        "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+        "earnings_transcripts:prepared_remarks:4-7:8d1c24664d24",
+        "earnings_transcripts:prepared_remarks:4-7:b6187345a40f"
+      ],
+      "packed_chars": 1870,
+      "gold_answer": "Research note from the prepared remarks excerpt (grounded):\n- As we shared last quarter, we believed it was reasonable to assume a slight step back and retention from the record 92.2% level we experienced last year.\n- But in Q1, we did not see meaningful deterioration.\n\nCitations: earnings_transcripts:prepared_remarks:36-39:2736bf49f0c6#s2; earnings_transcripts:prepared_remarks:36-39:2736bf49f0c6#s3. No figures beyond these source sentences.",
+      "base": {
+        "output": "Research Note:\n\nAssurant's Third Quarter 2021 conference call and webcast, as well as Aflac Incorporated's Third Quarter 2024 Earnings Call, highlight the company's approach to managing through uncertain conditions. According to Assurant's prepared remarks, the company's approach is \"thoughtful and deliberate\" and focused on the long term, with a commitment to \"delivering with excellence in the things we can\" (Excerpt 2).\n\nA similar sentiment is expressed by Quentin McMillan in Aflac Incorporated's prepared remarks, stating that the company's forward-looking statements are subject to risks and uncertainties, but are based on management's current expectations (Excerpts 4-7). AIG's filings with the SEC provide additional context on the factors that could impact actual results or events.\n\nWhile the prepared remarks do not provide specific financial guidance or metrics, they suggest that Assurant and Aflac Incorporated are committed to a thoughtful and deliberate approach to managing through uncertain conditions.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 11,
+            "hits": [
+              "a",
+              "and",
+              "but",
+              "earnings",
+              "in",
+              "not",
+              "note",
+              "prepared",
+              "quarter",
+              "remarks",
+              "the"
+            ],
+            "rate": 0.9167
+          },
+          "token_f1_vs_context": 0.5415,
+          "token_f1_vs_gold": 0.2207,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Research note from the prepared remarks excerpt (grounded):\n- Operator: Welcome to Assurant's Third Quarter 2021 conference call and webcast. At this time, all participants have been placed in a listen-only mode. And the floor will be opened for questions. Following management prepared remarks.\n\nCitations: earnings_transcripts:prepared_remarks:0-3:15a1030808db#s0. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 11,
+            "hits": [
+              "a",
+              "and",
+              "earnings",
+              "in",
+              "not",
+              "note",
+              "prepared",
+              "quarter",
+              "remarks",
+              "the",
+              "these"
+            ],
+            "rate": 0.9167
+          },
+          "token_f1_vs_context": 0.4526,
           "token_f1_vs_gold": 0.4151,
           "grounded_hit": 1.0
         }
       }
     },
     {
-      "query_id": "q:921d1d4388a7",
-      "query": "Which quantitative results are stated in the prepared remarks passage?",
+      "query_id": "q:a13091d05a4d",
+      "query": "Write a short research note grounded only in this earnings-call excerpt.",
       "gold_chunk_ids": [
-        "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29"
+        "fiqa:unknown:6-9:8f6b8e3bc270"
       ],
       "retrieved_ids": [
-        "finance_alpaca:qa:0-2:33ff30950ed3",
-        "fiqa:unknown:0-1:ad10d17281b6",
-        "earnings_transcripts:qa:0-1:7b087b296300",
-        "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29"
+        "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+        "earnings_transcripts:qa:8-11:7e372054179d",
+        "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+        "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+        "earnings_transcripts:prepared_remarks:12-15:ef74be69571c"
       ],
-      "packed_chars": 1012,
-      "gold_answer": "From the prepared remarks excerpt, the supported facts are:\n- We set an all-time revenue record of $119.6 billion, up 2 percent year over year, driven by iPhone and Services.\n\nCitations: earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29#s1. No figures beyond these source sentences.",
+      "packed_chars": 2787,
+      "gold_answer": "Research note from the earnings-call excerpt (grounded):\n- You mentioned that you have high credit card balances that you are carrying.\n\nCitations: fiqa:unknown:6-9:8f6b8e3bc270#s1. No figures beyond these source sentences.",
       "base": {
-        "output": "The prepared remarks passage states the following quantitative results:\n\n1. $119.6 billion (all-time revenue record)\n2. 2 percent (year-over-year revenue growth)",
+        "output": "Research Note: Earnings Call Excerpts Analysis\n\nBased on the provided excerpts, the following key points can be identified:\n\n1. Administrative details: The call contains time-sensitive data accurate only as of the date of the live broadcast, and redistribution is prohibited.\n2. Earnings materials availability: The earnings materials are available on the SEC's website and the company's Investor Relations website at investors.adp.com.\n3. Non-GAAP financial measures: The company will reference non-GAAP financial measures, which exclude the impact of certain items, and provide a description and reconciliation in the earnings release.\n4. Forward-looking statements: The call will contain forward-looking statements that refer to future events and involve some risk.\n\nNo specific financial metrics, such as earnings guidance or revenue, are mentioned in the excerpts. Therefore, no concrete conclusions can be drawn about the company's financial performance.\n\nRecommendation: Further research is required to understand the company's financial performance and to analyze the non-GAAP financial measures mentioned in the excerpts.",
         "scores": {
           "citation": {
-            "n_needles": 12,
+            "n_needles": 9,
             "n_hits": 7,
             "hits": [
-              "$119.6",
-              "1",
-              "2",
-              "all",
-              "an",
-              "are",
-              "billion"
-            ],
-            "rate": 0.5833
-          },
-          "token_f1_vs_context": 0.2602,
-          "token_f1_vs_gold": 0.459,
-          "grounded_hit": 1.0
-        }
-      },
-      "adapter": {
-        "output": "Citations: earnings_transcripts:qa:0-1:7b087b296300; earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29.\nNo figures beyond these source excerpts.",
-        "scores": {
-          "citation": {
-            "n_needles": 12,
-            "n_hits": 6,
-            "hits": [
-              "0",
-              "1",
-              "2",
-              "an",
-              "are",
-              "cfc1e8fabf29"
-            ],
-            "rate": 0.5
-          },
-          "token_f1_vs_context": 0.1513,
-          "token_f1_vs_gold": 0.4561,
-          "grounded_hit": 1.0
-        }
-      }
-    },
-    {
-      "query_id": "q:a20d45cef5fe",
-      "query": "What did management report in this Q&A excerpt?",
-      "gold_chunk_ids": [
-        "earnings_transcripts:qa:0-1:7b087b296300"
-      ],
-      "retrieved_ids": [
-        "finance_alpaca:qa:0-2:33ff30950ed3",
-        "fiqa:unknown:0-1:ad10d17281b6",
-        "earnings_transcripts:qa:0-1:7b087b296300",
-        "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29"
-      ],
-      "packed_chars": 1012,
-      "gold_answer": "From the Q&A excerpt, the supported facts are:\n- Azure grew 30 percent, and 28 percent constant currency, with AI services contributing several points.\n\nCitations: earnings_transcripts:qa:0-1:7b087b296300#s1. No figures beyond these source sentences.",
-      "base": {
-        "output": "In the provided excerpt, the Q&A portion of an earnings call, management reported the following:\n\n- Azure grew 30 percent.\n- Azure grew 28 percent in constant currency.\n- AI services contributed several points to Azure growth.",
-        "scores": {
-          "citation": {
-            "n_needles": 12,
-            "n_hits": 7,
-            "hits": [
-              "0",
-              "28",
-              "30",
-              "a",
-              "ai",
-              "azure",
-              "constant"
-            ],
-            "rate": 0.5833
-          },
-          "token_f1_vs_context": 0.3511,
-          "token_f1_vs_gold": 0.5,
-          "grounded_hit": 1.0
-        }
-      },
-      "adapter": {
-        "output": "Citations: earnings_transcripts:qa:0-1:7b087b296300; earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29.\nNo figures beyond these source excerpts.",
-        "scores": {
-          "citation": {
-            "n_needles": 12,
-            "n_hits": 6,
-            "hits": [
-              "0",
-              "1",
-              "30",
-              "7b087b296300",
-              "a",
-              "are"
-            ],
-            "rate": 0.5
-          },
-          "token_f1_vs_context": 0.1513,
-          "token_f1_vs_gold": 0.4615,
-          "grounded_hit": 1.0
-        }
-      }
-    },
-    {
-      "query_id": "q:da53e5db452e",
-      "query": "Which quantitative results are stated in the earnings-call passage?",
-      "gold_chunk_ids": [
-        "fiqa:unknown:0-1:ad10d17281b6"
-      ],
-      "retrieved_ids": [
-        "fiqa:unknown:0-1:ad10d17281b6",
-        "finance_alpaca:qa:0-2:33ff30950ed3",
-        "earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29",
-        "earnings_transcripts:qa:0-1:7b087b296300"
-      ],
-      "packed_chars": 1012,
-      "gold_answer": "From the earnings-call excerpt, the supported facts are:\n- A beat means reported EPS or revenue exceeded the consensus estimate; a miss means results came in below that estimate.\n\nCitations: fiqa:unknown:0-1:ad10d17281b6#s1. No figures beyond these source sentences.",
-      "base": {
-        "output": "The quantitative results stated in the earnings-call passage are:\n\n- $119.6 billion (all-time revenue record)\n- 2 percent (year-over-year revenue growth)\n- 30 percent (Azure growth excluding the impact of the extra calendar day)\n- 28 percent (Azure growth constant currency)",
-        "scores": {
-          "citation": {
-            "n_needles": 12,
-            "n_hits": 6,
-            "hits": [
-              "0",
-              "1",
-              "a",
               "are",
               "call",
-              "earnings"
+              "earnings",
+              "note",
+              "research",
+              "that",
+              "the"
             ],
-            "rate": 0.5
+            "rate": 0.7778
           },
-          "token_f1_vs_context": 0.4179,
-          "token_f1_vs_gold": 0.2059,
+          "token_f1_vs_context": 0.5092,
+          "token_f1_vs_gold": 0.1385,
           "grounded_hit": 1.0
         }
       },
       "adapter": {
-        "output": "Citations: earnings_transcripts:qa:0-1:7b087b296300, earnings_transcripts:prepared_remarks:0-1:cfc1e8fabf29.\n\nAdverse grounded_citations: earnings_transcripts:qa:0-1:33ff30950ed3.\n\nCitations beyond the ground facts:\n- Prepared remarks are a scripted management overview of results and outlook.\n- Q&A is unscripted analyst questioning and is usually richer for research.\n\nNo figures beyond these grounded facts.",
+        "output": "Research note from the earnings-call excerpt (prepared_remarks:10-13:5b7fd8f55d75 | earnings_transcripts):\n- And Michael will wrap up our prepared remarks with a discussion of key financial matters, including our earnings guidance. Then we will open the call for questions. Before we begin, let me cover a few administrative details. This call contains time-sensitive data that is accurate only as of the date of today's live broadcast and redistribution of this broadcast is prohibited.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75:0-3:0e8f6f6f6f6f#s0. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 9,
+            "n_hits": 8,
+            "hits": [
+              "are",
+              "call",
+              "earnings",
+              "note",
+              "research",
+              "that",
+              "the",
+              "these"
+            ],
+            "rate": 0.8889
+          },
+          "token_f1_vs_context": 0.4896,
+          "token_f1_vs_gold": 0.3,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:a4e9acfdcf93",
+      "query": "Which quantitative results are stated in the earnings-call passage?",
+      "gold_chunk_ids": [
+        "finance_alpaca:unknown:16-19:5ad9a1d3c07c"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+        "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+        "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+        "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+        "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5"
+      ],
+      "packed_chars": 3088,
+      "gold_answer": "From the earnings-call excerpt, the supported facts are:\n- There's also all the time that went in to tracking those deductions over the year. Not worth it. Tax deductions only become worthwhile when they significantly exceed the standard deduction. You need some big ticket items to get past the itemized deduction threshold.\n\nCitations: finance_alpaca:unknown:16-19:5ad9a1d3c07c#s16. No figures beyond these source sentences.",
+      "base": {
+        "output": "The information is not in the context. The passage does not mention any quantitative results.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 3,
+            "hits": [
+              "in",
+              "s",
+              "the"
+            ],
+            "rate": 0.25
+          },
+          "token_f1_vs_context": 0.0899,
+          "token_f1_vs_gold": 0.0845,
+          "grounded_hit": 0.0
+        }
+      },
+      "adapter": {
+        "output": "From the earnings-call excerpt, the supported facts are:\n- Earlier this morning, we released our results for the quarter. Our earnings materials are available on the SEC's website and our Investor Relations website at investors.adp.com where you will also find the investor presentation that accompanies today's call.\n- During our call, we will reference non-GAAP financial measures, which we believe to be useful to investors and that exclude the impact of certain items.\n- A description of these items along with a reconciliation of non-GAAP measures to the most comparable GAAP measures can be found in our earnings release.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8f6e5f6f6a#s3; earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8f6e5f6f6a#s1; earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8f6e5f6f6a#s2. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 12,
+            "hits": [
+              "also",
+              "are",
+              "call",
+              "earnings",
+              "in",
+              "items",
+              "s",
+              "that",
+              "the",
+              "these",
+              "to",
+              "you"
+            ],
+            "rate": 1.0
+          },
+          "token_f1_vs_context": 0.8519,
+          "token_f1_vs_gold": 0.3056,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:ac7f750433d9",
+      "query": "Write a short research note grounded only in this prepared remarks excerpt.",
+      "gold_chunk_ids": [
+        "earnings_transcripts:prepared_remarks:74-77:5c25c152ae7c"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:0-3:15a1030808db",
+        "earnings_transcripts:prepared_remarks:28-31:511aba56e8b9",
+        "earnings_transcripts:prepared_remarks:0-3:6d7877fb4826",
+        "earnings_transcripts:prepared_remarks:4-7:8d1c24664d24",
+        "earnings_transcripts:prepared_remarks:4-7:b6187345a40f"
+      ],
+      "packed_chars": 1870,
+      "gold_answer": "Research note from the prepared remarks excerpt (grounded):\n- The defensive posture of our investment portfolio ahead of the COVID-19 crisis served us extremely well in preserving our capital base relatively intact during the stressed economic environment of recent months.\n- Given the unusual circumstances and breadth of the pandemic, we have classified COVID-19 losses as a catastrophe.\n- Outside of the losses related to the COVID-19 pandemic, which impacted on our first quarter results, our underwriting groups fared very well this quarter with strong growth and generally improving underwriting results through our property casualty insurance and reinsurance operations.\n\nCitations: earnings_transcripts:prepared_remarks:74-77:5c25c152ae7c#s0; earnings_transcripts:prepared_remarks:74-77:5c25c152ae7c#s3; earnings_transcripts:prepared_remarks:74-77:5c25c152ae7c#s2. No figures beyond these source sentences.",
+      "base": {
+        "output": "Research Note:\n\nAssurant's Third Quarter 2021 conference call and webcast, as well as Aflac Incorporated's Third Quarter 2024 Earnings Call, highlight the company's approach to managing through uncertain conditions. According to Assurant's prepared remarks, the company's approach is \"thoughtful and deliberate\" and focused on the long term, with a commitment to \"delivering with excellence in the things we can\" (Excerpt 2).\n\nA similar sentiment is expressed by Quentin McMillan in Aflac Incorporated's prepared remarks, stating that the company's forward-looking statements are subject to risks and uncertainties, but are based on management's current expectations (Excerpts 4-7). AIG's filings with the SEC provide additional context on the factors that could impact actual results or events.\n\nWhile the prepared remarks do not provide specific financial guidance or metrics, they suggest that Assurant and Aflac Incorporated are committed to a thoughtful and deliberate approach to managing through uncertain conditions.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 7,
+            "hits": [
+              "a",
+              "and",
+              "earnings",
+              "in",
+              "note",
+              "on",
+              "prepared"
+            ],
+            "rate": 0.5833
+          },
+          "token_f1_vs_context": 0.5415,
+          "token_f1_vs_gold": 0.2111,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Research note from the prepared remarks excerpt (grounded):\n- Operator: Welcome to Assurant's Third Quarter 2021 conference call and webcast. At this time, all participants have been placed in a listen-only mode. And the floor will be opened for questions. Following management prepared remarks.\n\nCitations: earnings_transcripts:prepared_remarks:0-3:15a1030808db#s0. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 9,
+            "hits": [
+              "a",
+              "and",
+              "earnings",
+              "have",
+              "in",
+              "note",
+              "on",
+              "our",
+              "prepared"
+            ],
+            "rate": 0.75
+          },
+          "token_f1_vs_context": 0.4526,
+          "token_f1_vs_gold": 0.3546,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:b0099ff8982e",
+      "query": "Which quantitative results are stated in the earnings-call passage?",
+      "gold_chunk_ids": [
+        "finance_alpaca:unknown:0-3:4bf8ee331eff"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+        "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+        "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+        "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+        "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5"
+      ],
+      "packed_chars": 3088,
+      "gold_answer": "From the earnings-call excerpt, the supported facts are:\n- Is it a good investment for a foreigner to purchase a flat/apartment in China? I think a greater problem would be the protection of your property right. China hasn't shown much respect for the property rights of its own citizens - moving people off subsistence farms in order to b\n\nCitations: finance_alpaca:unknown:0-3:4bf8ee331eff#s0. No figures beyond these source sentences.",
+      "base": {
+        "output": "The information is not in the context. The passage does not mention any quantitative results.",
         "scores": {
           "citation": {
             "n_needles": 12,
             "n_hits": 5,
             "hits": [
-              "0",
-              "1",
               "a",
-              "are",
-              "earnings"
+              "for",
+              "in",
+              "is",
+              "the"
             ],
             "rate": 0.4167
           },
-          "token_f1_vs_context": 0.4113,
-          "token_f1_vs_gold": 0.3467,
+          "token_f1_vs_context": 0.0899,
+          "token_f1_vs_gold": 0.0811,
+          "grounded_hit": 0.0
+        }
+      },
+      "adapter": {
+        "output": "From the earnings-call excerpt, the supported facts are:\n- Earlier this morning, we released our results for the quarter. Our earnings materials are available on the SEC's website and our Investor Relations website at investors.adp.com where you will also find the investor presentation that accompanies today's call.\n- During our call, we will reference non-GAAP financial measures, which we believe to be useful to investors and that exclude the impact of certain items.\n- A description of these items along with a reconciliation of non-GAAP measures to the most comparable GAAP measures can be found in our earnings release.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8f6e5f6f6a#s3; earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8f6e5f6f6a#s1; earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8f6e5f6f6a#s2. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 12,
+            "hits": [
+              "a",
+              "are",
+              "be",
+              "call",
+              "earnings",
+              "for",
+              "in",
+              "is",
+              "of",
+              "the",
+              "these",
+              "to"
+            ],
+            "rate": 1.0
+          },
+          "token_f1_vs_context": 0.8519,
+          "token_f1_vs_gold": 0.2993,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:b04852251f1d",
+      "query": "Write a short research note grounded only in this earnings-call excerpt.",
+      "gold_chunk_ids": [
+        "fiqa:unknown:0-3:dcc2b7a6037e"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+        "earnings_transcripts:qa:8-11:7e372054179d",
+        "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+        "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+        "earnings_transcripts:prepared_remarks:12-15:ef74be69571c"
+      ],
+      "packed_chars": 2787,
+      "gold_answer": "Research note from the earnings-call excerpt (grounded):\n- why would someone buy or sell just a few shares in stocks Simple, there is no magic price adjustment after sales - why do you expect the stock price to change? The listed price of a stock is what someone was willing to pay for it in the last deal that was concluded. If any amount\n\nCitations: fiqa:unknown:0-3:dcc2b7a6037e#s0. No figures beyond these source sentences.",
+      "base": {
+        "output": "Research Note: Earnings Call Excerpts Analysis\n\nBased on the provided excerpts, the following key points can be identified:\n\n1. Administrative details: The call contains time-sensitive data accurate only as of the date of the live broadcast, and redistribution is prohibited.\n2. Earnings materials availability: The earnings materials are available on the SEC's website and the company's Investor Relations website at investors.adp.com.\n3. Non-GAAP financial measures: The company will reference non-GAAP financial measures, which exclude the impact of certain items, and provide a description and reconciliation in the earnings release.\n4. Forward-looking statements: The call will contain forward-looking statements that refer to future events and involve some risk.\n\nNo specific financial metrics, such as earnings guidance or revenue, are mentioned in the excerpts. Therefore, no concrete conclusions can be drawn about the company's financial performance.\n\nRecommendation: Further research is required to understand the company's financial performance and to analyze the non-GAAP financial measures mentioned in the excerpts.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 9,
+            "hits": [
+              "3",
+              "a",
+              "call",
+              "earnings",
+              "for",
+              "in",
+              "is",
+              "note",
+              "of"
+            ],
+            "rate": 0.75
+          },
+          "token_f1_vs_context": 0.5092,
+          "token_f1_vs_gold": 0.1739,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Research note from the earnings-call excerpt (prepared_remarks:10-13:5b7fd8f55d75 | earnings_transcripts):\n- And Michael will wrap up our prepared remarks with a discussion of key financial matters, including our earnings guidance. Then we will open the call for questions. Before we begin, let me cover a few administrative details. This call contains time-sensitive data that is accurate only as of the date of today's live broadcast and redistribution of this broadcast is prohibited.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75:0-3:0e8f6f6f6f6f#s0. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 11,
+            "hits": [
+              "0",
+              "3",
+              "a",
+              "call",
+              "earnings",
+              "few",
+              "for",
+              "in",
+              "is",
+              "note",
+              "of"
+            ],
+            "rate": 0.9167
+          },
+          "token_f1_vs_context": 0.4896,
+          "token_f1_vs_gold": 0.3511,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:b78a721fe332",
+      "query": "What did management report in this earnings-call excerpt?",
+      "gold_chunk_ids": [
+        "fiqa:unknown:4-7:600ded354ea7"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+        "earnings_transcripts:prepared_remarks:78-81:59623e2861c1",
+        "earnings_transcripts:prepared_remarks:10-13:deda65deabdb",
+        "earnings_transcripts:prepared_remarks:32-35:bde9f7618c80",
+        "earnings_transcripts:prepared_remarks:32-35:d74312327af4"
+      ],
+      "packed_chars": 3028,
+      "gold_answer": "From the earnings-call excerpt, the supported facts are:\n- I once spent two years eating beans & rice twice a day (lots of protein and other nutrients) while I worked full-time and went back to school to pursue a second degree part-time. I also shunned all forms of recreation (not even a movie) to save money (and so I could focus on stay\n\nCitations: fiqa:unknown:4-7:600ded354ea7#s4. No figures beyond these source sentences.",
+      "base": {
+        "output": "Management reported that the impact of the Russia-Ukraine situation will not be material to AIG, and that they have multiple reinsurance programs available in the event of losses.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 4,
+            "hits": [
+              "a",
+              "and",
+              "i",
+              "not"
+            ],
+            "rate": 0.3333
+          },
+          "token_f1_vs_context": 0.1935,
+          "token_f1_vs_gold": 0.1111,
+          "grounded_hit": 0.0
+        }
+      },
+      "adapter": {
+        "output": "From the earnings-call excerpt, the supported facts are:\n- Participating today are Carlos Rodriguez, our President and Chief Executive Officer; and Kathleen Winters, our Chief Financial Officer. Earlier this morning, we released our results for the quarter. Our earnings materials are available on the SEC's website and on our Investor Relations website at investors.adp.com, where you will also find the investor presentation that accompanies today's call as well as our quarterly history of revenue and pretax earnings by reportable segment. During our call today, we will reference non-GAAP financial measures which we believe to be useful to investors and that exclude the impact of certain items.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62:3-6:0f8f6e5f6f6a#s3. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 10,
+            "hits": [
+              "a",
+              "all",
+              "also",
+              "and",
+              "are",
+              "call",
+              "day",
+              "earnings",
+              "from",
+              "i"
+            ],
+            "rate": 0.8333
+          },
+          "token_f1_vs_context": 0.4856,
+          "token_f1_vs_gold": 0.2581,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:b7ba886b6103",
+      "query": "What did management report in this earnings-call excerpt?",
+      "gold_chunk_ids": [
+        "fiqa:unknown:0-3:9fe196ce1979"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+        "earnings_transcripts:prepared_remarks:78-81:59623e2861c1",
+        "earnings_transcripts:prepared_remarks:10-13:deda65deabdb",
+        "earnings_transcripts:prepared_remarks:32-35:bde9f7618c80",
+        "earnings_transcripts:prepared_remarks:32-35:d74312327af4"
+      ],
+      "packed_chars": 3028,
+      "gold_answer": "From the earnings-call excerpt, the supported facts are:\n- Try wallstreetsurvivor.com It gives you $100k of pretend money when you sign up, using which you can take various courses on the website.\n\nCitations: fiqa:unknown:0-3:9fe196ce1979#s1. No figures beyond these source sentences.",
+      "base": {
+        "output": "Management reported that the impact of the Russia-Ukraine situation will not be material to AIG, and that they have multiple reinsurance programs available in the event of losses.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 4,
+            "hits": [
+              "it",
+              "of",
+              "on",
+              "the"
+            ],
+            "rate": 0.3333
+          },
+          "token_f1_vs_context": 0.1935,
+          "token_f1_vs_gold": 0.0597,
+          "grounded_hit": 0.0
+        }
+      },
+      "adapter": {
+        "output": "Excerpts:\n[earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62 | earnings_transcripts]\nParticipating today are Carlos Rodriguez, our President and Chief Executive Officer; and Kathleen Winters, our Chief Financial Officer. Earlier this morning, we released our results for the quarter. Our earnings materials are available on the SEC's website and on our Investor Relations website at investors.adp.com, where you will also find the investor presentation that accompanies today's call as well as our quarterly history of revenue and pretax earnings by reportable segment. During our call today, we will reference non-GAAP financial measures which we believe to be useful to investors and that exclude the impact of certain items.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62:0-3:0a8f6f6f6f6f#s0; earnings_transcripts:prepared_remarks:78-81:59623e2861c1:0-3:0a8f6f6f6f6f#s0; earnings_transcripts:prepared_remarks:10-13:deda65deabdb:0",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 9,
+            "hits": [
+              "are",
+              "call",
+              "com",
+              "earnings",
+              "it",
+              "of",
+              "on",
+              "the",
+              "website"
+            ],
+            "rate": 0.75
+          },
+          "token_f1_vs_context": 0.513,
+          "token_f1_vs_gold": 0.2047,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:bc137c56fcfa",
+      "query": "Write a short research note grounded only in this earnings-call excerpt.",
+      "gold_chunk_ids": [
+        "fiqa:unknown:2-5:bbcf5df281e9"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+        "earnings_transcripts:qa:8-11:7e372054179d",
+        "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+        "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+        "earnings_transcripts:prepared_remarks:12-15:ef74be69571c"
+      ],
+      "packed_chars": 2787,
+      "gold_answer": "Research note from the earnings-call excerpt (grounded):\n- Dependent on where you are looking $20,000 can either be a lot or very little land, I suspect that the question you were looking to ask is 'can I afford it?'.\n\nCitations: fiqa:unknown:2-5:bbcf5df281e9#s2. No figures beyond these source sentences.",
+      "base": {
+        "output": "Research Note: Earnings Call Excerpts Analysis\n\nBased on the provided excerpts, the following key points can be identified:\n\n1. Administrative details: The call contains time-sensitive data accurate only as of the date of the live broadcast, and redistribution is prohibited.\n2. Earnings materials availability: The earnings materials are available on the SEC's website and the company's Investor Relations website at investors.adp.com.\n3. Non-GAAP financial measures: The company will reference non-GAAP financial measures, which exclude the impact of certain items, and provide a description and reconciliation in the earnings release.\n4. Forward-looking statements: The call will contain forward-looking statements that refer to future events and involve some risk.\n\nNo specific financial metrics, such as earnings guidance or revenue, are mentioned in the excerpts. Therefore, no concrete conclusions can be drawn about the company's financial performance.\n\nRecommendation: Further research is required to understand the company's financial performance and to analyze the non-GAAP financial measures mentioned in the excerpts.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 10,
+            "hits": [
+              "a",
+              "are",
+              "be",
+              "call",
+              "can",
+              "earnings",
+              "is",
+              "looking",
+              "note",
+              "on"
+            ],
+            "rate": 0.8333
+          },
+          "token_f1_vs_context": 0.5092,
+          "token_f1_vs_gold": 0.2313,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Research note from the earnings-call excerpt (prepared_remarks:10-13:5b7fd8f55d75 | earnings_transcripts):\n- And Michael will wrap up our prepared remarks with a discussion of key financial matters, including our earnings guidance. Then we will open the call for questions. Before we begin, let me cover a few administrative details. This call contains time-sensitive data that is accurate only as of the date of today's live broadcast and redistribution of this broadcast is prohibited.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75:0-3:0e8f6f6f6f6f#s0. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 9,
+            "hits": [
+              "a",
+              "are",
+              "be",
+              "call",
+              "earnings",
+              "is",
+              "note",
+              "on",
+              "question"
+            ],
+            "rate": 0.75
+          },
+          "token_f1_vs_context": 0.4896,
+          "token_f1_vs_gold": 0.2906,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:c1526420f01e",
+      "query": "What did management report in this earnings-call excerpt?",
+      "gold_chunk_ids": [
+        "fiqa:unknown:28-31:bed2f7e55dbe"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62",
+        "earnings_transcripts:prepared_remarks:78-81:59623e2861c1",
+        "earnings_transcripts:prepared_remarks:10-13:deda65deabdb",
+        "earnings_transcripts:prepared_remarks:32-35:bde9f7618c80",
+        "earnings_transcripts:prepared_remarks:32-35:d74312327af4"
+      ],
+      "packed_chars": 3028,
+      "gold_answer": "From the earnings-call excerpt, the supported facts are:\n- If you wait until you have $6750, you could max out your IRA contribution.\n- If you don't actually save $3k this year and $7500 next year, don't sweat it.\n\nCitations: fiqa:unknown:28-31:bed2f7e55dbe#s0; fiqa:unknown:28-31:bed2f7e55dbe#s2. No figures beyond these source sentences.",
+      "base": {
+        "output": "Management reported that the impact of the Russia-Ukraine situation will not be material to AIG, and that they have multiple reinsurance programs available in the event of losses.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 4,
+            "hits": [
+              "and",
+              "have",
+              "it",
+              "the"
+            ],
+            "rate": 0.3333
+          },
+          "token_f1_vs_context": 0.1935,
+          "token_f1_vs_gold": 0.0845,
+          "grounded_hit": 0.0
+        }
+      },
+      "adapter": {
+        "output": "From the earnings-call excerpt, the supported facts are:\n- Participating today are Carlos Rodriguez, our President and Chief Executive Officer; and Kathleen Winters, our Chief Financial Officer. Earlier this morning, we released our results for the quarter. Our earnings materials are available on the SEC's website and on our Investor Relations website at investors.adp.com, where you will also find the investor presentation that accompanies today's call as well as our quarterly history of revenue and pretax earnings by reportable segment. During our call today, we will reference non-GAAP financial measures which we believe to be useful to investors and that exclude the impact of certain items.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:2f5a9a048c62:3-6:0f8f6e5f6f6a#s3. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 9,
+            "hits": [
+              "and",
+              "are",
+              "call",
+              "earnings",
+              "from",
+              "it",
+              "the",
+              "this",
+              "you"
+            ],
+            "rate": 0.75
+          },
+          "token_f1_vs_context": 0.4856,
+          "token_f1_vs_gold": 0.2647,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:c76237d16f67",
+      "query": "Which quantitative results are stated in the earnings-call passage?",
+      "gold_chunk_ids": [
+        "fiqa:unknown:2-5:cd5fd6ef39e5"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+        "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+        "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+        "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+        "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5"
+      ],
+      "packed_chars": 3088,
+      "gold_answer": "From the earnings-call excerpt, the supported facts are:\n- The Fed seems to have gotten better over the last 30 years at controlling inflation and the dollar has not experienced big inflation since the 70s.\n- Inflation, as measured by Core CPI, has been maintained at less than 4% for the last 20 years and is currently coming off record low levels below 1%.\n- This graph from Wikipedia shows M2, which is the wider measure of money supply, to have doubled over approximately 10 years, http://en.wikipedia.org/wiki/File:Components_of_US_Money_supply.svg The answer to whether gold has a higher chance of experiencing big devaluation has to do with forces outside anyone's control, if a big new mine of gold is discovered that could affect prices, but also if the economy turns around it could lead investors to pull out of gold and back into the stock markets.\n\nCitations: fiqa:unknown:2-5:cd5fd6ef39e5#s2; fiqa:unknown:2-5:cd5fd6ef39e5#s3; fiqa:unknown:2-5:cd5fd6ef39e5#s0. No figures beyond these source sentences.",
+      "base": {
+        "output": "The information is not in the context. The passage does not mention any quantitative results.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 4,
+            "hits": [
+              "a",
+              "at",
+              "for",
+              "is"
+            ],
+            "rate": 0.3333
+          },
+          "token_f1_vs_context": 0.0899,
+          "token_f1_vs_gold": 0.0441,
+          "grounded_hit": 0.0
+        }
+      },
+      "adapter": {
+        "output": "From the earnings-call excerpt, the supported facts are:\n- Earlier this morning, we released our results for the quarter. Our earnings materials are available on the SEC's website and our Investor Relations website at investors.adp.com where you will also find the investor presentation that accompanies today's call.\n- During our call, we will reference non-GAAP financial measures, which we believe to be useful to investors and that exclude the impact of certain items.\n- A description of these items along with a reconciliation of non-GAAP measures to the most comparable GAAP measures can be found in our earnings release.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8f6e5f6f6a#s3; earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8f6e5f6f6a#s1; earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8f6e5f6f6a#s2. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 12,
+            "hits": [
+              "10",
+              "a",
+              "also",
+              "and",
+              "are",
+              "at",
+              "call",
+              "earnings",
+              "for",
+              "investors",
+              "is",
+              "of"
+            ],
+            "rate": 1.0
+          },
+          "token_f1_vs_context": 0.8519,
+          "token_f1_vs_gold": 0.3062,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:d5aa6d4fb147",
+      "query": "Which quantitative results are stated in the earnings-call passage?",
+      "gold_chunk_ids": [
+        "fiqa:unknown:0-3:19eb2fb4732a"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+        "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+        "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+        "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+        "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5"
+      ],
+      "packed_chars": 3088,
+      "gold_answer": "From the earnings-call excerpt, the supported facts are:\n- PayPal wants me to \"add a bank account\", another funding source. Credit card isn't working. Why? It's always a good idea to check your credit history on a regular basis - try checking your credit score from one of the independent providers recently (like Equifax) ?\n\nCitations: fiqa:unknown:0-3:19eb2fb4732a#s0. No figures beyond these source sentences.",
+      "base": {
+        "output": "The information is not in the context. The passage does not mention any quantitative results.",
+        "scores": {
+          "citation": {
+            "n_needles": 10,
+            "n_hits": 4,
+            "hits": [
+              "a",
+              "on",
+              "s",
+              "the"
+            ],
+            "rate": 0.4
+          },
+          "token_f1_vs_context": 0.0899,
+          "token_f1_vs_gold": 0.0286,
+          "grounded_hit": 0.0
+        }
+      },
+      "adapter": {
+        "output": "From the earnings-call excerpt, the supported facts are:\n- Earlier this morning, we released our results for the quarter. Our earnings materials are available on the SEC's website and our Investor Relations website at investors.adp.com where you will also find the investor presentation that accompanies today's call.\n- During our call, we will reference non-GAAP financial measures, which we believe to be useful to investors and that exclude the impact of certain items.\n- A description of these items along with a reconciliation of non-GAAP measures to the most comparable GAAP measures can be found in our earnings release.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8e9e5f6f8c#s3; earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8e9e5f6f8c#s1; earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8e9e5f6f8c#s2. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 10,
+            "n_hits": 10,
+            "hits": [
+              "a",
+              "are",
+              "call",
+              "earnings",
+              "of",
+              "on",
+              "s",
+              "the",
+              "these",
+              "to"
+            ],
+            "rate": 1.0
+          },
+          "token_f1_vs_context": 0.8519,
+          "token_f1_vs_gold": 0.2937,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:d771100f83ea",
+      "query": "Write a short research note grounded only in this earnings-call excerpt.",
+      "gold_chunk_ids": [
+        "fiqa:unknown:0-3:80ae9fd27794"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+        "earnings_transcripts:qa:8-11:7e372054179d",
+        "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+        "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+        "earnings_transcripts:prepared_remarks:12-15:ef74be69571c"
+      ],
+      "packed_chars": 2787,
+      "gold_answer": "Research note from the earnings-call excerpt (grounded):\n- Credit card interest calculator with grace period & different interest rate calculation methods? I thought it was such a useful suggestion that I went ahead and created them. I'm sure you're not the only one who could derive some benefit from them, I know I will. http://www.inves\n\nCitations: fiqa:unknown:0-3:80ae9fd27794#s0. No figures beyond these source sentences.",
+      "base": {
+        "output": "Research Note: Earnings Call Excerpts Analysis\n\nBased on the provided excerpts, the following key points can be identified:\n\n1. Administrative details: The call contains time-sensitive data accurate only as of the date of the live broadcast, and redistribution is prohibited.\n2. Earnings materials availability: The earnings materials are available on the SEC's website and the company's Investor Relations website at investors.adp.com.\n3. Non-GAAP financial measures: The company will reference non-GAAP financial measures, which exclude the impact of certain items, and provide a description and reconciliation in the earnings release.\n4. Forward-looking statements: The call will contain forward-looking statements that refer to future events and involve some risk.\n\nNo specific financial metrics, such as earnings guidance or revenue, are mentioned in the excerpts. Therefore, no concrete conclusions can be drawn about the company's financial performance.\n\nRecommendation: Further research is required to understand the company's financial performance and to analyze the non-GAAP financial measures mentioned in the excerpts.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 11,
+            "hits": [
+              "3",
+              "a",
+              "and",
+              "call",
+              "earnings",
+              "note",
+              "only",
+              "research",
+              "some",
+              "that",
+              "the"
+            ],
+            "rate": 0.9167
+          },
+          "token_f1_vs_context": 0.5092,
+          "token_f1_vs_gold": 0.1728,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Research note from the earnings-call excerpt (prepared_remarks:10-13:5b7fd8f55d75 | earnings_transcripts):\n- And Michael will wrap up our prepared remarks with a discussion of key financial matters, including our earnings guidance. Then we will open the call for questions. Before we begin, let me cover a few administrative details. This call contains time-sensitive data that is accurate only as of the date of today's live broadcast and redistribution of this broadcast is prohibited.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75:0-3:0e8f6f6f6f6f#s0. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 11,
+            "hits": [
+              "0",
+              "3",
+              "a",
+              "and",
+              "call",
+              "earnings",
+              "note",
+              "only",
+              "research",
+              "that",
+              "the"
+            ],
+            "rate": 0.9167
+          },
+          "token_f1_vs_context": 0.4896,
+          "token_f1_vs_gold": 0.3485,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:e604089c9a9f",
+      "query": "Write a short research note grounded only in this earnings-call excerpt.",
+      "gold_chunk_ids": [
+        "fiqa:unknown:28-31:7e5c0cbfa48a"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+        "earnings_transcripts:qa:8-11:7e372054179d",
+        "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+        "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+        "earnings_transcripts:prepared_remarks:12-15:ef74be69571c"
+      ],
+      "packed_chars": 2787,
+      "gold_answer": "Research note from the earnings-call excerpt (grounded):\n- Bob's broker is quoting a well recognized phrase that is a polite way of saying \"you are being emotional in your judgement, and here is a phrasing to suggest you should temper that judgement.\" Of course the broker may also not know what they're doing! (I've seen arguments that they don't!) Plenty of people listened to their brokers all the way to the great crash of 2008.\n\nCitations: fiqa:unknown:28-31:7e5c0cbfa48a#s0. No figures beyond these source sentences.",
+      "base": {
+        "output": "Research Note: Earnings Call Excerpts Analysis\n\nBased on the provided excerpts, the following key points can be identified:\n\n1. Administrative details: The call contains time-sensitive data accurate only as of the date of the live broadcast, and redistribution is prohibited.\n2. Earnings materials availability: The earnings materials are available on the SEC's website and the company's Investor Relations website at investors.adp.com.\n3. Non-GAAP financial measures: The company will reference non-GAAP financial measures, which exclude the impact of certain items, and provide a description and reconciliation in the earnings release.\n4. Forward-looking statements: The call will contain forward-looking statements that refer to future events and involve some risk.\n\nNo specific financial metrics, such as earnings guidance or revenue, are mentioned in the excerpts. Therefore, no concrete conclusions can be drawn about the company's financial performance.\n\nRecommendation: Further research is required to understand the company's financial performance and to analyze the non-GAAP financial measures mentioned in the excerpts.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 10,
+            "hits": [
+              "a",
+              "all",
+              "and",
+              "are",
+              "call",
+              "earnings",
+              "in",
+              "is",
+              "note",
+              "of"
+            ],
+            "rate": 0.8333
+          },
+          "token_f1_vs_context": 0.5092,
+          "token_f1_vs_gold": 0.1744,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Research note from the earnings-call excerpt (prepared_remarks:10-13:5b7fd8f55d75 | earnings_transcripts):\n- And Michael will wrap up our prepared remarks with a discussion of key financial matters, including our earnings guidance. Then we will open the call for questions. Before we begin, let me cover a few administrative details. This call contains time-sensitive data that is accurate only as of the date of today's live broadcast and redistribution of this broadcast is prohibited.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75:0-3:0e8f6f6f6f6f#s0. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 10,
+            "hits": [
+              "a",
+              "all",
+              "and",
+              "are",
+              "call",
+              "earnings",
+              "in",
+              "is",
+              "note",
+              "of"
+            ],
+            "rate": 0.8333
+          },
+          "token_f1_vs_context": 0.4896,
+          "token_f1_vs_gold": 0.2958,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:ee195e15064e",
+      "query": "Write a short research note grounded only in this earnings-call excerpt.",
+      "gold_chunk_ids": [
+        "fiqa:unknown:4-7:b871059528fb"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+        "earnings_transcripts:qa:8-11:7e372054179d",
+        "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+        "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+        "earnings_transcripts:prepared_remarks:12-15:ef74be69571c"
+      ],
+      "packed_chars": 2787,
+      "gold_answer": "Research note from the earnings-call excerpt (grounded):\n- Or you are charged more for your insurance because you are seen as a bad credit risk. Or you can't rent an apartment. The list is almost endless. It can takes many months and hours spent on the phone to fix these things.\n\nCitations: fiqa:unknown:4-7:b871059528fb#s4. No figures beyond these source sentences.",
+      "base": {
+        "output": "Research Note: Earnings Call Excerpts Analysis\n\nBased on the provided excerpts, the following key points can be identified:\n\n1. Administrative details: The call contains time-sensitive data accurate only as of the date of the live broadcast, and redistribution is prohibited.\n2. Earnings materials availability: The earnings materials are available on the SEC's website and the company's Investor Relations website at investors.adp.com.\n3. Non-GAAP financial measures: The company will reference non-GAAP financial measures, which exclude the impact of certain items, and provide a description and reconciliation in the earnings release.\n4. Forward-looking statements: The call will contain forward-looking statements that refer to future events and involve some risk.\n\nNo specific financial metrics, such as earnings guidance or revenue, are mentioned in the excerpts. Therefore, no concrete conclusions can be drawn about the company's financial performance.\n\nRecommendation: Further research is required to understand the company's financial performance and to analyze the non-GAAP financial measures mentioned in the excerpts.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 12,
+            "hits": [
+              "a",
+              "an",
+              "and",
+              "are",
+              "as",
+              "call",
+              "can",
+              "earnings",
+              "for",
+              "is",
+              "note",
+              "on"
+            ],
+            "rate": 1.0
+          },
+          "token_f1_vs_context": 0.5092,
+          "token_f1_vs_gold": 0.2179,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Research note from the earnings-call excerpt (prepared_remarks:10-13:5b7fd8f55d75 | earnings_transcripts):\n- And Michael will wrap up our prepared remarks with a discussion of key financial matters, including our earnings guidance. Then we will open the call for questions. Before we begin, let me cover a few administrative details. This call contains time-sensitive data that is accurate only as of the date of today's live broadcast and redistribution of this broadcast is prohibited.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75:0-3:0e8f6f6f6f6f#s0. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 11,
+            "hits": [
+              "a",
+              "an",
+              "and",
+              "are",
+              "as",
+              "call",
+              "earnings",
+              "for",
+              "is",
+              "note",
+              "on"
+            ],
+            "rate": 0.9167
+          },
+          "token_f1_vs_context": 0.4896,
+          "token_f1_vs_gold": 0.3016,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:f4b715dd0421",
+      "query": "Which quantitative results are stated in the earnings-call passage?",
+      "gold_chunk_ids": [
+        "finance_alpaca:unknown:0-3:4e650d448dd6"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:12-15:b2a6e2a461a5",
+        "earnings_transcripts:prepared_remarks:10-13:39453f793fdc",
+        "earnings_transcripts:prepared_remarks:10-13:f9498aebaa67",
+        "earnings_transcripts:prepared_remarks:10-13:b8319ff49eaf",
+        "earnings_transcripts:prepared_remarks:10-13:2cf968f328f5"
+      ],
+      "packed_chars": 3088,
+      "gold_answer": "From the earnings-call excerpt, the supported facts are:\n- $700 guaranteed to not be touched for 15 years+, should I put it anywhere other than a savings account?\n- I am a big fan of compound interest and investing in stocks but $700 sitting until she's 21 wont grow into a significant amount.\n- When she's 21, what would you \"hope\" she'd spend the money on? something valuable like education right? so why don't you take the first step now so she will get a much bigger return than the monitory value.\n\nCitations: finance_alpaca:unknown:0-3:4e650d448dd6#s0; finance_alpaca:unknown:0-3:4e650d448dd6#s2; finance_alpaca:unknown:0-3:4e650d448dd6#s3. No figures beyond these source sentences.",
+      "base": {
+        "output": "The information is not in the context. The passage does not mention any quantitative results.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 5,
+            "hits": [
+              "a",
+              "for",
+              "in",
+              "on",
+              "s"
+            ],
+            "rate": 0.4167
+          },
+          "token_f1_vs_context": 0.0899,
+          "token_f1_vs_gold": 0.0571,
+          "grounded_hit": 0.0
+        }
+      },
+      "adapter": {
+        "output": "From the earnings-call excerpt, the supported facts are:\n- Earlier this morning, we released our results for the quarter. Our earnings materials are available on the SEC's website and our Investor Relations website at investors.adp.com where you will also find the investor presentation that accompanies today's call.\n- During our call, we will reference non-GAAP financial measures, which we believe to be useful to investors and that exclude the impact of certain items.\n- A description of these items along with a reconciliation of non-GAAP measures to the most comparable GAAP measures can be found in our earnings release.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8f6e5f6f6a#s3; earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8f6e5f6f6a#s1; earnings_transcripts:prepared_remarks:10-13:2cf968f328f5:3-5:0f8f6e5f6f6a#s2. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 11,
+            "hits": [
+              "a",
+              "and",
+              "are",
+              "be",
+              "call",
+              "earnings",
+              "for",
+              "in",
+              "of",
+              "on",
+              "s"
+            ],
+            "rate": 0.9167
+          },
+          "token_f1_vs_context": 0.8519,
+          "token_f1_vs_gold": 0.3258,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:faf6dd87c52a",
+      "query": "Write a short research note grounded only in this earnings-call excerpt.",
+      "gold_chunk_ids": [
+        "finance_alpaca:unknown:10-13:4cdfbbf6398b"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+        "earnings_transcripts:qa:8-11:7e372054179d",
+        "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+        "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+        "earnings_transcripts:prepared_remarks:12-15:ef74be69571c"
+      ],
+      "packed_chars": 2787,
+      "gold_answer": "Research note from the earnings-call excerpt (grounded):\n- Any time there's conflict there, energy supplies from the region become uncertain. Oil-producing countries may embargo countries that they don't like. A war will, at the very least, interfere with transportation and shipping, and may result in oil wells being destroyed. Etc.\n\nCitations: finance_alpaca:unknown:10-13:4cdfbbf6398b#s10. No figures beyond these source sentences.",
+      "base": {
+        "output": "Research Note: Earnings Call Excerpts Analysis\n\nBased on the provided excerpts, the following key points can be identified:\n\n1. Administrative details: The call contains time-sensitive data accurate only as of the date of the live broadcast, and redistribution is prohibited.\n2. Earnings materials availability: The earnings materials are available on the SEC's website and the company's Investor Relations website at investors.adp.com.\n3. Non-GAAP financial measures: The company will reference non-GAAP financial measures, which exclude the impact of certain items, and provide a description and reconciliation in the earnings release.\n4. Forward-looking statements: The call will contain forward-looking statements that refer to future events and involve some risk.\n\nNo specific financial metrics, such as earnings guidance or revenue, are mentioned in the excerpts. Therefore, no concrete conclusions can be drawn about the company's financial performance.\n\nRecommendation: Further research is required to understand the company's financial performance and to analyze the non-GAAP financial measures mentioned in the excerpts.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 9,
+            "hits": [
+              "a",
+              "and",
+              "at",
+              "call",
+              "earnings",
+              "in",
+              "note",
+              "research",
+              "s"
+            ],
+            "rate": 0.75
+          },
+          "token_f1_vs_context": 0.5092,
+          "token_f1_vs_gold": 0.1772,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Research note from the earnings-call excerpt (prepared_remarks:10-13:5b7fd8f55d75 | earnings_transcripts):\n- And Michael will wrap up our prepared remarks with a discussion of key financial matters, including our earnings guidance. Then we will open the call for questions. Before we begin, let me cover a few administrative details. This call contains time-sensitive data that is accurate only as of the date of today's live broadcast and redistribution of this broadcast is prohibited.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75:0-3:0e8f6f6f6f6f#s0. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 11,
+            "hits": [
+              "10",
+              "13",
+              "a",
+              "and",
+              "at",
+              "call",
+              "earnings",
+              "in",
+              "note",
+              "research",
+              "s"
+            ],
+            "rate": 0.9167
+          },
+          "token_f1_vs_context": 0.4896,
+          "token_f1_vs_gold": 0.3594,
+          "grounded_hit": 1.0
+        }
+      }
+    },
+    {
+      "query_id": "q:ff017dec7dcc",
+      "query": "Write a short research note grounded only in this earnings-call excerpt.",
+      "gold_chunk_ids": [
+        "finance_alpaca:unknown:10-13:fdda9c471f1a"
+      ],
+      "retrieved_ids": [
+        "earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75",
+        "earnings_transcripts:qa:8-11:7e372054179d",
+        "earnings_transcripts:prepared_remarks:0-3:d8dda066bf8c",
+        "earnings_transcripts:prepared_remarks:10-13:816224055cc4",
+        "earnings_transcripts:prepared_remarks:12-15:ef74be69571c"
+      ],
+      "packed_chars": 2787,
+      "gold_answer": "Research note from the earnings-call excerpt (grounded):\n- If you follow the advice here, by the time you get to the point of being eligible, you may not see enough savings in interest to make it worth the hassle. Focus on the hard stuff and pay off the balances. Is that realistic, or am I looking at a longer term struggle? You are looki\n\nCitations: finance_alpaca:unknown:10-13:fdda9c471f1a#s10. No figures beyond these source sentences.",
+      "base": {
+        "output": "Research Note: Earnings Call Excerpts Analysis\n\nBased on the provided excerpts, the following key points can be identified:\n\n1. Administrative details: The call contains time-sensitive data accurate only as of the date of the live broadcast, and redistribution is prohibited.\n2. Earnings materials availability: The earnings materials are available on the SEC's website and the company's Investor Relations website at investors.adp.com.\n3. Non-GAAP financial measures: The company will reference non-GAAP financial measures, which exclude the impact of certain items, and provide a description and reconciliation in the earnings release.\n4. Forward-looking statements: The call will contain forward-looking statements that refer to future events and involve some risk.\n\nNo specific financial metrics, such as earnings guidance or revenue, are mentioned in the excerpts. Therefore, no concrete conclusions can be drawn about the company's financial performance.\n\nRecommendation: Further research is required to understand the company's financial performance and to analyze the non-GAAP financial measures mentioned in the excerpts.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 8,
+            "hits": [
+              "a",
+              "and",
+              "are",
+              "at",
+              "call",
+              "earnings",
+              "follow",
+              "in"
+            ],
+            "rate": 0.6667
+          },
+          "token_f1_vs_context": 0.5092,
+          "token_f1_vs_gold": 0.2275,
+          "grounded_hit": 1.0
+        }
+      },
+      "adapter": {
+        "output": "Research note from the earnings-call excerpt (prepared_remarks:10-13:5b7fd8f55d75 | earnings_transcripts):\n- And Michael will wrap up our prepared remarks with a discussion of key financial matters, including our earnings guidance. Then we will open the call for questions. Before we begin, let me cover a few administrative details. This call contains time-sensitive data that is accurate only as of the date of today's live broadcast and redistribution of this broadcast is prohibited.\n\nCitations: earnings_transcripts:prepared_remarks:10-13:5b7fd8f55d75:0-3:0e8f6f6f6f6f#s0. No figures beyond these source sentences.",
+        "scores": {
+          "citation": {
+            "n_needles": 12,
+            "n_hits": 9,
+            "hits": [
+              "10",
+              "13",
+              "a",
+              "and",
+              "are",
+              "at",
+              "call",
+              "earnings",
+              "in"
+            ],
+            "rate": 0.75
+          },
+          "token_f1_vs_context": 0.4896,
+          "token_f1_vs_gold": 0.3212,
           "grounded_hit": 1.0
         }
       }
