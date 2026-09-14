@@ -1,12 +1,14 @@
 # Progress Tracker
 
-Last updated: 2026-09-13 19:50 IST
+Last updated: 2026-09-14 12:26 IST
 
 ## Current Phase
-Phase 5 — Hybrid RAG + measurable retrieval metrics (5.1–5.8 templates done; 5.9 is the human Kaggle + HF/GitHub publish)
+Phase 5 — Hybrid RAG + measurable retrieval metrics (5.1–5.8 templates done; smoke metrics committed; 5.9 human Kaggle + HF/GitHub publish still open)
 
 ## Next Action Item
-Phase 5.9: Human Kaggle full run via **`notebooks/04_finetune_and_phase59.ipynb`** (preferred) or `03_rag_eval_and_publish.ipynb` / CLI `--run`. Set `RUN_TRAIN=True`, `RUN_RAG=True`, optional `PUBLISH_HF` + `PUSH_GITHUB`. Paste/auto-fill N / Recall@k / nDCG@k / grounded accuracy from JSON into `RAG_EVAL_REPORT.md` + README Results; publish adapter with `docs/MODEL_CARD_RAG.md`. Automation must not invent percentages or start a long GPU job.
+Phase 5.9 (human-only): Full Kaggle run via `notebooks/04_finetune_and_phase59.ipynb` (or `scripts/run_phase59_pipeline.py --run`). Do **not** invent N / Recall@k / nDCG@k / grounded accuracy. After a real `--run` on a larger corpus, paste JSON into `RAG_EVAL_REPORT.md` + README Results and publish the adapter with `docs/MODEL_CARD_RAG.md`. Automation must not start a long GPU job.
+
+After 5.9 publish: **scale RAG corpus** (target hundreds–thousands of public chunks; current committed N=4 is fixture-only).
 
 ## Completed Items
 
@@ -43,6 +45,7 @@ Phase 5.9: Human Kaggle full run via **`notebooks/04_finetune_and_phase59.ipynb`
 - [x] Phase 5.7 Kaggle notebook `notebooks/03_rag_eval_and_publish.ipynb` (dry-run default; GPU flags off)
 - [x] Phase 5.8 `evals/reports/RAG_EVAL_REPORT.md` + README Results + `docs/MODEL_CARD_RAG.md` (N/metrics TBD until JSON exists)
 - [x] Notebook `04_finetune_and_phase59.ipynb` (data → SFT → RAG metrics → report fill → optional HF + GitHub push)
+- [x] Smoke-scale Phase 5.9 artifacts on fixture corpus (N=4; committed JSON; not a coverage claim)
 
 ## Phase 0 Checklist
 
@@ -93,7 +96,7 @@ Phase 5.9: Human Kaggle full run via **`notebooks/04_finetune_and_phase59.ipynb`
 - [x] 5.6 `eval_rag_generate.py` → grounded answer accuracy (base vs adapter)
 - [x] 5.7 Kaggle notebook `03_rag_eval_and_publish.ipynb`
 - [x] 5.8 `RAG_EVAL_REPORT.md` + README results + HF model card template
-- [x] 5.9 Human Kaggle full run + publish adapter/metrics to HF + GitHub
+- [ ] 5.9 Human Kaggle full run + publish adapter/metrics to HF + GitHub (smoke JSON exists; Hub publish + scaled corpus still human)
 
 ## Notes for Automation
 
@@ -110,6 +113,7 @@ On each hourly run:
 
 ## Log
 
+- 2026-09-14 12:26 IST — chore: Phase 5.9 still blocked on a human Kaggle `--run` + HF/GitHub publish. No metrics invented; no GPU job started. Committed smoke artifacts remain N=4 / 6 queries. Next remains 5.9 (human), then scale corpus.
 - 2026-09-14 11:55 IST — feat: Phase 5.9 via scripts/run_phase59_pipeline.py (dry_run=false metrics).
 
 - 2026-09-13 19:50 IST — feat: added `notebooks/04_finetune_and_phase59.ipynb` (data → QLoRA SFT → RAG metrics → auto-fill report/README → optional HF + GitHub push). Phase 5.9 still human-run on Kaggle T4.
