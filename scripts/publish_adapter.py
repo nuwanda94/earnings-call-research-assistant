@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
-"""Push a local QLoRA adapter folder to the Hugging Face Hub.
+"""Push a local QLoRA adapter folder to the Hugging Face Hub (with model card).
 
 Default is a **dry-run**: inspects the adapter path, checks whether a token is
 present in the environment, and writes ``outputs/publish_plan.json``. No upload.
+
+By default writes a filled ``README.md`` model card into the adapter dir from
+SFT plan + optional RAG metric JSON (TBD when missing) before upload.
 
 Auth (token never committed; never printed):
 
@@ -16,6 +19,7 @@ Examples
     python scripts/publish_adapter.py
     python scripts/publish_adapter.py --adapter-dir outputs/adapters/llama32-3b-ecra-sft
     python scripts/publish_adapter.py --repo-id nuwanda94/llama32-3b-ecra-sft --run
+    python scripts/publish_adapter.py --run --no-model-card
 """
 
 from __future__ import annotations
@@ -61,8 +65,13 @@ def _parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--commit-message",
-        default="feat: upload ECRA QLoRA adapter",
+        default="feat: upload ECRA QLoRA adapter + model card",
         help="Hub commit message used only with --run.",
+    )
+    parser.add_argument(
+        "--no-model-card",
+        action="store_true",
+        help="Skip writing README.md model card into the adapter dir.",
     )
     parser.add_argument(
         "--run",
@@ -74,6 +83,19 @@ def _parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = _parse_args()
+    if not args.no_model_card:
+        try:
+            from earnings_call_research_assistant.model_card import write_model_card
+
+            card_path, inp = write_model_card(
+                args.adapter_dir / "README.md",
+                adapter_dir=args.adapter_dir,
+            )
+            print(f"model_card: {card_path}")
+            print(f"card_notes: {inp.notes}")
+        except Exception as exc:
+            print(f"model_card write skipped: {type(exc).__name__}: {exc}")
+
     plan = publish_adapter(
         adapter_dir=args.adapter_dir,
         repo_id=args.repo_id,
@@ -86,6 +108,8 @@ def main() -> int:
         f"adapter={plan.adapter_dir} exists={plan.adapter_exists} "
         f"token_present={plan.token_present} uploaded={plan.uploaded}"
     )
+    if plan.hub_url:
+        print(f"hub_url={plan.hub_url}")
     print(json.dumps(plan.to_dict(), indent=2)[:2000])
     if args.run and not plan.uploaded:
         return 1
