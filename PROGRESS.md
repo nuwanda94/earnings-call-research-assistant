@@ -1,12 +1,21 @@
 # Progress Tracker
 
-Last updated: 2026-09-14 14:25 IST
+Last updated: 2026-09-14 15:02 IST
 
 ## Current Phase
-Phase 5 complete (full-scale SFT + HF publish + GitHub metadata). Optional follow-up: realign RAG eval queries for non-zero Recall@k.
+**Project complete (Phases 0–5).** Full-scale SFT + hybrid RAG stack + HF publish + GitHub metadata are in repo. No further automation code changes unless a human asks for a new phase.
 
 ## Next Action Item
-**Optional (human, corpus machine):** `python scripts/realign_rag_eval.py --max-n 50 --eval-retrieval --eval-generate --adapter-dir outputs/adapters/llama32-3b-ecra-sft` then refresh report/Hub card from new JSON only. **Backup:** `python scripts/backup_adapter.py --repo-id nuwanda94/llama32-3b-ecra-sft`. Automation must not invent R@k or start long GPU jobs.
+**Human-only (not automation):** On a machine that has the scaled RAG corpus, run:
+
+```bash
+python scripts/realign_rag_eval.py --max-n 50 --eval-retrieval --eval-generate \
+  --adapter-dir outputs/adapters/llama32-3b-ecra-sft
+```
+
+Then refresh `evals/reports/RAG_EVAL_REPORT.md` and the Hub card **from the new JSON only**. Backup: `python scripts/backup_adapter.py --repo-id nuwanda94/llama32-3b-ecra-sft`.
+
+Automation must **not** invent Recall@k / nDCG@k and must **not** start long GPU jobs.
 
 ## Completed Items
 
@@ -42,6 +51,7 @@ Phase 5 complete (full-scale SFT + HF publish + GitHub metadata). Optional follo
 - [x] GitHub metadata push (sft_plan, manifests, reports)
 - [x] Phase 5.9 closed in docs (honest R@k=0 caveat + realign script)
 - [x] `scripts/backup_adapter.py` + `scripts/realign_rag_eval.py`
+- [x] Automation idle: all planned phases delivered
 
 ## Phase 0–4 Checklists
 
@@ -61,12 +71,13 @@ All items complete (see git history / prior PROGRESS revisions).
 
 ## Notes for Automation
 
-1. Phase 5.9 is **closed**.
+1. Phases 0–5 are **done**. Do not add new feature code unless a new phase is requested.
 2. Optional next work is human realign of RAG eval queries on a machine that has the corpus.
 3. Do not invent R@k; do not start long GPU jobs in automation.
 
 ## Log
 
+- 2026-09-14 15:02 IST — chore: marked project complete (Phases 0–5). No further code changes from automation. Next remains optional human `realign_rag_eval.py` on corpus machine.
 - 2026-09-14 14:25 IST — docs: closed Phase 5.9 with scaled metrics (N=19990, train 2127, HF uploaded). Honest R@k=0 documented; added `scripts/backup_adapter.py` + `scripts/realign_rag_eval.py`. Next = optional realign re-eval.
 - 2026-09-14 14:00 IST — chore: Phase 5.9 waiting log (superseded by full-scale run + close-out).
 - 2026-09-14 12:35 IST — feat: `notebooks/05_full_scale_sft_t4.ipynb`.
