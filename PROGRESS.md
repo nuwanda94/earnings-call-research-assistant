@@ -1,6 +1,6 @@
 # Progress Tracker
 
-Last updated: 2026-09-14 13:00 IST
+Last updated: 2026-09-14 14:00 IST
 
 ## Current Phase
 Phase 5 — Hybrid RAG + measurable retrieval metrics (5.1–5.8 templates done; smoke metrics committed; 5.9 human Kaggle + HF/GitHub publish still open)
@@ -93,7 +93,7 @@ Phase 5 — Hybrid RAG + measurable retrieval metrics (5.1–5.8 templates done;
 - [x] 5.4 Fixed eval set with gold chunk IDs
 - [x] 5.5 `eval_retrieval.py` → Recall@k + nDCG@k
 - [x] 5.6 `eval_rag_generate.py` → grounded answer accuracy (base vs adapter)
-- [x] 5.7 Kaggle notebook `03_rag_eval_and_publish.ipynb`
+- [x] 5.7 Kaggle notebook `notebooks/03_rag_eval_and_publish.ipynb`
 - [x] 5.8 `RAG_EVAL_REPORT.md` + README results + HF model card template
 - [ ] 5.9 Human Kaggle full run + publish adapter/metrics to HF + GitHub (smoke JSON exists; Hub publish + scaled corpus still human)
 
@@ -112,6 +112,7 @@ On each hourly run:
 
 ## Log
 
+- 2026-09-14 14:00 IST — chore: Phase 5.9 still waiting on a human Kaggle T4 `--run` (`notebooks/05_full_scale_sft_t4.ipynb` or `04_finetune_and_phase59.ipynb`) + HF/GitHub publish. No metrics invented; no GPU job started; no extra code. Smoke artifacts remain N=4 / 6 queries. Next remains 5.9 (human).
 - 2026-09-14 13:00 IST — chore: Phase 5.9 still blocked on a human Kaggle T4 `--run` (`notebooks/05_full_scale_sft_t4.ipynb` or `04_finetune_and_phase59.ipynb`) + HF/GitHub publish. No metrics invented; no GPU job started. Smoke artifacts remain N=4 / 6 queries. Next remains 5.9 (human).
 - 2026-09-14 12:35 IST — feat: `notebooks/05_full_scale_sft_t4.ipynb` (catalog caps 400/200/150 HF stream → 3k–6k select band → full-epoch 3B QLoRA; optional RAG). Next = human T4 run + publish (5.9).
 - 2026-09-14 12:26 IST — chore: Phase 5.9 still blocked on a human Kaggle `--run` + HF/GitHub publish. No metrics invented; no GPU job started. Committed smoke artifacts remain N=4 / 6 queries. Next remains 5.9 (human), then scale corpus.
