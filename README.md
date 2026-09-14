@@ -6,7 +6,7 @@ Domain-adapted LLM for financial research Q&A and summarization from public earn
 
 ## Status
 
-Progress: [`PROGRESS.md`](PROGRESS.md). Hourly automation advanced one action item per run; **Phases 0–4 are complete**. Phase 5 instrumentation (corpus → hybrid retrieve → metrics scripts → report templates) is in repo; **published Recall / nDCG / grounded accuracy remain TBD** until Kaggle `--run` writes the JSON artifacts.
+Progress: [`PROGRESS.md`](PROGRESS.md). **Phases 0–4 complete.** Phase 5.9 Kaggle run (2026-09-14) wrote measured metrics under `evals/reports/` (`dry_run=false`). Corpus is still **fixture-scale (N=4)** — not a coverage claim.
 
 | Phase | Name | Status |
 |-------|------|--------|
@@ -15,7 +15,7 @@ Progress: [`PROGRESS.md`](PROGRESS.md). Hourly automation advanced one action it
 | 2 | Training Pipeline | Done |
 | 3 | Evaluation & Iteration | Done |
 | 4 | Packaging & Portfolio Polish | Done |
-| 5 | Hybrid RAG + measurable metrics | In progress (5.1–5.8 code/docs; 5.9 human Kaggle + publish) |
+| 5 | Hybrid RAG + measurable metrics | Done on smoke corpus (N=4); scale corpus next |
 
 - Reproducibility (seed `3407`, adapter dirs, dry-run vs `--run`): [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md)
 - Data card (`ecra-sft-v0.1.0`): [`docs/DATA_CARD.md`](docs/DATA_CARD.md)
@@ -26,16 +26,24 @@ Progress: [`PROGRESS.md`](PROGRESS.md). Hourly automation advanced one action it
 
 ## Results
 
-Numbers in this section come **only** from `manifest.json`, `evals/reports/rag_metrics.json`, and `evals/reports/rag_generation_metrics.json`. Those files are **not in git** yet (they are written by the RAG scripts). Until a human Kaggle `--run` commits or pastes them, every cell is **TBD**.
+Numbers below are copied from the Phase 5.9 Kaggle artifacts committed to git:
+
+- `evals/reports/corpus_manifest_snapshot.json`
+- `evals/reports/rag_metrics.json`
+- `evals/reports/rag_generation_metrics.json` (`dry_run: false`)
+
+**Caveat:** N=4 chunks / 6 eval queries is a **smoke** run. High R@5 is expected on a tiny index. Do not claim SEC-scale coverage or resume “100% accuracy” without stating N and query count.
 
 | Claim | Source | Value |
 |-------|--------|-------|
-| N (chunk count) | corpus `manifest.json` → `n_chunks` | **4** |
-| Recall@k (hybrid) | `rag_metrics.json` → `backends.hybrid.mean_recall` | **{'@1': 0.333333, '@3': 0.833333, '@5': 1.0, '@10': 1.0}** |
-| nDCG@k (hybrid) | `rag_metrics.json` → `backends.hybrid.mean_ndcg` | **{'@1': 0.333333, '@3': 0.605155, '@5': 0.676935, '@10': 0.676935}** |
-| Grounded answer accuracy | `rag_generation_metrics.json` → `aggregate` (and `dry_run=false`) | **TBD** |
+| N (chunk count) | corpus `n_chunks` | **4** (v0.1.0 fixture; 3 documents) |
+| Recall@k (hybrid) | `backends.hybrid.mean_recall` | **R@1=0.333, R@3=0.833, R@5=1.0, R@10=1.0** |
+| nDCG@k (hybrid) | `backends.hybrid.mean_ndcg` | **nDCG@1=0.333, nDCG@3=0.605, nDCG@5=0.677, nDCG@10=0.677** |
+| Grounded answer accuracy | `aggregate.*.grounded_answer_accuracy` | **base 0.667 / adapter 1.0** (6 queries, `dry_run=false`) |
+| Citation-hit rate | `aggregate.*.citation_hit_rate` | **base 0.486 / adapter 0.569** |
+| Dense backend | `rag_metrics.json` | `sentence-transformers` / `all-MiniLM-L6-v2` |
 
-Do not put R / D / A on a resume while this table says TBD. After the Kaggle run, edit [`evals/reports/RAG_EVAL_REPORT.md`](evals/reports/RAG_EVAL_REPORT.md) first, then copy the same literals here.
+Full tables: [`evals/reports/RAG_EVAL_REPORT.md`](evals/reports/RAG_EVAL_REPORT.md).
 
 Reproduce (CPU dry-run first; add `--run` on Kaggle):
 
@@ -46,7 +54,7 @@ python scripts/eval_retrieval.py --run
 python scripts/eval_rag_generate.py --run --adapter-dir outputs/adapters/llama32-3b-ecra-sft
 ```
 
-Notebook path: [`notebooks/03_rag_eval_and_publish.ipynb`](notebooks/03_rag_eval_and_publish.ipynb).
+End-to-end notebook: [`notebooks/04_finetune_and_phase59.ipynb`](notebooks/04_finetune_and_phase59.ipynb) · driver: [`scripts/run_phase59_pipeline.py`](scripts/run_phase59_pipeline.py).
 
 ## Key principles
 
@@ -242,7 +250,7 @@ python scripts/eval_retrieval.py
 python scripts/eval_rag_generate.py
 ```
 
-Add `--run` on Kaggle for sentence-transformer embeddings and real generations. Report template: [`evals/reports/RAG_EVAL_REPORT.md`](evals/reports/RAG_EVAL_REPORT.md).
+Add `--run` on Kaggle for sentence-transformer embeddings and real generations. Report: [`evals/reports/RAG_EVAL_REPORT.md`](evals/reports/RAG_EVAL_REPORT.md).
 
 ### 8. Record the portfolio clip (optional, off-repo)
 
